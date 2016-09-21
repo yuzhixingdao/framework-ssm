@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="muserMapper">
+
+	<resultMap id="muserMap" type="com.aac.framework.entity.MUser">
+		<id property="id" column="MUSER_ID" />
+		<result property="loginName" column="MUSER_LOGIN_NAME" />
+		<result property="password" column="MUSER_PASSWORD" />
+		<result property="personName" column="MUSER_PERSON_NAME" />
+		<result property="description" column="MUSER_DESCRIPTION" />
+		<result property="isValid" column="MUSER_IS_VALID" />
+		<result property="delFlag" column="MUSER_DEL_FLAG" />
+		<result property="updateId" column="MUSER_UPDATE_ID" />
+		<result property="updateDate" column="MUSER_UPDATE_DATE" />
+		<result property="createId" column="MUSER_CREATE_ID" />
+		<result property="createDate" column="MUSER_CREATE_DATE" />
+		<result property="orgId" column="MUSER_ORG_ID" />
+		<result property="orgName" column="MUSER_ORG_NAME" />
+		<result property="userNo" column="MUSER_USER_NO" />
+		<result property="idCard" column="MUSER_ID_CARD" />
+		<result property="birthDate" column="MUSER_BIRTH_DATE" />
+		<result property="sex" column="MUSER_SEX" />
+		<result property="employeeNo" column="MUSER_EMPLOYEE_NO" />
+		<result property="mobilePhone" column="MUSER_MOBILE_PHONE" />
+		<result property="remark" column="MUSER_REMARK" />
+		<result property="type" column="MUSER_TYPE" />
+		<result property="isRegularEmp" column="MUSER_IS_REGULAR_EMP" />
+		<result property="employeeType" column="MUSER_EMPLOYEE_TYPE" />
+		<result property="agentid" column="MUSER_AGENTID" />
+	</resultMap>
+
+	<sql id="columnSql">ID, LOGIN_NAME, PASSWORD, PERSON_NAME, DESCRIPTION, IS_VALID, DEL_FLAG, UPDATE_ID, UPDATE_DATE, CREATE_ID, CREATE_DATE, ORG_ID, ORG_NAME, USER_NO, ID_CARD, BIRTH_DATE, SEX, EMPLOYEE_NO, MOBILE_PHONE, REMARK, TYPE, IS_REGULAR_EMP, EMPLOYEE_TYPE, AGENTID</sql>
+	<sql id="columnAsSql">MUSER.ID MUSER_ID, MUSER.LOGIN_NAME MUSER_LOGIN_NAME, MUSER.PASSWORD MUSER_PASSWORD, MUSER.PERSON_NAME MUSER_PERSON_NAME, MUSER.DESCRIPTION MUSER_DESCRIPTION, MUSER.IS_VALID MUSER_IS_VALID, MUSER.DEL_FLAG MUSER_DEL_FLAG, MUSER.UPDATE_ID MUSER_UPDATE_ID, MUSER.UPDATE_DATE MUSER_UPDATE_DATE, MUSER.CREATE_ID MUSER_CREATE_ID, MUSER.CREATE_DATE MUSER_CREATE_DATE, MUSER.ORG_ID MUSER_ORG_ID, MUSER.ORG_NAME MUSER_ORG_NAME, MUSER.USER_NO MUSER_USER_NO, MUSER.ID_CARD MUSER_ID_CARD, MUSER.BIRTH_DATE MUSER_BIRTH_DATE, MUSER.SEX MUSER_SEX, MUSER.EMPLOYEE_NO MUSER_EMPLOYEE_NO, MUSER.MOBILE_PHONE MUSER_MOBILE_PHONE, MUSER.REMARK MUSER_REMARK, MUSER.TYPE MUSER_TYPE, MUSER.IS_REGULAR_EMP MUSER_IS_REGULAR_EMP, MUSER.EMPLOYEE_TYPE MUSER_EMPLOYEE_TYPE, MUSER.AGENTID MUSER_AGENTID</sql>
+
+	<select id="selectOne" resultMap="muserMap">
+		SELECT
+		<include refid="columnAsSql" />
+		FROM M_USER MUSER WHERE MUSER.ID = #{id}
+	</select>
+	
+	
+	<select id="selectLogin" resultMap="muserMap" parameterType="com.aac.framework.entity.MUser">
+		SELECT
+		<include refid="columnAsSql" />
+		FROM M_USER MUSER WHERE 1=1
+		<if test="password != null and !password.equals('')">
+			AND MUSER.PASSWORD = #{password}
+		</if>
+		<if test="loginName != null and !loginName.equals('')">
+			AND MUSER.LOGIN_NAME = #{loginName}
+		</if>
+	</select>
+	
+	<select id="selectList" resultMap="muserMap" parameterType="com.aac.framework.entity.MUser">
+		SELECT
+		<include refid="columnAsSql" />
+		FROM M_USER MUSER WHERE 1=1
+		<if test="id != null and !id.equals('')">
+			AND MUSER.ID = #{id}
+		</if>
+		<if test="personName != null and !personName.equals('')">
+			AND MUSER.PERSON_NAME LIKE CONCAT('%', #{personName}, '%')
+		</if>
+		<if test="loginName != null and !loginName.equals('')">
+			<bind name="loginNameLike" value="'%' + _parameter.getLoginName() + '%'"/>
+			AND MUSER.LOGIN_NAME LIKE #{loginNameLike}
+		</if>
+	</select>
+	
+	<select id="selectListCount" resultType="integer" parameterType="com.aac.framework.entity.MUser">
+		SELECT COUNT(1) RET_COUNT FROM M_USER MUSER WHERE 1=1
+		<if test="id != null and !id.equals('')">
+			AND MUSER.ID = #{id}
+		</if>
+		<if test="loginName != null and !loginName.equals('')">
+			AND MUSER.LOGIN_NAME = #{loginName}
+		</if>
+		<if test="password != null and !password.equals('')">
+			AND MUSER.PASSWORD = #{password}
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.aac.framework.entity.MUser">
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			SELECT REPLACE(UUID(), '-', '')
+		</selectKey>
+		INSERT INTO M_USER
+		(<include refid="columnSql" />)
+		VALUES
+		(#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{isValid,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, #{createId,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{orgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{userNo,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{birthDate,jdbcType=DATE}, #{sex,jdbcType=VARCHAR}, #{employeeNo,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{isRegularEmp,jdbcType=VARCHAR}, #{employeeType,jdbcType=VARCHAR}, #{agentid,jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<update id="update" parameterType="com.aac.framework.entity.MUser">
+		UPDATE M_USER
+		<set>
+			<if test="loginName != null">LOGIN_NAME=#{loginName},</if>
+			<if test="password != null">PASSWORD=#{password},</if>
+			<if test="personName != null">PERSON_NAME=#{personName},</if>
+			<if test="description != null">DESCRIPTION=#{description},</if>
+			<if test="isValid != null">IS_VALID=#{isValid},</if>
+			<if test="delFlag != null">DEL_FLAG=#{delFlag},</if>
+			<if test="updateId != null">UPDATE_ID=#{updateId},</if>
+			<if test="updateDate != null">UPDATE_DATE=#{updateDate},</if>
+			<if test="createId != null">CREATE_ID=#{createId},</if>
+			<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+			<if test="orgId != null">ORG_ID=#{orgId},</if>
+			<if test="orgName != null">ORG_NAME=#{orgName},</if>
+			<if test="userNo != null">USER_NO=#{userNo},</if>
+			<if test="idCard != null">ID_CARD=#{idCard},</if>
+			<if test="birthDate != null">BIRTH_DATE=#{birthDate},</if>
+			<if test="sex != null">SEX=#{sex},</if>
+			<if test="employeeNo != null">EMPLOYEE_NO=#{employeeNo},</if>
+			<if test="mobilePhone != null">MOBILE_PHONE=#{mobilePhone},</if>
+			<if test="remark != null">REMARK=#{remark},</if>
+			<if test="type != null">TYPE=#{type},</if>
+			<if test="isRegularEmp != null">IS_REGULAR_EMP=#{isRegularEmp},</if>
+			<if test="employeeType != null">EMPLOYEE_TYPE=#{employeeType},</if>
+			<if test="agentid != null">AGENTID=#{agentid}</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM M_USER WHERE ID = #{id}
+	</delete>
+
+</mapper>

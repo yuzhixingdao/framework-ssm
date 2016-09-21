@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dictionaryMapper">
+
+	<resultMap id="dictionaryMap" type="com.aac.framework.entity.Dictionary">
+		<id property="dictId" column="DICTIONARY_DICT_ID" />
+		<result property="dictType" column="DICTIONARY_DICT_TYPE" />
+		<result property="dictText" column="DICTIONARY_DICT_TEXT" />
+		<result property="dictCode" column="DICTIONARY_DICT_CODE" />
+		<result property="dictOrder" column="DICTIONARY_DICT_ORDER" />
+		<result property="createDate" column="DICTIONARY_CREATE_DATE" />
+		<result property="explains" column="DICTIONARY_EXPLAINS" />
+	</resultMap>
+
+	<sql id="columnSql">DICT_ID, DICT_TYPE, DICT_TEXT, DICT_CODE, DICT_ORDER, CREATE_DATE, EXPLAINS</sql>
+	<sql id="columnAsSql">DICTIONARY.DICT_ID DICTIONARY_DICT_ID, DICTIONARY.DICT_TYPE DICTIONARY_DICT_TYPE, DICTIONARY.DICT_TEXT DICTIONARY_DICT_TEXT, DICTIONARY.DICT_CODE DICTIONARY_DICT_CODE, DICTIONARY.DICT_ORDER DICTIONARY_DICT_ORDER, DICTIONARY.CREATE_DATE DICTIONARY_CREATE_DATE, DICTIONARY.EXPLAINS DICTIONARY_EXPLAINS</sql>
+
+	<select id="selectOne" resultMap="dictionaryMap">
+		SELECT
+		<include refid="columnAsSql" />
+		FROM DICTIONARY WHERE DICTIONARY.DICT_ID = #{dictId}
+	</select>
+	
+	
+	<select id="selectList" resultMap="dictionaryMap" parameterType="com.aac.framework.entity.Dictionary">
+		SELECT
+		<include refid="columnAsSql" />
+		FROM DICTIONARY WHERE 1=1
+		<if test="dictId != null and !dictId.equals('')">
+			AND DICTIONARY.DICT_ID = #{dictId}
+		</if>
+		ORDER BY DICTIONARY.DICT_TYPE, DICTIONARY.DICT_ORDER
+	</select>
+	
+	<select id="selectListCount" resultType="integer" parameterType="com.aac.framework.entity.Dictionary">
+		SELECT COUNT(1) RET_COUNT FROM DICTIONARY WHERE 1=1
+	</select>
+	
+	<insert id="insert" parameterType="com.aac.framework.entity.Dictionary">
+		<selectKey keyProperty="dictId" resultType="string" order="BEFORE">
+			SELECT REPLACE(UUID(), '-', '')
+		</selectKey>
+		INSERT INTO DICTIONARY
+		(<include refid="columnSql" />)
+		VALUES
+		(#{dictId,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}, #{dictText,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, #{dictOrder,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{explains,jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<update id="update" parameterType="com.aac.framework.entity.Dictionary">
+		UPDATE DICTIONARY
+		<set>
+			<if test="dictId != null">DICT_ID=#{dictId},</if>
+			<if test="dictType != null">DICT_TYPE=#{dictType},</if>
+			<if test="dictText != null">DICT_TEXT=#{dictText},</if>
+			<if test="dictCode != null">DICT_CODE=#{dictCode},</if>
+			<if test="dictOrder != null">DICT_ORDER=#{dictOrder},</if>
+			<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+			<if test="explains != null">EXPLAINS=#{explains}</if>
+		</set>
+		WHERE DICT_ID = #{dictId}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM DICTIONARY WHERE DICT_ID = #{dictId}
+	</delete>
+
+</mapper>
