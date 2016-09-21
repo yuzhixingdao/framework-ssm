@@ -1,0 +1,42 @@
+.base-left {
+	float: left;
+}
+.base-right {
+	float: right;
+}
+.base-text-center {
+	text-align: center;
+}
+.base-text-right {
+	text-align: right;
+}
+.base-text-left {
+	text-align: left;
+}
+
+.base-clear-float {
+	clear: both;
+}
+
+
+.base-top {
+	margin-top: 10px;
+}
+.base-bottom {
+	margin-bottom: 10px;
+}
+
+.base-width-100 {
+	width: 100%;
+}
+
+
+.base-color-top {
+	background: #056DAE;
+}
+.base-color-menu {
+	background: #3B95C8;
+}
+.base-color-info {
+	background: #EDF6FA;
+}
