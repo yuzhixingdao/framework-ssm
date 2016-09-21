@@ -1,0 +1,2188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.NmsTrabilityMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsTrability">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="tralevel" jdbcType="TINYINT" property="tralevel" />
+    <result column="hightraqual" jdbcType="TINYINT" property="hightraqual" />
+    <result column="billmodel" jdbcType="TINYINT" property="billmodel" />
+    <result column="trainwheel" jdbcType="TINYINT" property="trainwheel" />
+    <result column="univtrainwheel" jdbcType="TINYINT" property="univtrainwheel" />
+    <result column="basefork" jdbcType="TINYINT" property="basefork" />
+    <result column="bangdai" jdbcType="TINYINT" property="bangdai" />
+    <result column="trainsu" jdbcType="TINYINT" property="trainsu" />
+    <result column="gps" jdbcType="TINYINT" property="gps" />
+    <result column="rectrack" jdbcType="TINYINT" property="rectrack" />
+    <result column="traqualsea" jdbcType="VARCHAR" property="traqualsea" />
+    <result column="goodsinsu" jdbcType="TINYINT" property="goodsinsu" />
+    <result column="coverage" jdbcType="TINYINT" property="coverage" />
+    <result column="coverprice" jdbcType="VARCHAR" property="coverprice" />
+    <result column="thrtab" jdbcType="VARCHAR" property="thrtab" />
+    <result column="fivtab" jdbcType="VARCHAR" property="fivtab" />
+    <result column="falltab" jdbcType="VARCHAR" property="falltab" />
+    <result column="tardrop" jdbcType="VARCHAR" property="tardrop" />
+    <result column="thrmodbra" jdbcType="VARCHAR" property="thrmodbra" />
+    <result column="thrchaspe" jdbcType="VARCHAR" property="thrchaspe" />
+    <result column="thrtrasize" jdbcType="VARCHAR" property="thrtrasize" />
+    <result column="fivmodbra" jdbcType="VARCHAR" property="fivmodbra" />
+    <result column="fivchaspe" jdbcType="VARCHAR" property="fivchaspe" />
+    <result column="fivtrasize" jdbcType="VARCHAR" property="fivtrasize" />
+    <result column="falltabmodbra" jdbcType="VARCHAR" property="falltabmodbra" />
+    <result column="falltabchaspe" jdbcType="VARCHAR" property="falltabchaspe" />
+    <result column="falltabtrasize" jdbcType="VARCHAR" property="falltabtrasize" />
+    <result column="tardropmodbra" jdbcType="VARCHAR" property="tardropmodbra" />
+    <result column="tardropchaspe" jdbcType="VARCHAR" property="tardropchaspe" />
+    <result column="tardroptrasize" jdbcType="VARCHAR" property="tardroptrasize" />
+    <result column="tarmaxweight" jdbcType="VARCHAR" property="tarmaxweight" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, serid, tralevel, hightraqual, billmodel, trainwheel, univtrainwheel, basefork, 
+    bangdai, trainsu, gps, rectrack, traqualsea, goodsinsu, coverage, coverprice, thrtab, 
+    fivtab, falltab, tardrop, thrmodbra, thrchaspe, thrtrasize, fivmodbra, fivchaspe, 
+    fivtrasize, falltabmodbra, falltabchaspe, falltabtrasize, tardropmodbra, tardropchaspe, 
+    tardroptrasize, tarmaxweight, create_by, create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_trability
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_trability
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample">
+    delete from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    insert into nms_trability (id, serid, tralevel, 
+      hightraqual, billmodel, trainwheel, 
+      univtrainwheel, basefork, bangdai, 
+      trainsu, gps, rectrack, 
+      traqualsea, goodsinsu, coverage, 
+      coverprice, thrtab, fivtab, 
+      falltab, tardrop, thrmodbra, 
+      thrchaspe, thrtrasize, fivmodbra, 
+      fivchaspe, fivtrasize, falltabmodbra, 
+      falltabchaspe, falltabtrasize, tardropmodbra, 
+      tardropchaspe, tardroptrasize, tarmaxweight, 
+      create_by, create_date, update_by, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{serid,jdbcType=BIGINT}, #{tralevel,jdbcType=TINYINT}, 
+      #{hightraqual,jdbcType=TINYINT}, #{billmodel,jdbcType=TINYINT}, #{trainwheel,jdbcType=TINYINT}, 
+      #{univtrainwheel,jdbcType=TINYINT}, #{basefork,jdbcType=TINYINT}, #{bangdai,jdbcType=TINYINT}, 
+      #{trainsu,jdbcType=TINYINT}, #{gps,jdbcType=TINYINT}, #{rectrack,jdbcType=TINYINT}, 
+      #{traqualsea,jdbcType=VARCHAR}, #{goodsinsu,jdbcType=TINYINT}, #{coverage,jdbcType=TINYINT}, 
+      #{coverprice,jdbcType=VARCHAR}, #{thrtab,jdbcType=VARCHAR}, #{fivtab,jdbcType=VARCHAR}, 
+      #{falltab,jdbcType=VARCHAR}, #{tardrop,jdbcType=VARCHAR}, #{thrmodbra,jdbcType=VARCHAR}, 
+      #{thrchaspe,jdbcType=VARCHAR}, #{thrtrasize,jdbcType=VARCHAR}, #{fivmodbra,jdbcType=VARCHAR}, 
+      #{fivchaspe,jdbcType=VARCHAR}, #{fivtrasize,jdbcType=VARCHAR}, #{falltabmodbra,jdbcType=VARCHAR}, 
+      #{falltabchaspe,jdbcType=VARCHAR}, #{falltabtrasize,jdbcType=VARCHAR}, #{tardropmodbra,jdbcType=VARCHAR}, 
+      #{tardropchaspe,jdbcType=VARCHAR}, #{tardroptrasize,jdbcType=VARCHAR}, #{tarmaxweight,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    insert into nms_trability
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="tralevel != null">
+        tralevel,
+      </if>
+      <if test="hightraqual != null">
+        hightraqual,
+      </if>
+      <if test="billmodel != null">
+        billmodel,
+      </if>
+      <if test="trainwheel != null">
+        trainwheel,
+      </if>
+      <if test="univtrainwheel != null">
+        univtrainwheel,
+      </if>
+      <if test="basefork != null">
+        basefork,
+      </if>
+      <if test="bangdai != null">
+        bangdai,
+      </if>
+      <if test="trainsu != null">
+        trainsu,
+      </if>
+      <if test="gps != null">
+        gps,
+      </if>
+      <if test="rectrack != null">
+        rectrack,
+      </if>
+      <if test="traqualsea != null">
+        traqualsea,
+      </if>
+      <if test="goodsinsu != null">
+        goodsinsu,
+      </if>
+      <if test="coverage != null">
+        coverage,
+      </if>
+      <if test="coverprice != null">
+        coverprice,
+      </if>
+      <if test="thrtab != null">
+        thrtab,
+      </if>
+      <if test="fivtab != null">
+        fivtab,
+      </if>
+      <if test="falltab != null">
+        falltab,
+      </if>
+      <if test="tardrop != null">
+        tardrop,
+      </if>
+      <if test="thrmodbra != null">
+        thrmodbra,
+      </if>
+      <if test="thrchaspe != null">
+        thrchaspe,
+      </if>
+      <if test="thrtrasize != null">
+        thrtrasize,
+      </if>
+      <if test="fivmodbra != null">
+        fivmodbra,
+      </if>
+      <if test="fivchaspe != null">
+        fivchaspe,
+      </if>
+      <if test="fivtrasize != null">
+        fivtrasize,
+      </if>
+      <if test="falltabmodbra != null">
+        falltabmodbra,
+      </if>
+      <if test="falltabchaspe != null">
+        falltabchaspe,
+      </if>
+      <if test="falltabtrasize != null">
+        falltabtrasize,
+      </if>
+      <if test="tardropmodbra != null">
+        tardropmodbra,
+      </if>
+      <if test="tardropchaspe != null">
+        tardropchaspe,
+      </if>
+      <if test="tardroptrasize != null">
+        tardroptrasize,
+      </if>
+      <if test="tarmaxweight != null">
+        tarmaxweight,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="tralevel != null">
+        #{tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="hightraqual != null">
+        #{hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="billmodel != null">
+        #{billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="trainwheel != null">
+        #{trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="univtrainwheel != null">
+        #{univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="basefork != null">
+        #{basefork,jdbcType=TINYINT},
+      </if>
+      <if test="bangdai != null">
+        #{bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="trainsu != null">
+        #{trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="gps != null">
+        #{gps,jdbcType=TINYINT},
+      </if>
+      <if test="rectrack != null">
+        #{rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="traqualsea != null">
+        #{traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinsu != null">
+        #{goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="coverage != null">
+        #{coverage,jdbcType=TINYINT},
+      </if>
+      <if test="coverprice != null">
+        #{coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtab != null">
+        #{thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtab != null">
+        #{fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="falltab != null">
+        #{falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="tardrop != null">
+        #{tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="thrmodbra != null">
+        #{thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="thrchaspe != null">
+        #{thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtrasize != null">
+        #{thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="fivmodbra != null">
+        #{fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="fivchaspe != null">
+        #{fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtrasize != null">
+        #{fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabmodbra != null">
+        #{falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabchaspe != null">
+        #{falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabtrasize != null">
+        #{falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropmodbra != null">
+        #{tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropchaspe != null">
+        #{tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="tardroptrasize != null">
+        #{tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tarmaxweight != null">
+        #{tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample" resultType="java.lang.Integer">
+    select count(*) from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_trability
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.tralevel != null">
+        tralevel = #{record.tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.hightraqual != null">
+        hightraqual = #{record.hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="record.billmodel != null">
+        billmodel = #{record.billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="record.trainwheel != null">
+        trainwheel = #{record.trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="record.univtrainwheel != null">
+        univtrainwheel = #{record.univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="record.basefork != null">
+        basefork = #{record.basefork,jdbcType=TINYINT},
+      </if>
+      <if test="record.bangdai != null">
+        bangdai = #{record.bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="record.trainsu != null">
+        trainsu = #{record.trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="record.gps != null">
+        gps = #{record.gps,jdbcType=TINYINT},
+      </if>
+      <if test="record.rectrack != null">
+        rectrack = #{record.rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="record.traqualsea != null">
+        traqualsea = #{record.traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsinsu != null">
+        goodsinsu = #{record.goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="record.coverage != null">
+        coverage = #{record.coverage,jdbcType=TINYINT},
+      </if>
+      <if test="record.coverprice != null">
+        coverprice = #{record.coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrtab != null">
+        thrtab = #{record.thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivtab != null">
+        fivtab = #{record.fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltab != null">
+        falltab = #{record.falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardrop != null">
+        tardrop = #{record.tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrmodbra != null">
+        thrmodbra = #{record.thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrchaspe != null">
+        thrchaspe = #{record.thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrtrasize != null">
+        thrtrasize = #{record.thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivmodbra != null">
+        fivmodbra = #{record.fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivchaspe != null">
+        fivchaspe = #{record.fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivtrasize != null">
+        fivtrasize = #{record.fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabmodbra != null">
+        falltabmodbra = #{record.falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabchaspe != null">
+        falltabchaspe = #{record.falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabtrasize != null">
+        falltabtrasize = #{record.falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardropmodbra != null">
+        tardropmodbra = #{record.tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardropchaspe != null">
+        tardropchaspe = #{record.tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardroptrasize != null">
+        tardroptrasize = #{record.tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tarmaxweight != null">
+        tarmaxweight = #{record.tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_trability
+    set id = #{record.id,jdbcType=BIGINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      tralevel = #{record.tralevel,jdbcType=TINYINT},
+      hightraqual = #{record.hightraqual,jdbcType=TINYINT},
+      billmodel = #{record.billmodel,jdbcType=TINYINT},
+      trainwheel = #{record.trainwheel,jdbcType=TINYINT},
+      univtrainwheel = #{record.univtrainwheel,jdbcType=TINYINT},
+      basefork = #{record.basefork,jdbcType=TINYINT},
+      bangdai = #{record.bangdai,jdbcType=TINYINT},
+      trainsu = #{record.trainsu,jdbcType=TINYINT},
+      gps = #{record.gps,jdbcType=TINYINT},
+      rectrack = #{record.rectrack,jdbcType=TINYINT},
+      traqualsea = #{record.traqualsea,jdbcType=VARCHAR},
+      goodsinsu = #{record.goodsinsu,jdbcType=TINYINT},
+      coverage = #{record.coverage,jdbcType=TINYINT},
+      coverprice = #{record.coverprice,jdbcType=VARCHAR},
+      thrtab = #{record.thrtab,jdbcType=VARCHAR},
+      fivtab = #{record.fivtab,jdbcType=VARCHAR},
+      falltab = #{record.falltab,jdbcType=VARCHAR},
+      tardrop = #{record.tardrop,jdbcType=VARCHAR},
+      thrmodbra = #{record.thrmodbra,jdbcType=VARCHAR},
+      thrchaspe = #{record.thrchaspe,jdbcType=VARCHAR},
+      thrtrasize = #{record.thrtrasize,jdbcType=VARCHAR},
+      fivmodbra = #{record.fivmodbra,jdbcType=VARCHAR},
+      fivchaspe = #{record.fivchaspe,jdbcType=VARCHAR},
+      fivtrasize = #{record.fivtrasize,jdbcType=VARCHAR},
+      falltabmodbra = #{record.falltabmodbra,jdbcType=VARCHAR},
+      falltabchaspe = #{record.falltabchaspe,jdbcType=VARCHAR},
+      falltabtrasize = #{record.falltabtrasize,jdbcType=VARCHAR},
+      tardropmodbra = #{record.tardropmodbra,jdbcType=VARCHAR},
+      tardropchaspe = #{record.tardropchaspe,jdbcType=VARCHAR},
+      tardroptrasize = #{record.tardroptrasize,jdbcType=VARCHAR},
+      tarmaxweight = #{record.tarmaxweight,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    update nms_trability
+    <set>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="tralevel != null">
+        tralevel = #{tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="hightraqual != null">
+        hightraqual = #{hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="billmodel != null">
+        billmodel = #{billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="trainwheel != null">
+        trainwheel = #{trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="univtrainwheel != null">
+        univtrainwheel = #{univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="basefork != null">
+        basefork = #{basefork,jdbcType=TINYINT},
+      </if>
+      <if test="bangdai != null">
+        bangdai = #{bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="trainsu != null">
+        trainsu = #{trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="gps != null">
+        gps = #{gps,jdbcType=TINYINT},
+      </if>
+      <if test="rectrack != null">
+        rectrack = #{rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="traqualsea != null">
+        traqualsea = #{traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinsu != null">
+        goodsinsu = #{goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="coverage != null">
+        coverage = #{coverage,jdbcType=TINYINT},
+      </if>
+      <if test="coverprice != null">
+        coverprice = #{coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtab != null">
+        thrtab = #{thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtab != null">
+        fivtab = #{fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="falltab != null">
+        falltab = #{falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="tardrop != null">
+        tardrop = #{tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="thrmodbra != null">
+        thrmodbra = #{thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="thrchaspe != null">
+        thrchaspe = #{thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtrasize != null">
+        thrtrasize = #{thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="fivmodbra != null">
+        fivmodbra = #{fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="fivchaspe != null">
+        fivchaspe = #{fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtrasize != null">
+        fivtrasize = #{fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabmodbra != null">
+        falltabmodbra = #{falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabchaspe != null">
+        falltabchaspe = #{falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabtrasize != null">
+        falltabtrasize = #{falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropmodbra != null">
+        tardropmodbra = #{tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropchaspe != null">
+        tardropchaspe = #{tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="tardroptrasize != null">
+        tardroptrasize = #{tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tarmaxweight != null">
+        tarmaxweight = #{tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    update nms_trability
+    set serid = #{serid,jdbcType=BIGINT},
+      tralevel = #{tralevel,jdbcType=TINYINT},
+      hightraqual = #{hightraqual,jdbcType=TINYINT},
+      billmodel = #{billmodel,jdbcType=TINYINT},
+      trainwheel = #{trainwheel,jdbcType=TINYINT},
+      univtrainwheel = #{univtrainwheel,jdbcType=TINYINT},
+      basefork = #{basefork,jdbcType=TINYINT},
+      bangdai = #{bangdai,jdbcType=TINYINT},
+      trainsu = #{trainsu,jdbcType=TINYINT},
+      gps = #{gps,jdbcType=TINYINT},
+      rectrack = #{rectrack,jdbcType=TINYINT},
+      traqualsea = #{traqualsea,jdbcType=VARCHAR},
+      goodsinsu = #{goodsinsu,jdbcType=TINYINT},
+      coverage = #{coverage,jdbcType=TINYINT},
+      coverprice = #{coverprice,jdbcType=VARCHAR},
+      thrtab = #{thrtab,jdbcType=VARCHAR},
+      fivtab = #{fivtab,jdbcType=VARCHAR},
+      falltab = #{falltab,jdbcType=VARCHAR},
+      tardrop = #{tardrop,jdbcType=VARCHAR},
+      thrmodbra = #{thrmodbra,jdbcType=VARCHAR},
+      thrchaspe = #{thrchaspe,jdbcType=VARCHAR},
+      thrtrasize = #{thrtrasize,jdbcType=VARCHAR},
+      fivmodbra = #{fivmodbra,jdbcType=VARCHAR},
+      fivchaspe = #{fivchaspe,jdbcType=VARCHAR},
+      fivtrasize = #{fivtrasize,jdbcType=VARCHAR},
+      falltabmodbra = #{falltabmodbra,jdbcType=VARCHAR},
+      falltabchaspe = #{falltabchaspe,jdbcType=VARCHAR},
+      falltabtrasize = #{falltabtrasize,jdbcType=VARCHAR},
+      tardropmodbra = #{tardropmodbra,jdbcType=VARCHAR},
+      tardropchaspe = #{tardropchaspe,jdbcType=VARCHAR},
+      tardroptrasize = #{tardroptrasize,jdbcType=VARCHAR},
+      tarmaxweight = #{tarmaxweight,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsTrability">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="tralevel" jdbcType="TINYINT" property="tralevel" />
+    <result column="hightraqual" jdbcType="TINYINT" property="hightraqual" />
+    <result column="billmodel" jdbcType="TINYINT" property="billmodel" />
+    <result column="trainwheel" jdbcType="TINYINT" property="trainwheel" />
+    <result column="univtrainwheel" jdbcType="TINYINT" property="univtrainwheel" />
+    <result column="basefork" jdbcType="TINYINT" property="basefork" />
+    <result column="bangdai" jdbcType="TINYINT" property="bangdai" />
+    <result column="trainsu" jdbcType="TINYINT" property="trainsu" />
+    <result column="gps" jdbcType="TINYINT" property="gps" />
+    <result column="rectrack" jdbcType="TINYINT" property="rectrack" />
+    <result column="traqualsea" jdbcType="VARCHAR" property="traqualsea" />
+    <result column="goodsinsu" jdbcType="TINYINT" property="goodsinsu" />
+    <result column="coverage" jdbcType="TINYINT" property="coverage" />
+    <result column="coverprice" jdbcType="VARCHAR" property="coverprice" />
+    <result column="thrtab" jdbcType="VARCHAR" property="thrtab" />
+    <result column="fivtab" jdbcType="VARCHAR" property="fivtab" />
+    <result column="falltab" jdbcType="VARCHAR" property="falltab" />
+    <result column="tardrop" jdbcType="VARCHAR" property="tardrop" />
+    <result column="thrmodbra" jdbcType="VARCHAR" property="thrmodbra" />
+    <result column="thrchaspe" jdbcType="VARCHAR" property="thrchaspe" />
+    <result column="thrtrasize" jdbcType="VARCHAR" property="thrtrasize" />
+    <result column="fivmodbra" jdbcType="VARCHAR" property="fivmodbra" />
+    <result column="fivchaspe" jdbcType="VARCHAR" property="fivchaspe" />
+    <result column="fivtrasize" jdbcType="VARCHAR" property="fivtrasize" />
+    <result column="falltabmodbra" jdbcType="VARCHAR" property="falltabmodbra" />
+    <result column="falltabchaspe" jdbcType="VARCHAR" property="falltabchaspe" />
+    <result column="falltabtrasize" jdbcType="VARCHAR" property="falltabtrasize" />
+    <result column="tardropmodbra" jdbcType="VARCHAR" property="tardropmodbra" />
+    <result column="tardropchaspe" jdbcType="VARCHAR" property="tardropchaspe" />
+    <result column="tardroptrasize" jdbcType="VARCHAR" property="tardroptrasize" />
+    <result column="tarmaxweight" jdbcType="VARCHAR" property="tarmaxweight" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, serid, tralevel, hightraqual, billmodel, trainwheel, univtrainwheel, basefork, 
+    bangdai, trainsu, gps, rectrack, traqualsea, goodsinsu, coverage, coverprice, thrtab, 
+    fivtab, falltab, tardrop, thrmodbra, thrchaspe, thrtrasize, fivmodbra, fivchaspe, 
+    fivtrasize, falltabmodbra, falltabchaspe, falltabtrasize, tardropmodbra, tardropchaspe, 
+    tardroptrasize, tarmaxweight, create_by, create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_trability
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_trability
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample">
+    delete from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    insert into nms_trability (id, serid, tralevel, 
+      hightraqual, billmodel, trainwheel, 
+      univtrainwheel, basefork, bangdai, 
+      trainsu, gps, rectrack, 
+      traqualsea, goodsinsu, coverage, 
+      coverprice, thrtab, fivtab, 
+      falltab, tardrop, thrmodbra, 
+      thrchaspe, thrtrasize, fivmodbra, 
+      fivchaspe, fivtrasize, falltabmodbra, 
+      falltabchaspe, falltabtrasize, tardropmodbra, 
+      tardropchaspe, tardroptrasize, tarmaxweight, 
+      create_by, create_date, update_by, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{serid,jdbcType=BIGINT}, #{tralevel,jdbcType=TINYINT}, 
+      #{hightraqual,jdbcType=TINYINT}, #{billmodel,jdbcType=TINYINT}, #{trainwheel,jdbcType=TINYINT}, 
+      #{univtrainwheel,jdbcType=TINYINT}, #{basefork,jdbcType=TINYINT}, #{bangdai,jdbcType=TINYINT}, 
+      #{trainsu,jdbcType=TINYINT}, #{gps,jdbcType=TINYINT}, #{rectrack,jdbcType=TINYINT}, 
+      #{traqualsea,jdbcType=VARCHAR}, #{goodsinsu,jdbcType=TINYINT}, #{coverage,jdbcType=TINYINT}, 
+      #{coverprice,jdbcType=VARCHAR}, #{thrtab,jdbcType=VARCHAR}, #{fivtab,jdbcType=VARCHAR}, 
+      #{falltab,jdbcType=VARCHAR}, #{tardrop,jdbcType=VARCHAR}, #{thrmodbra,jdbcType=VARCHAR}, 
+      #{thrchaspe,jdbcType=VARCHAR}, #{thrtrasize,jdbcType=VARCHAR}, #{fivmodbra,jdbcType=VARCHAR}, 
+      #{fivchaspe,jdbcType=VARCHAR}, #{fivtrasize,jdbcType=VARCHAR}, #{falltabmodbra,jdbcType=VARCHAR}, 
+      #{falltabchaspe,jdbcType=VARCHAR}, #{falltabtrasize,jdbcType=VARCHAR}, #{tardropmodbra,jdbcType=VARCHAR}, 
+      #{tardropchaspe,jdbcType=VARCHAR}, #{tardroptrasize,jdbcType=VARCHAR}, #{tarmaxweight,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    insert into nms_trability
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="tralevel != null">
+        tralevel,
+      </if>
+      <if test="hightraqual != null">
+        hightraqual,
+      </if>
+      <if test="billmodel != null">
+        billmodel,
+      </if>
+      <if test="trainwheel != null">
+        trainwheel,
+      </if>
+      <if test="univtrainwheel != null">
+        univtrainwheel,
+      </if>
+      <if test="basefork != null">
+        basefork,
+      </if>
+      <if test="bangdai != null">
+        bangdai,
+      </if>
+      <if test="trainsu != null">
+        trainsu,
+      </if>
+      <if test="gps != null">
+        gps,
+      </if>
+      <if test="rectrack != null">
+        rectrack,
+      </if>
+      <if test="traqualsea != null">
+        traqualsea,
+      </if>
+      <if test="goodsinsu != null">
+        goodsinsu,
+      </if>
+      <if test="coverage != null">
+        coverage,
+      </if>
+      <if test="coverprice != null">
+        coverprice,
+      </if>
+      <if test="thrtab != null">
+        thrtab,
+      </if>
+      <if test="fivtab != null">
+        fivtab,
+      </if>
+      <if test="falltab != null">
+        falltab,
+      </if>
+      <if test="tardrop != null">
+        tardrop,
+      </if>
+      <if test="thrmodbra != null">
+        thrmodbra,
+      </if>
+      <if test="thrchaspe != null">
+        thrchaspe,
+      </if>
+      <if test="thrtrasize != null">
+        thrtrasize,
+      </if>
+      <if test="fivmodbra != null">
+        fivmodbra,
+      </if>
+      <if test="fivchaspe != null">
+        fivchaspe,
+      </if>
+      <if test="fivtrasize != null">
+        fivtrasize,
+      </if>
+      <if test="falltabmodbra != null">
+        falltabmodbra,
+      </if>
+      <if test="falltabchaspe != null">
+        falltabchaspe,
+      </if>
+      <if test="falltabtrasize != null">
+        falltabtrasize,
+      </if>
+      <if test="tardropmodbra != null">
+        tardropmodbra,
+      </if>
+      <if test="tardropchaspe != null">
+        tardropchaspe,
+      </if>
+      <if test="tardroptrasize != null">
+        tardroptrasize,
+      </if>
+      <if test="tarmaxweight != null">
+        tarmaxweight,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="tralevel != null">
+        #{tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="hightraqual != null">
+        #{hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="billmodel != null">
+        #{billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="trainwheel != null">
+        #{trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="univtrainwheel != null">
+        #{univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="basefork != null">
+        #{basefork,jdbcType=TINYINT},
+      </if>
+      <if test="bangdai != null">
+        #{bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="trainsu != null">
+        #{trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="gps != null">
+        #{gps,jdbcType=TINYINT},
+      </if>
+      <if test="rectrack != null">
+        #{rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="traqualsea != null">
+        #{traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinsu != null">
+        #{goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="coverage != null">
+        #{coverage,jdbcType=TINYINT},
+      </if>
+      <if test="coverprice != null">
+        #{coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtab != null">
+        #{thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtab != null">
+        #{fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="falltab != null">
+        #{falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="tardrop != null">
+        #{tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="thrmodbra != null">
+        #{thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="thrchaspe != null">
+        #{thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtrasize != null">
+        #{thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="fivmodbra != null">
+        #{fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="fivchaspe != null">
+        #{fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtrasize != null">
+        #{fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabmodbra != null">
+        #{falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabchaspe != null">
+        #{falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabtrasize != null">
+        #{falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropmodbra != null">
+        #{tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropchaspe != null">
+        #{tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="tardroptrasize != null">
+        #{tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tarmaxweight != null">
+        #{tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample" resultType="java.lang.Integer">
+    select count(*) from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_trability
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.tralevel != null">
+        tralevel = #{record.tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.hightraqual != null">
+        hightraqual = #{record.hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="record.billmodel != null">
+        billmodel = #{record.billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="record.trainwheel != null">
+        trainwheel = #{record.trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="record.univtrainwheel != null">
+        univtrainwheel = #{record.univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="record.basefork != null">
+        basefork = #{record.basefork,jdbcType=TINYINT},
+      </if>
+      <if test="record.bangdai != null">
+        bangdai = #{record.bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="record.trainsu != null">
+        trainsu = #{record.trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="record.gps != null">
+        gps = #{record.gps,jdbcType=TINYINT},
+      </if>
+      <if test="record.rectrack != null">
+        rectrack = #{record.rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="record.traqualsea != null">
+        traqualsea = #{record.traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsinsu != null">
+        goodsinsu = #{record.goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="record.coverage != null">
+        coverage = #{record.coverage,jdbcType=TINYINT},
+      </if>
+      <if test="record.coverprice != null">
+        coverprice = #{record.coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrtab != null">
+        thrtab = #{record.thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivtab != null">
+        fivtab = #{record.fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltab != null">
+        falltab = #{record.falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardrop != null">
+        tardrop = #{record.tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrmodbra != null">
+        thrmodbra = #{record.thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrchaspe != null">
+        thrchaspe = #{record.thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrtrasize != null">
+        thrtrasize = #{record.thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivmodbra != null">
+        fivmodbra = #{record.fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivchaspe != null">
+        fivchaspe = #{record.fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivtrasize != null">
+        fivtrasize = #{record.fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabmodbra != null">
+        falltabmodbra = #{record.falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabchaspe != null">
+        falltabchaspe = #{record.falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabtrasize != null">
+        falltabtrasize = #{record.falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardropmodbra != null">
+        tardropmodbra = #{record.tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardropchaspe != null">
+        tardropchaspe = #{record.tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardroptrasize != null">
+        tardroptrasize = #{record.tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tarmaxweight != null">
+        tarmaxweight = #{record.tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_trability
+    set id = #{record.id,jdbcType=BIGINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      tralevel = #{record.tralevel,jdbcType=TINYINT},
+      hightraqual = #{record.hightraqual,jdbcType=TINYINT},
+      billmodel = #{record.billmodel,jdbcType=TINYINT},
+      trainwheel = #{record.trainwheel,jdbcType=TINYINT},
+      univtrainwheel = #{record.univtrainwheel,jdbcType=TINYINT},
+      basefork = #{record.basefork,jdbcType=TINYINT},
+      bangdai = #{record.bangdai,jdbcType=TINYINT},
+      trainsu = #{record.trainsu,jdbcType=TINYINT},
+      gps = #{record.gps,jdbcType=TINYINT},
+      rectrack = #{record.rectrack,jdbcType=TINYINT},
+      traqualsea = #{record.traqualsea,jdbcType=VARCHAR},
+      goodsinsu = #{record.goodsinsu,jdbcType=TINYINT},
+      coverage = #{record.coverage,jdbcType=TINYINT},
+      coverprice = #{record.coverprice,jdbcType=VARCHAR},
+      thrtab = #{record.thrtab,jdbcType=VARCHAR},
+      fivtab = #{record.fivtab,jdbcType=VARCHAR},
+      falltab = #{record.falltab,jdbcType=VARCHAR},
+      tardrop = #{record.tardrop,jdbcType=VARCHAR},
+      thrmodbra = #{record.thrmodbra,jdbcType=VARCHAR},
+      thrchaspe = #{record.thrchaspe,jdbcType=VARCHAR},
+      thrtrasize = #{record.thrtrasize,jdbcType=VARCHAR},
+      fivmodbra = #{record.fivmodbra,jdbcType=VARCHAR},
+      fivchaspe = #{record.fivchaspe,jdbcType=VARCHAR},
+      fivtrasize = #{record.fivtrasize,jdbcType=VARCHAR},
+      falltabmodbra = #{record.falltabmodbra,jdbcType=VARCHAR},
+      falltabchaspe = #{record.falltabchaspe,jdbcType=VARCHAR},
+      falltabtrasize = #{record.falltabtrasize,jdbcType=VARCHAR},
+      tardropmodbra = #{record.tardropmodbra,jdbcType=VARCHAR},
+      tardropchaspe = #{record.tardropchaspe,jdbcType=VARCHAR},
+      tardroptrasize = #{record.tardroptrasize,jdbcType=VARCHAR},
+      tarmaxweight = #{record.tarmaxweight,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    update nms_trability
+    <set>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="tralevel != null">
+        tralevel = #{tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="hightraqual != null">
+        hightraqual = #{hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="billmodel != null">
+        billmodel = #{billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="trainwheel != null">
+        trainwheel = #{trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="univtrainwheel != null">
+        univtrainwheel = #{univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="basefork != null">
+        basefork = #{basefork,jdbcType=TINYINT},
+      </if>
+      <if test="bangdai != null">
+        bangdai = #{bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="trainsu != null">
+        trainsu = #{trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="gps != null">
+        gps = #{gps,jdbcType=TINYINT},
+      </if>
+      <if test="rectrack != null">
+        rectrack = #{rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="traqualsea != null">
+        traqualsea = #{traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinsu != null">
+        goodsinsu = #{goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="coverage != null">
+        coverage = #{coverage,jdbcType=TINYINT},
+      </if>
+      <if test="coverprice != null">
+        coverprice = #{coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtab != null">
+        thrtab = #{thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtab != null">
+        fivtab = #{fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="falltab != null">
+        falltab = #{falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="tardrop != null">
+        tardrop = #{tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="thrmodbra != null">
+        thrmodbra = #{thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="thrchaspe != null">
+        thrchaspe = #{thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtrasize != null">
+        thrtrasize = #{thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="fivmodbra != null">
+        fivmodbra = #{fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="fivchaspe != null">
+        fivchaspe = #{fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtrasize != null">
+        fivtrasize = #{fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabmodbra != null">
+        falltabmodbra = #{falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabchaspe != null">
+        falltabchaspe = #{falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabtrasize != null">
+        falltabtrasize = #{falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropmodbra != null">
+        tardropmodbra = #{tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropchaspe != null">
+        tardropchaspe = #{tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="tardroptrasize != null">
+        tardroptrasize = #{tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tarmaxweight != null">
+        tarmaxweight = #{tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    update nms_trability
+    set serid = #{serid,jdbcType=BIGINT},
+      tralevel = #{tralevel,jdbcType=TINYINT},
+      hightraqual = #{hightraqual,jdbcType=TINYINT},
+      billmodel = #{billmodel,jdbcType=TINYINT},
+      trainwheel = #{trainwheel,jdbcType=TINYINT},
+      univtrainwheel = #{univtrainwheel,jdbcType=TINYINT},
+      basefork = #{basefork,jdbcType=TINYINT},
+      bangdai = #{bangdai,jdbcType=TINYINT},
+      trainsu = #{trainsu,jdbcType=TINYINT},
+      gps = #{gps,jdbcType=TINYINT},
+      rectrack = #{rectrack,jdbcType=TINYINT},
+      traqualsea = #{traqualsea,jdbcType=VARCHAR},
+      goodsinsu = #{goodsinsu,jdbcType=TINYINT},
+      coverage = #{coverage,jdbcType=TINYINT},
+      coverprice = #{coverprice,jdbcType=VARCHAR},
+      thrtab = #{thrtab,jdbcType=VARCHAR},
+      fivtab = #{fivtab,jdbcType=VARCHAR},
+      falltab = #{falltab,jdbcType=VARCHAR},
+      tardrop = #{tardrop,jdbcType=VARCHAR},
+      thrmodbra = #{thrmodbra,jdbcType=VARCHAR},
+      thrchaspe = #{thrchaspe,jdbcType=VARCHAR},
+      thrtrasize = #{thrtrasize,jdbcType=VARCHAR},
+      fivmodbra = #{fivmodbra,jdbcType=VARCHAR},
+      fivchaspe = #{fivchaspe,jdbcType=VARCHAR},
+      fivtrasize = #{fivtrasize,jdbcType=VARCHAR},
+      falltabmodbra = #{falltabmodbra,jdbcType=VARCHAR},
+      falltabchaspe = #{falltabchaspe,jdbcType=VARCHAR},
+      falltabtrasize = #{falltabtrasize,jdbcType=VARCHAR},
+      tardropmodbra = #{tardropmodbra,jdbcType=VARCHAR},
+      tardropchaspe = #{tardropchaspe,jdbcType=VARCHAR},
+      tardroptrasize = #{tardroptrasize,jdbcType=VARCHAR},
+      tarmaxweight = #{tarmaxweight,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsTrability">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="tralevel" jdbcType="TINYINT" property="tralevel" />
+    <result column="hightraqual" jdbcType="TINYINT" property="hightraqual" />
+    <result column="billmodel" jdbcType="TINYINT" property="billmodel" />
+    <result column="trainwheel" jdbcType="TINYINT" property="trainwheel" />
+    <result column="univtrainwheel" jdbcType="TINYINT" property="univtrainwheel" />
+    <result column="basefork" jdbcType="TINYINT" property="basefork" />
+    <result column="bangdai" jdbcType="TINYINT" property="bangdai" />
+    <result column="trainsu" jdbcType="TINYINT" property="trainsu" />
+    <result column="gps" jdbcType="TINYINT" property="gps" />
+    <result column="rectrack" jdbcType="TINYINT" property="rectrack" />
+    <result column="traqualsea" jdbcType="VARCHAR" property="traqualsea" />
+    <result column="goodsinsu" jdbcType="TINYINT" property="goodsinsu" />
+    <result column="coverage" jdbcType="TINYINT" property="coverage" />
+    <result column="coverprice" jdbcType="VARCHAR" property="coverprice" />
+    <result column="thrtab" jdbcType="VARCHAR" property="thrtab" />
+    <result column="fivtab" jdbcType="VARCHAR" property="fivtab" />
+    <result column="falltab" jdbcType="VARCHAR" property="falltab" />
+    <result column="tardrop" jdbcType="VARCHAR" property="tardrop" />
+    <result column="thrmodbra" jdbcType="VARCHAR" property="thrmodbra" />
+    <result column="thrchaspe" jdbcType="VARCHAR" property="thrchaspe" />
+    <result column="thrtrasize" jdbcType="VARCHAR" property="thrtrasize" />
+    <result column="fivmodbra" jdbcType="VARCHAR" property="fivmodbra" />
+    <result column="fivchaspe" jdbcType="VARCHAR" property="fivchaspe" />
+    <result column="fivtrasize" jdbcType="VARCHAR" property="fivtrasize" />
+    <result column="falltabmodbra" jdbcType="VARCHAR" property="falltabmodbra" />
+    <result column="falltabchaspe" jdbcType="VARCHAR" property="falltabchaspe" />
+    <result column="falltabtrasize" jdbcType="VARCHAR" property="falltabtrasize" />
+    <result column="tardropmodbra" jdbcType="VARCHAR" property="tardropmodbra" />
+    <result column="tardropchaspe" jdbcType="VARCHAR" property="tardropchaspe" />
+    <result column="tardroptrasize" jdbcType="VARCHAR" property="tardroptrasize" />
+    <result column="tarmaxweight" jdbcType="VARCHAR" property="tarmaxweight" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, serid, tralevel, hightraqual, billmodel, trainwheel, univtrainwheel, basefork, 
+    bangdai, trainsu, gps, rectrack, traqualsea, goodsinsu, coverage, coverprice, thrtab, 
+    fivtab, falltab, tardrop, thrmodbra, thrchaspe, thrtrasize, fivmodbra, fivchaspe, 
+    fivtrasize, falltabmodbra, falltabchaspe, falltabtrasize, tardropmodbra, tardropchaspe, 
+    tardroptrasize, tarmaxweight, create_by, create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_trability
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_trability
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample">
+    delete from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    insert into nms_trability (id, serid, tralevel, 
+      hightraqual, billmodel, trainwheel, 
+      univtrainwheel, basefork, bangdai, 
+      trainsu, gps, rectrack, 
+      traqualsea, goodsinsu, coverage, 
+      coverprice, thrtab, fivtab, 
+      falltab, tardrop, thrmodbra, 
+      thrchaspe, thrtrasize, fivmodbra, 
+      fivchaspe, fivtrasize, falltabmodbra, 
+      falltabchaspe, falltabtrasize, tardropmodbra, 
+      tardropchaspe, tardroptrasize, tarmaxweight, 
+      create_by, create_date, update_by, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{serid,jdbcType=BIGINT}, #{tralevel,jdbcType=TINYINT}, 
+      #{hightraqual,jdbcType=TINYINT}, #{billmodel,jdbcType=TINYINT}, #{trainwheel,jdbcType=TINYINT}, 
+      #{univtrainwheel,jdbcType=TINYINT}, #{basefork,jdbcType=TINYINT}, #{bangdai,jdbcType=TINYINT}, 
+      #{trainsu,jdbcType=TINYINT}, #{gps,jdbcType=TINYINT}, #{rectrack,jdbcType=TINYINT}, 
+      #{traqualsea,jdbcType=VARCHAR}, #{goodsinsu,jdbcType=TINYINT}, #{coverage,jdbcType=TINYINT}, 
+      #{coverprice,jdbcType=VARCHAR}, #{thrtab,jdbcType=VARCHAR}, #{fivtab,jdbcType=VARCHAR}, 
+      #{falltab,jdbcType=VARCHAR}, #{tardrop,jdbcType=VARCHAR}, #{thrmodbra,jdbcType=VARCHAR}, 
+      #{thrchaspe,jdbcType=VARCHAR}, #{thrtrasize,jdbcType=VARCHAR}, #{fivmodbra,jdbcType=VARCHAR}, 
+      #{fivchaspe,jdbcType=VARCHAR}, #{fivtrasize,jdbcType=VARCHAR}, #{falltabmodbra,jdbcType=VARCHAR}, 
+      #{falltabchaspe,jdbcType=VARCHAR}, #{falltabtrasize,jdbcType=VARCHAR}, #{tardropmodbra,jdbcType=VARCHAR}, 
+      #{tardropchaspe,jdbcType=VARCHAR}, #{tardroptrasize,jdbcType=VARCHAR}, #{tarmaxweight,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    insert into nms_trability
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="tralevel != null">
+        tralevel,
+      </if>
+      <if test="hightraqual != null">
+        hightraqual,
+      </if>
+      <if test="billmodel != null">
+        billmodel,
+      </if>
+      <if test="trainwheel != null">
+        trainwheel,
+      </if>
+      <if test="univtrainwheel != null">
+        univtrainwheel,
+      </if>
+      <if test="basefork != null">
+        basefork,
+      </if>
+      <if test="bangdai != null">
+        bangdai,
+      </if>
+      <if test="trainsu != null">
+        trainsu,
+      </if>
+      <if test="gps != null">
+        gps,
+      </if>
+      <if test="rectrack != null">
+        rectrack,
+      </if>
+      <if test="traqualsea != null">
+        traqualsea,
+      </if>
+      <if test="goodsinsu != null">
+        goodsinsu,
+      </if>
+      <if test="coverage != null">
+        coverage,
+      </if>
+      <if test="coverprice != null">
+        coverprice,
+      </if>
+      <if test="thrtab != null">
+        thrtab,
+      </if>
+      <if test="fivtab != null">
+        fivtab,
+      </if>
+      <if test="falltab != null">
+        falltab,
+      </if>
+      <if test="tardrop != null">
+        tardrop,
+      </if>
+      <if test="thrmodbra != null">
+        thrmodbra,
+      </if>
+      <if test="thrchaspe != null">
+        thrchaspe,
+      </if>
+      <if test="thrtrasize != null">
+        thrtrasize,
+      </if>
+      <if test="fivmodbra != null">
+        fivmodbra,
+      </if>
+      <if test="fivchaspe != null">
+        fivchaspe,
+      </if>
+      <if test="fivtrasize != null">
+        fivtrasize,
+      </if>
+      <if test="falltabmodbra != null">
+        falltabmodbra,
+      </if>
+      <if test="falltabchaspe != null">
+        falltabchaspe,
+      </if>
+      <if test="falltabtrasize != null">
+        falltabtrasize,
+      </if>
+      <if test="tardropmodbra != null">
+        tardropmodbra,
+      </if>
+      <if test="tardropchaspe != null">
+        tardropchaspe,
+      </if>
+      <if test="tardroptrasize != null">
+        tardroptrasize,
+      </if>
+      <if test="tarmaxweight != null">
+        tarmaxweight,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="tralevel != null">
+        #{tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="hightraqual != null">
+        #{hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="billmodel != null">
+        #{billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="trainwheel != null">
+        #{trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="univtrainwheel != null">
+        #{univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="basefork != null">
+        #{basefork,jdbcType=TINYINT},
+      </if>
+      <if test="bangdai != null">
+        #{bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="trainsu != null">
+        #{trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="gps != null">
+        #{gps,jdbcType=TINYINT},
+      </if>
+      <if test="rectrack != null">
+        #{rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="traqualsea != null">
+        #{traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinsu != null">
+        #{goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="coverage != null">
+        #{coverage,jdbcType=TINYINT},
+      </if>
+      <if test="coverprice != null">
+        #{coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtab != null">
+        #{thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtab != null">
+        #{fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="falltab != null">
+        #{falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="tardrop != null">
+        #{tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="thrmodbra != null">
+        #{thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="thrchaspe != null">
+        #{thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtrasize != null">
+        #{thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="fivmodbra != null">
+        #{fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="fivchaspe != null">
+        #{fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtrasize != null">
+        #{fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabmodbra != null">
+        #{falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabchaspe != null">
+        #{falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabtrasize != null">
+        #{falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropmodbra != null">
+        #{tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropchaspe != null">
+        #{tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="tardroptrasize != null">
+        #{tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tarmaxweight != null">
+        #{tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsTrabilityExample" resultType="java.lang.Integer">
+    select count(*) from nms_trability
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_trability
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.tralevel != null">
+        tralevel = #{record.tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.hightraqual != null">
+        hightraqual = #{record.hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="record.billmodel != null">
+        billmodel = #{record.billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="record.trainwheel != null">
+        trainwheel = #{record.trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="record.univtrainwheel != null">
+        univtrainwheel = #{record.univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="record.basefork != null">
+        basefork = #{record.basefork,jdbcType=TINYINT},
+      </if>
+      <if test="record.bangdai != null">
+        bangdai = #{record.bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="record.trainsu != null">
+        trainsu = #{record.trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="record.gps != null">
+        gps = #{record.gps,jdbcType=TINYINT},
+      </if>
+      <if test="record.rectrack != null">
+        rectrack = #{record.rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="record.traqualsea != null">
+        traqualsea = #{record.traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsinsu != null">
+        goodsinsu = #{record.goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="record.coverage != null">
+        coverage = #{record.coverage,jdbcType=TINYINT},
+      </if>
+      <if test="record.coverprice != null">
+        coverprice = #{record.coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrtab != null">
+        thrtab = #{record.thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivtab != null">
+        fivtab = #{record.fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltab != null">
+        falltab = #{record.falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardrop != null">
+        tardrop = #{record.tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrmodbra != null">
+        thrmodbra = #{record.thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrchaspe != null">
+        thrchaspe = #{record.thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thrtrasize != null">
+        thrtrasize = #{record.thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivmodbra != null">
+        fivmodbra = #{record.fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivchaspe != null">
+        fivchaspe = #{record.fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivtrasize != null">
+        fivtrasize = #{record.fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabmodbra != null">
+        falltabmodbra = #{record.falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabchaspe != null">
+        falltabchaspe = #{record.falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falltabtrasize != null">
+        falltabtrasize = #{record.falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardropmodbra != null">
+        tardropmodbra = #{record.tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardropchaspe != null">
+        tardropchaspe = #{record.tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tardroptrasize != null">
+        tardroptrasize = #{record.tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tarmaxweight != null">
+        tarmaxweight = #{record.tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_trability
+    set id = #{record.id,jdbcType=BIGINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      tralevel = #{record.tralevel,jdbcType=TINYINT},
+      hightraqual = #{record.hightraqual,jdbcType=TINYINT},
+      billmodel = #{record.billmodel,jdbcType=TINYINT},
+      trainwheel = #{record.trainwheel,jdbcType=TINYINT},
+      univtrainwheel = #{record.univtrainwheel,jdbcType=TINYINT},
+      basefork = #{record.basefork,jdbcType=TINYINT},
+      bangdai = #{record.bangdai,jdbcType=TINYINT},
+      trainsu = #{record.trainsu,jdbcType=TINYINT},
+      gps = #{record.gps,jdbcType=TINYINT},
+      rectrack = #{record.rectrack,jdbcType=TINYINT},
+      traqualsea = #{record.traqualsea,jdbcType=VARCHAR},
+      goodsinsu = #{record.goodsinsu,jdbcType=TINYINT},
+      coverage = #{record.coverage,jdbcType=TINYINT},
+      coverprice = #{record.coverprice,jdbcType=VARCHAR},
+      thrtab = #{record.thrtab,jdbcType=VARCHAR},
+      fivtab = #{record.fivtab,jdbcType=VARCHAR},
+      falltab = #{record.falltab,jdbcType=VARCHAR},
+      tardrop = #{record.tardrop,jdbcType=VARCHAR},
+      thrmodbra = #{record.thrmodbra,jdbcType=VARCHAR},
+      thrchaspe = #{record.thrchaspe,jdbcType=VARCHAR},
+      thrtrasize = #{record.thrtrasize,jdbcType=VARCHAR},
+      fivmodbra = #{record.fivmodbra,jdbcType=VARCHAR},
+      fivchaspe = #{record.fivchaspe,jdbcType=VARCHAR},
+      fivtrasize = #{record.fivtrasize,jdbcType=VARCHAR},
+      falltabmodbra = #{record.falltabmodbra,jdbcType=VARCHAR},
+      falltabchaspe = #{record.falltabchaspe,jdbcType=VARCHAR},
+      falltabtrasize = #{record.falltabtrasize,jdbcType=VARCHAR},
+      tardropmodbra = #{record.tardropmodbra,jdbcType=VARCHAR},
+      tardropchaspe = #{record.tardropchaspe,jdbcType=VARCHAR},
+      tardroptrasize = #{record.tardroptrasize,jdbcType=VARCHAR},
+      tarmaxweight = #{record.tarmaxweight,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    update nms_trability
+    <set>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="tralevel != null">
+        tralevel = #{tralevel,jdbcType=TINYINT},
+      </if>
+      <if test="hightraqual != null">
+        hightraqual = #{hightraqual,jdbcType=TINYINT},
+      </if>
+      <if test="billmodel != null">
+        billmodel = #{billmodel,jdbcType=TINYINT},
+      </if>
+      <if test="trainwheel != null">
+        trainwheel = #{trainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="univtrainwheel != null">
+        univtrainwheel = #{univtrainwheel,jdbcType=TINYINT},
+      </if>
+      <if test="basefork != null">
+        basefork = #{basefork,jdbcType=TINYINT},
+      </if>
+      <if test="bangdai != null">
+        bangdai = #{bangdai,jdbcType=TINYINT},
+      </if>
+      <if test="trainsu != null">
+        trainsu = #{trainsu,jdbcType=TINYINT},
+      </if>
+      <if test="gps != null">
+        gps = #{gps,jdbcType=TINYINT},
+      </if>
+      <if test="rectrack != null">
+        rectrack = #{rectrack,jdbcType=TINYINT},
+      </if>
+      <if test="traqualsea != null">
+        traqualsea = #{traqualsea,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinsu != null">
+        goodsinsu = #{goodsinsu,jdbcType=TINYINT},
+      </if>
+      <if test="coverage != null">
+        coverage = #{coverage,jdbcType=TINYINT},
+      </if>
+      <if test="coverprice != null">
+        coverprice = #{coverprice,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtab != null">
+        thrtab = #{thrtab,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtab != null">
+        fivtab = #{fivtab,jdbcType=VARCHAR},
+      </if>
+      <if test="falltab != null">
+        falltab = #{falltab,jdbcType=VARCHAR},
+      </if>
+      <if test="tardrop != null">
+        tardrop = #{tardrop,jdbcType=VARCHAR},
+      </if>
+      <if test="thrmodbra != null">
+        thrmodbra = #{thrmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="thrchaspe != null">
+        thrchaspe = #{thrchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="thrtrasize != null">
+        thrtrasize = #{thrtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="fivmodbra != null">
+        fivmodbra = #{fivmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="fivchaspe != null">
+        fivchaspe = #{fivchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="fivtrasize != null">
+        fivtrasize = #{fivtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabmodbra != null">
+        falltabmodbra = #{falltabmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabchaspe != null">
+        falltabchaspe = #{falltabchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="falltabtrasize != null">
+        falltabtrasize = #{falltabtrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropmodbra != null">
+        tardropmodbra = #{tardropmodbra,jdbcType=VARCHAR},
+      </if>
+      <if test="tardropchaspe != null">
+        tardropchaspe = #{tardropchaspe,jdbcType=VARCHAR},
+      </if>
+      <if test="tardroptrasize != null">
+        tardroptrasize = #{tardroptrasize,jdbcType=VARCHAR},
+      </if>
+      <if test="tarmaxweight != null">
+        tarmaxweight = #{tarmaxweight,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsTrability">
+    update nms_trability
+    set serid = #{serid,jdbcType=BIGINT},
+      tralevel = #{tralevel,jdbcType=TINYINT},
+      hightraqual = #{hightraqual,jdbcType=TINYINT},
+      billmodel = #{billmodel,jdbcType=TINYINT},
+      trainwheel = #{trainwheel,jdbcType=TINYINT},
+      univtrainwheel = #{univtrainwheel,jdbcType=TINYINT},
+      basefork = #{basefork,jdbcType=TINYINT},
+      bangdai = #{bangdai,jdbcType=TINYINT},
+      trainsu = #{trainsu,jdbcType=TINYINT},
+      gps = #{gps,jdbcType=TINYINT},
+      rectrack = #{rectrack,jdbcType=TINYINT},
+      traqualsea = #{traqualsea,jdbcType=VARCHAR},
+      goodsinsu = #{goodsinsu,jdbcType=TINYINT},
+      coverage = #{coverage,jdbcType=TINYINT},
+      coverprice = #{coverprice,jdbcType=VARCHAR},
+      thrtab = #{thrtab,jdbcType=VARCHAR},
+      fivtab = #{fivtab,jdbcType=VARCHAR},
+      falltab = #{falltab,jdbcType=VARCHAR},
+      tardrop = #{tardrop,jdbcType=VARCHAR},
+      thrmodbra = #{thrmodbra,jdbcType=VARCHAR},
+      thrchaspe = #{thrchaspe,jdbcType=VARCHAR},
+      thrtrasize = #{thrtrasize,jdbcType=VARCHAR},
+      fivmodbra = #{fivmodbra,jdbcType=VARCHAR},
+      fivchaspe = #{fivchaspe,jdbcType=VARCHAR},
+      fivtrasize = #{fivtrasize,jdbcType=VARCHAR},
+      falltabmodbra = #{falltabmodbra,jdbcType=VARCHAR},
+      falltabchaspe = #{falltabchaspe,jdbcType=VARCHAR},
+      falltabtrasize = #{falltabtrasize,jdbcType=VARCHAR},
+      tardropmodbra = #{tardropmodbra,jdbcType=VARCHAR},
+      tardropchaspe = #{tardropchaspe,jdbcType=VARCHAR},
+      tardroptrasize = #{tardroptrasize,jdbcType=VARCHAR},
+      tarmaxweight = #{tarmaxweight,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

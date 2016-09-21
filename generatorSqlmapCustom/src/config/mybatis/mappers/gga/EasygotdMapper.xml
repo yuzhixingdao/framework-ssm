@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.EasygotdMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.gga.Easygotd">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="tdbm" jdbcType="VARCHAR" property="tdbm" />
+    <result column="tdmc" jdbcType="VARCHAR" property="tdmc" />
+    <result column="tdlxbm" jdbcType="VARCHAR" property="tdlxbm" />
+    <result column="tdlxmc" jdbcType="VARCHAR" property="tdlxmc" />
+    <result column="tdqx" jdbcType="VARCHAR" property="tdqx" />
+    <result column="tdxjsj" jdbcType="TIMESTAMP" property="tdxjsj" />
+    <result column="tdxgsj" jdbcType="TIMESTAMP" property="tdxgsj" />
+    <result column="tdfwjzsj" jdbcType="TIMESTAMP" property="tdfwjzsj" />
+    <result column="tdnumber" jdbcType="VARCHAR" property="tdnumber" />
+    <result column="tdwhy" jdbcType="VARCHAR" property="tdwhy" />
+    <result column="tdtbzy" jdbcType="VARCHAR" property="tdtbzy" />
+    <result column="tdjddb" jdbcType="VARCHAR" property="tdjddb" />
+    <result column="tdcxtj" jdbcType="VARCHAR" property="tdcxtj" />
+    <result column="tdpxh" jdbcType="VARCHAR" property="tdpxh" />
+    <result column="tdhtbm" jdbcType="VARCHAR" property="tdhtbm" />
+    <result column="tdhtmc" jdbcType="VARCHAR" property="tdhtmc" />
+    <result column="flow_code" jdbcType="BIGINT" property="flowCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, tdbm, tdmc, tdlxbm, tdlxmc, tdqx, tdxjsj, tdxgsj, tdfwjzsj, tdnumber, tdwhy, 
+    tdtbzy, tdjddb, tdcxtj, tdpxh, tdhtbm, tdhtmc, flow_code
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.gga.EasygotdExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from easygotd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from easygotd
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from easygotd
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.gga.EasygotdExample">
+    delete from easygotd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.gga.Easygotd">
+    insert into easygotd (id, tdbm, tdmc, 
+      tdlxbm, tdlxmc, tdqx, 
+      tdxjsj, tdxgsj, tdfwjzsj, 
+      tdnumber, tdwhy, tdtbzy, 
+      tdjddb, tdcxtj, tdpxh, 
+      tdhtbm, tdhtmc, flow_code
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tdbm,jdbcType=VARCHAR}, #{tdmc,jdbcType=VARCHAR}, 
+      #{tdlxbm,jdbcType=VARCHAR}, #{tdlxmc,jdbcType=VARCHAR}, #{tdqx,jdbcType=VARCHAR}, 
+      #{tdxjsj,jdbcType=TIMESTAMP}, #{tdxgsj,jdbcType=TIMESTAMP}, #{tdfwjzsj,jdbcType=TIMESTAMP}, 
+      #{tdnumber,jdbcType=VARCHAR}, #{tdwhy,jdbcType=VARCHAR}, #{tdtbzy,jdbcType=VARCHAR}, 
+      #{tdjddb,jdbcType=VARCHAR}, #{tdcxtj,jdbcType=VARCHAR}, #{tdpxh,jdbcType=VARCHAR}, 
+      #{tdhtbm,jdbcType=VARCHAR}, #{tdhtmc,jdbcType=VARCHAR}, #{flowCode,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.gga.Easygotd">
+    insert into easygotd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tdbm != null">
+        tdbm,
+      </if>
+      <if test="tdmc != null">
+        tdmc,
+      </if>
+      <if test="tdlxbm != null">
+        tdlxbm,
+      </if>
+      <if test="tdlxmc != null">
+        tdlxmc,
+      </if>
+      <if test="tdqx != null">
+        tdqx,
+      </if>
+      <if test="tdxjsj != null">
+        tdxjsj,
+      </if>
+      <if test="tdxgsj != null">
+        tdxgsj,
+      </if>
+      <if test="tdfwjzsj != null">
+        tdfwjzsj,
+      </if>
+      <if test="tdnumber != null">
+        tdnumber,
+      </if>
+      <if test="tdwhy != null">
+        tdwhy,
+      </if>
+      <if test="tdtbzy != null">
+        tdtbzy,
+      </if>
+      <if test="tdjddb != null">
+        tdjddb,
+      </if>
+      <if test="tdcxtj != null">
+        tdcxtj,
+      </if>
+      <if test="tdpxh != null">
+        tdpxh,
+      </if>
+      <if test="tdhtbm != null">
+        tdhtbm,
+      </if>
+      <if test="tdhtmc != null">
+        tdhtmc,
+      </if>
+      <if test="flowCode != null">
+        flow_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tdbm != null">
+        #{tdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdmc != null">
+        #{tdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxbm != null">
+        #{tdlxbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxmc != null">
+        #{tdlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdqx != null">
+        #{tdqx,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxjsj != null">
+        #{tdxjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdxgsj != null">
+        #{tdxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdfwjzsj != null">
+        #{tdfwjzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdnumber != null">
+        #{tdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tdwhy != null">
+        #{tdwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdtbzy != null">
+        #{tdtbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdjddb != null">
+        #{tdjddb,jdbcType=VARCHAR},
+      </if>
+      <if test="tdcxtj != null">
+        #{tdcxtj,jdbcType=VARCHAR},
+      </if>
+      <if test="tdpxh != null">
+        #{tdpxh,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtbm != null">
+        #{tdhtbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtmc != null">
+        #{tdhtmc,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null">
+        #{flowCode,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.gga.EasygotdExample" resultType="java.lang.Integer">
+    select count(*) from easygotd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update easygotd
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdbm != null">
+        tdbm = #{record.tdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdmc != null">
+        tdmc = #{record.tdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdlxbm != null">
+        tdlxbm = #{record.tdlxbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdlxmc != null">
+        tdlxmc = #{record.tdlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdqx != null">
+        tdqx = #{record.tdqx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdxjsj != null">
+        tdxjsj = #{record.tdxjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdxgsj != null">
+        tdxgsj = #{record.tdxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdfwjzsj != null">
+        tdfwjzsj = #{record.tdfwjzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdnumber != null">
+        tdnumber = #{record.tdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdwhy != null">
+        tdwhy = #{record.tdwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdtbzy != null">
+        tdtbzy = #{record.tdtbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdjddb != null">
+        tdjddb = #{record.tdjddb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdcxtj != null">
+        tdcxtj = #{record.tdcxtj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdpxh != null">
+        tdpxh = #{record.tdpxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdhtbm != null">
+        tdhtbm = #{record.tdhtbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdhtmc != null">
+        tdhtmc = #{record.tdhtmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCode != null">
+        flow_code = #{record.flowCode,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update easygotd
+    set id = #{record.id,jdbcType=VARCHAR},
+      tdbm = #{record.tdbm,jdbcType=VARCHAR},
+      tdmc = #{record.tdmc,jdbcType=VARCHAR},
+      tdlxbm = #{record.tdlxbm,jdbcType=VARCHAR},
+      tdlxmc = #{record.tdlxmc,jdbcType=VARCHAR},
+      tdqx = #{record.tdqx,jdbcType=VARCHAR},
+      tdxjsj = #{record.tdxjsj,jdbcType=TIMESTAMP},
+      tdxgsj = #{record.tdxgsj,jdbcType=TIMESTAMP},
+      tdfwjzsj = #{record.tdfwjzsj,jdbcType=TIMESTAMP},
+      tdnumber = #{record.tdnumber,jdbcType=VARCHAR},
+      tdwhy = #{record.tdwhy,jdbcType=VARCHAR},
+      tdtbzy = #{record.tdtbzy,jdbcType=VARCHAR},
+      tdjddb = #{record.tdjddb,jdbcType=VARCHAR},
+      tdcxtj = #{record.tdcxtj,jdbcType=VARCHAR},
+      tdpxh = #{record.tdpxh,jdbcType=VARCHAR},
+      tdhtbm = #{record.tdhtbm,jdbcType=VARCHAR},
+      tdhtmc = #{record.tdhtmc,jdbcType=VARCHAR},
+      flow_code = #{record.flowCode,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.gga.Easygotd">
+    update easygotd
+    <set>
+      <if test="tdbm != null">
+        tdbm = #{tdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdmc != null">
+        tdmc = #{tdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxbm != null">
+        tdlxbm = #{tdlxbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxmc != null">
+        tdlxmc = #{tdlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdqx != null">
+        tdqx = #{tdqx,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxjsj != null">
+        tdxjsj = #{tdxjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdxgsj != null">
+        tdxgsj = #{tdxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdfwjzsj != null">
+        tdfwjzsj = #{tdfwjzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdnumber != null">
+        tdnumber = #{tdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tdwhy != null">
+        tdwhy = #{tdwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdtbzy != null">
+        tdtbzy = #{tdtbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdjddb != null">
+        tdjddb = #{tdjddb,jdbcType=VARCHAR},
+      </if>
+      <if test="tdcxtj != null">
+        tdcxtj = #{tdcxtj,jdbcType=VARCHAR},
+      </if>
+      <if test="tdpxh != null">
+        tdpxh = #{tdpxh,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtbm != null">
+        tdhtbm = #{tdhtbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtmc != null">
+        tdhtmc = #{tdhtmc,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null">
+        flow_code = #{flowCode,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.gga.Easygotd">
+    update easygotd
+    set tdbm = #{tdbm,jdbcType=VARCHAR},
+      tdmc = #{tdmc,jdbcType=VARCHAR},
+      tdlxbm = #{tdlxbm,jdbcType=VARCHAR},
+      tdlxmc = #{tdlxmc,jdbcType=VARCHAR},
+      tdqx = #{tdqx,jdbcType=VARCHAR},
+      tdxjsj = #{tdxjsj,jdbcType=TIMESTAMP},
+      tdxgsj = #{tdxgsj,jdbcType=TIMESTAMP},
+      tdfwjzsj = #{tdfwjzsj,jdbcType=TIMESTAMP},
+      tdnumber = #{tdnumber,jdbcType=VARCHAR},
+      tdwhy = #{tdwhy,jdbcType=VARCHAR},
+      tdtbzy = #{tdtbzy,jdbcType=VARCHAR},
+      tdjddb = #{tdjddb,jdbcType=VARCHAR},
+      tdcxtj = #{tdcxtj,jdbcType=VARCHAR},
+      tdpxh = #{tdpxh,jdbcType=VARCHAR},
+      tdhtbm = #{tdhtbm,jdbcType=VARCHAR},
+      tdhtmc = #{tdhtmc,jdbcType=VARCHAR},
+      flow_code = #{flowCode,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.gga.Easygotd">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="tdbm" jdbcType="VARCHAR" property="tdbm" />
+    <result column="tdmc" jdbcType="VARCHAR" property="tdmc" />
+    <result column="tdlxbm" jdbcType="VARCHAR" property="tdlxbm" />
+    <result column="tdlxmc" jdbcType="VARCHAR" property="tdlxmc" />
+    <result column="tdqx" jdbcType="VARCHAR" property="tdqx" />
+    <result column="tdxjsj" jdbcType="TIMESTAMP" property="tdxjsj" />
+    <result column="tdxgsj" jdbcType="TIMESTAMP" property="tdxgsj" />
+    <result column="tdfwjzsj" jdbcType="TIMESTAMP" property="tdfwjzsj" />
+    <result column="tdnumber" jdbcType="VARCHAR" property="tdnumber" />
+    <result column="tdwhy" jdbcType="VARCHAR" property="tdwhy" />
+    <result column="tdtbzy" jdbcType="VARCHAR" property="tdtbzy" />
+    <result column="tdjddb" jdbcType="VARCHAR" property="tdjddb" />
+    <result column="tdcxtj" jdbcType="VARCHAR" property="tdcxtj" />
+    <result column="tdpxh" jdbcType="VARCHAR" property="tdpxh" />
+    <result column="tdhtbm" jdbcType="VARCHAR" property="tdhtbm" />
+    <result column="tdhtmc" jdbcType="VARCHAR" property="tdhtmc" />
+    <result column="flow_code" jdbcType="BIGINT" property="flowCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, tdbm, tdmc, tdlxbm, tdlxmc, tdqx, tdxjsj, tdxgsj, tdfwjzsj, tdnumber, tdwhy, 
+    tdtbzy, tdjddb, tdcxtj, tdpxh, tdhtbm, tdhtmc, flow_code
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.gga.EasygotdExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from easygotd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from easygotd
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from easygotd
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.gga.EasygotdExample">
+    delete from easygotd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.gga.Easygotd">
+    insert into easygotd (id, tdbm, tdmc, 
+      tdlxbm, tdlxmc, tdqx, 
+      tdxjsj, tdxgsj, tdfwjzsj, 
+      tdnumber, tdwhy, tdtbzy, 
+      tdjddb, tdcxtj, tdpxh, 
+      tdhtbm, tdhtmc, flow_code
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tdbm,jdbcType=VARCHAR}, #{tdmc,jdbcType=VARCHAR}, 
+      #{tdlxbm,jdbcType=VARCHAR}, #{tdlxmc,jdbcType=VARCHAR}, #{tdqx,jdbcType=VARCHAR}, 
+      #{tdxjsj,jdbcType=TIMESTAMP}, #{tdxgsj,jdbcType=TIMESTAMP}, #{tdfwjzsj,jdbcType=TIMESTAMP}, 
+      #{tdnumber,jdbcType=VARCHAR}, #{tdwhy,jdbcType=VARCHAR}, #{tdtbzy,jdbcType=VARCHAR}, 
+      #{tdjddb,jdbcType=VARCHAR}, #{tdcxtj,jdbcType=VARCHAR}, #{tdpxh,jdbcType=VARCHAR}, 
+      #{tdhtbm,jdbcType=VARCHAR}, #{tdhtmc,jdbcType=VARCHAR}, #{flowCode,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.gga.Easygotd">
+    insert into easygotd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tdbm != null">
+        tdbm,
+      </if>
+      <if test="tdmc != null">
+        tdmc,
+      </if>
+      <if test="tdlxbm != null">
+        tdlxbm,
+      </if>
+      <if test="tdlxmc != null">
+        tdlxmc,
+      </if>
+      <if test="tdqx != null">
+        tdqx,
+      </if>
+      <if test="tdxjsj != null">
+        tdxjsj,
+      </if>
+      <if test="tdxgsj != null">
+        tdxgsj,
+      </if>
+      <if test="tdfwjzsj != null">
+        tdfwjzsj,
+      </if>
+      <if test="tdnumber != null">
+        tdnumber,
+      </if>
+      <if test="tdwhy != null">
+        tdwhy,
+      </if>
+      <if test="tdtbzy != null">
+        tdtbzy,
+      </if>
+      <if test="tdjddb != null">
+        tdjddb,
+      </if>
+      <if test="tdcxtj != null">
+        tdcxtj,
+      </if>
+      <if test="tdpxh != null">
+        tdpxh,
+      </if>
+      <if test="tdhtbm != null">
+        tdhtbm,
+      </if>
+      <if test="tdhtmc != null">
+        tdhtmc,
+      </if>
+      <if test="flowCode != null">
+        flow_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tdbm != null">
+        #{tdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdmc != null">
+        #{tdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxbm != null">
+        #{tdlxbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxmc != null">
+        #{tdlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdqx != null">
+        #{tdqx,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxjsj != null">
+        #{tdxjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdxgsj != null">
+        #{tdxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdfwjzsj != null">
+        #{tdfwjzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdnumber != null">
+        #{tdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tdwhy != null">
+        #{tdwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdtbzy != null">
+        #{tdtbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdjddb != null">
+        #{tdjddb,jdbcType=VARCHAR},
+      </if>
+      <if test="tdcxtj != null">
+        #{tdcxtj,jdbcType=VARCHAR},
+      </if>
+      <if test="tdpxh != null">
+        #{tdpxh,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtbm != null">
+        #{tdhtbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtmc != null">
+        #{tdhtmc,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null">
+        #{flowCode,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.gga.EasygotdExample" resultType="java.lang.Integer">
+    select count(*) from easygotd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update easygotd
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdbm != null">
+        tdbm = #{record.tdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdmc != null">
+        tdmc = #{record.tdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdlxbm != null">
+        tdlxbm = #{record.tdlxbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdlxmc != null">
+        tdlxmc = #{record.tdlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdqx != null">
+        tdqx = #{record.tdqx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdxjsj != null">
+        tdxjsj = #{record.tdxjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdxgsj != null">
+        tdxgsj = #{record.tdxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdfwjzsj != null">
+        tdfwjzsj = #{record.tdfwjzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdnumber != null">
+        tdnumber = #{record.tdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdwhy != null">
+        tdwhy = #{record.tdwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdtbzy != null">
+        tdtbzy = #{record.tdtbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdjddb != null">
+        tdjddb = #{record.tdjddb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdcxtj != null">
+        tdcxtj = #{record.tdcxtj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdpxh != null">
+        tdpxh = #{record.tdpxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdhtbm != null">
+        tdhtbm = #{record.tdhtbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdhtmc != null">
+        tdhtmc = #{record.tdhtmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowCode != null">
+        flow_code = #{record.flowCode,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update easygotd
+    set id = #{record.id,jdbcType=VARCHAR},
+      tdbm = #{record.tdbm,jdbcType=VARCHAR},
+      tdmc = #{record.tdmc,jdbcType=VARCHAR},
+      tdlxbm = #{record.tdlxbm,jdbcType=VARCHAR},
+      tdlxmc = #{record.tdlxmc,jdbcType=VARCHAR},
+      tdqx = #{record.tdqx,jdbcType=VARCHAR},
+      tdxjsj = #{record.tdxjsj,jdbcType=TIMESTAMP},
+      tdxgsj = #{record.tdxgsj,jdbcType=TIMESTAMP},
+      tdfwjzsj = #{record.tdfwjzsj,jdbcType=TIMESTAMP},
+      tdnumber = #{record.tdnumber,jdbcType=VARCHAR},
+      tdwhy = #{record.tdwhy,jdbcType=VARCHAR},
+      tdtbzy = #{record.tdtbzy,jdbcType=VARCHAR},
+      tdjddb = #{record.tdjddb,jdbcType=VARCHAR},
+      tdcxtj = #{record.tdcxtj,jdbcType=VARCHAR},
+      tdpxh = #{record.tdpxh,jdbcType=VARCHAR},
+      tdhtbm = #{record.tdhtbm,jdbcType=VARCHAR},
+      tdhtmc = #{record.tdhtmc,jdbcType=VARCHAR},
+      flow_code = #{record.flowCode,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.gga.Easygotd">
+    update easygotd
+    <set>
+      <if test="tdbm != null">
+        tdbm = #{tdbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdmc != null">
+        tdmc = #{tdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxbm != null">
+        tdlxbm = #{tdlxbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdlxmc != null">
+        tdlxmc = #{tdlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="tdqx != null">
+        tdqx = #{tdqx,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxjsj != null">
+        tdxjsj = #{tdxjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdxgsj != null">
+        tdxgsj = #{tdxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdfwjzsj != null">
+        tdfwjzsj = #{tdfwjzsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdnumber != null">
+        tdnumber = #{tdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tdwhy != null">
+        tdwhy = #{tdwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdtbzy != null">
+        tdtbzy = #{tdtbzy,jdbcType=VARCHAR},
+      </if>
+      <if test="tdjddb != null">
+        tdjddb = #{tdjddb,jdbcType=VARCHAR},
+      </if>
+      <if test="tdcxtj != null">
+        tdcxtj = #{tdcxtj,jdbcType=VARCHAR},
+      </if>
+      <if test="tdpxh != null">
+        tdpxh = #{tdpxh,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtbm != null">
+        tdhtbm = #{tdhtbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tdhtmc != null">
+        tdhtmc = #{tdhtmc,jdbcType=VARCHAR},
+      </if>
+      <if test="flowCode != null">
+        flow_code = #{flowCode,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.gga.Easygotd">
+    update easygotd
+    set tdbm = #{tdbm,jdbcType=VARCHAR},
+      tdmc = #{tdmc,jdbcType=VARCHAR},
+      tdlxbm = #{tdlxbm,jdbcType=VARCHAR},
+      tdlxmc = #{tdlxmc,jdbcType=VARCHAR},
+      tdqx = #{tdqx,jdbcType=VARCHAR},
+      tdxjsj = #{tdxjsj,jdbcType=TIMESTAMP},
+      tdxgsj = #{tdxgsj,jdbcType=TIMESTAMP},
+      tdfwjzsj = #{tdfwjzsj,jdbcType=TIMESTAMP},
+      tdnumber = #{tdnumber,jdbcType=VARCHAR},
+      tdwhy = #{tdwhy,jdbcType=VARCHAR},
+      tdtbzy = #{tdtbzy,jdbcType=VARCHAR},
+      tdjddb = #{tdjddb,jdbcType=VARCHAR},
+      tdcxtj = #{tdcxtj,jdbcType=VARCHAR},
+      tdpxh = #{tdpxh,jdbcType=VARCHAR},
+      tdhtbm = #{tdhtbm,jdbcType=VARCHAR},
+      tdhtmc = #{tdhtmc,jdbcType=VARCHAR},
+      flow_code = #{flowCode,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

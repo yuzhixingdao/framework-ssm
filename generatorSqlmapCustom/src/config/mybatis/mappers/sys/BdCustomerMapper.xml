@@ -1,0 +1,2197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.BdCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.BdCustomer">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="conlin_id" jdbcType="BIGINT" property="conlinId" />
+    <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
+    <result column="cus_sex" jdbcType="TINYINT" property="cusSex" />
+    <result column="cus_number" jdbcType="VARCHAR" property="cusNumber" />
+    <result column="cus_level" jdbcType="VARCHAR" property="cusLevel" />
+    <result column="cus_idcard" jdbcType="VARCHAR" property="cusIdcard" />
+    <result column="cus_address" jdbcType="VARCHAR" property="cusAddress" />
+    <result column="cus_province" jdbcType="VARCHAR" property="cusProvince" />
+    <result column="cus_city" jdbcType="VARCHAR" property="cusCity" />
+    <result column="cus_zip_code" jdbcType="VARCHAR" property="cusZipCode" />
+    <result column="cus_remark" jdbcType="VARCHAR" property="cusRemark" />
+    <result column="policy_number" jdbcType="VARCHAR" property="policyNumber" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="open_card_date" jdbcType="TIMESTAMP" property="openCardDate" />
+    <result column="purchased_dates" jdbcType="TIMESTAMP" property="purchasedDates" />
+    <result column="ser_start_date" jdbcType="TIMESTAMP" property="serStartDate" />
+    <result column="ser_end_date" jdbcType="TIMESTAMP" property="serEndDate" />
+    <result column="ser_remark" jdbcType="VARCHAR" property="serRemark" />
+    <result column="vin_number" jdbcType="VARCHAR" property="vinNumber" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="car_color" jdbcType="VARCHAR" property="carColor" />
+    <result column="car_brand" jdbcType="VARCHAR" property="carBrand" />
+    <result column="car_model" jdbcType="VARCHAR" property="carModel" />
+    <result column="car_series" jdbcType="VARCHAR" property="carSeries" />
+    <result column="power_type" jdbcType="VARCHAR" property="powerType" />
+    <result column="drive_mode" jdbcType="VARCHAR" property="driveMode" />
+    <result column="purchased_car_date" jdbcType="TIMESTAMP" property="purchasedCarDate" />
+    <result column="purchased_cardealer" jdbcType="VARCHAR" property="purchasedCardealer" />
+    <result column="car_remark" jdbcType="VARCHAR" property="carRemark" />
+    <result column="driving_photo" jdbcType="VARCHAR" property="drivingPhoto" />
+    <result column="run_photo" jdbcType="VARCHAR" property="runPhoto" />
+    <result column="car_phot" jdbcType="VARCHAR" property="carPhot" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, conlin_id, cus_name, cus_sex, cus_number, cus_level, cus_idcard, cus_address, 
+    cus_province, cus_city, cus_zip_code, cus_remark, policy_number, card_number, open_card_date, 
+    purchased_dates, ser_start_date, ser_end_date, ser_remark, vin_number, plate_number, 
+    car_color, car_brand, car_model, car_series, power_type, drive_mode, purchased_car_date, 
+    purchased_cardealer, car_remark, driving_photo, run_photo, car_phot, create_id, create_date, 
+    update_id, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bd_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bd_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample">
+    delete from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    insert into bd_customer (id, conlin_id, cus_name, 
+      cus_sex, cus_number, cus_level, 
+      cus_idcard, cus_address, cus_province, 
+      cus_city, cus_zip_code, cus_remark, 
+      policy_number, card_number, open_card_date, 
+      purchased_dates, ser_start_date, ser_end_date, 
+      ser_remark, vin_number, plate_number, 
+      car_color, car_brand, car_model, 
+      car_series, power_type, drive_mode, 
+      purchased_car_date, purchased_cardealer, 
+      car_remark, driving_photo, run_photo, 
+      car_phot, create_id, create_date, 
+      update_id, update_date, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{conlinId,jdbcType=BIGINT}, #{cusName,jdbcType=VARCHAR}, 
+      #{cusSex,jdbcType=TINYINT}, #{cusNumber,jdbcType=VARCHAR}, #{cusLevel,jdbcType=VARCHAR}, 
+      #{cusIdcard,jdbcType=VARCHAR}, #{cusAddress,jdbcType=VARCHAR}, #{cusProvince,jdbcType=VARCHAR}, 
+      #{cusCity,jdbcType=VARCHAR}, #{cusZipCode,jdbcType=VARCHAR}, #{cusRemark,jdbcType=VARCHAR}, 
+      #{policyNumber,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, #{openCardDate,jdbcType=TIMESTAMP}, 
+      #{purchasedDates,jdbcType=TIMESTAMP}, #{serStartDate,jdbcType=TIMESTAMP}, #{serEndDate,jdbcType=TIMESTAMP}, 
+      #{serRemark,jdbcType=VARCHAR}, #{vinNumber,jdbcType=VARCHAR}, #{plateNumber,jdbcType=VARCHAR}, 
+      #{carColor,jdbcType=VARCHAR}, #{carBrand,jdbcType=VARCHAR}, #{carModel,jdbcType=VARCHAR}, 
+      #{carSeries,jdbcType=VARCHAR}, #{powerType,jdbcType=VARCHAR}, #{driveMode,jdbcType=VARCHAR}, 
+      #{purchasedCarDate,jdbcType=TIMESTAMP}, #{purchasedCardealer,jdbcType=VARCHAR}, 
+      #{carRemark,jdbcType=VARCHAR}, #{drivingPhoto,jdbcType=VARCHAR}, #{runPhoto,jdbcType=VARCHAR}, 
+      #{carPhot,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    insert into bd_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="conlinId != null">
+        conlin_id,
+      </if>
+      <if test="cusName != null">
+        cus_name,
+      </if>
+      <if test="cusSex != null">
+        cus_sex,
+      </if>
+      <if test="cusNumber != null">
+        cus_number,
+      </if>
+      <if test="cusLevel != null">
+        cus_level,
+      </if>
+      <if test="cusIdcard != null">
+        cus_idcard,
+      </if>
+      <if test="cusAddress != null">
+        cus_address,
+      </if>
+      <if test="cusProvince != null">
+        cus_province,
+      </if>
+      <if test="cusCity != null">
+        cus_city,
+      </if>
+      <if test="cusZipCode != null">
+        cus_zip_code,
+      </if>
+      <if test="cusRemark != null">
+        cus_remark,
+      </if>
+      <if test="policyNumber != null">
+        policy_number,
+      </if>
+      <if test="cardNumber != null">
+        card_number,
+      </if>
+      <if test="openCardDate != null">
+        open_card_date,
+      </if>
+      <if test="purchasedDates != null">
+        purchased_dates,
+      </if>
+      <if test="serStartDate != null">
+        ser_start_date,
+      </if>
+      <if test="serEndDate != null">
+        ser_end_date,
+      </if>
+      <if test="serRemark != null">
+        ser_remark,
+      </if>
+      <if test="vinNumber != null">
+        vin_number,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="carColor != null">
+        car_color,
+      </if>
+      <if test="carBrand != null">
+        car_brand,
+      </if>
+      <if test="carModel != null">
+        car_model,
+      </if>
+      <if test="carSeries != null">
+        car_series,
+      </if>
+      <if test="powerType != null">
+        power_type,
+      </if>
+      <if test="driveMode != null">
+        drive_mode,
+      </if>
+      <if test="purchasedCarDate != null">
+        purchased_car_date,
+      </if>
+      <if test="purchasedCardealer != null">
+        purchased_cardealer,
+      </if>
+      <if test="carRemark != null">
+        car_remark,
+      </if>
+      <if test="drivingPhoto != null">
+        driving_photo,
+      </if>
+      <if test="runPhoto != null">
+        run_photo,
+      </if>
+      <if test="carPhot != null">
+        car_phot,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="conlinId != null">
+        #{conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="cusName != null">
+        #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        #{cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="cusNumber != null">
+        #{cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cusLevel != null">
+        #{cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdcard != null">
+        #{cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cusAddress != null">
+        #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusProvince != null">
+        #{cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCity != null">
+        #{cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusZipCode != null">
+        #{cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cusRemark != null">
+        #{cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNumber != null">
+        #{policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openCardDate != null">
+        #{openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedDates != null">
+        #{purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serStartDate != null">
+        #{serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serEndDate != null">
+        #{serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serRemark != null">
+        #{serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNumber != null">
+        #{vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null">
+        #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null">
+        #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="driveMode != null">
+        #{driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedCarDate != null">
+        #{purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedCardealer != null">
+        #{purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null">
+        #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPhoto != null">
+        #{drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runPhoto != null">
+        #{runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhot != null">
+        #{carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample" resultType="java.lang.Integer">
+    select count(*) from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bd_customer
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.conlinId != null">
+        conlin_id = #{record.conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cusName != null">
+        cus_name = #{record.cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusSex != null">
+        cus_sex = #{record.cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="record.cusNumber != null">
+        cus_number = #{record.cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusLevel != null">
+        cus_level = #{record.cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusIdcard != null">
+        cus_idcard = #{record.cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusAddress != null">
+        cus_address = #{record.cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusProvince != null">
+        cus_province = #{record.cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusCity != null">
+        cus_city = #{record.cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusZipCode != null">
+        cus_zip_code = #{record.cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusRemark != null">
+        cus_remark = #{record.cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policyNumber != null">
+        policy_number = #{record.policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardNumber != null">
+        card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openCardDate != null">
+        open_card_date = #{record.openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purchasedDates != null">
+        purchased_dates = #{record.purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serStartDate != null">
+        ser_start_date = #{record.serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serEndDate != null">
+        ser_end_date = #{record.serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serRemark != null">
+        ser_remark = #{record.serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vinNumber != null">
+        vin_number = #{record.vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plateNumber != null">
+        plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carColor != null">
+        car_color = #{record.carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carBrand != null">
+        car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carModel != null">
+        car_model = #{record.carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSeries != null">
+        car_series = #{record.carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerType != null">
+        power_type = #{record.powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driveMode != null">
+        drive_mode = #{record.driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchasedCarDate != null">
+        purchased_car_date = #{record.purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purchasedCardealer != null">
+        purchased_cardealer = #{record.purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carRemark != null">
+        car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drivingPhoto != null">
+        driving_photo = #{record.drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runPhoto != null">
+        run_photo = #{record.runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carPhot != null">
+        car_phot = #{record.carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bd_customer
+    set id = #{record.id,jdbcType=BIGINT},
+      conlin_id = #{record.conlinId,jdbcType=BIGINT},
+      cus_name = #{record.cusName,jdbcType=VARCHAR},
+      cus_sex = #{record.cusSex,jdbcType=TINYINT},
+      cus_number = #{record.cusNumber,jdbcType=VARCHAR},
+      cus_level = #{record.cusLevel,jdbcType=VARCHAR},
+      cus_idcard = #{record.cusIdcard,jdbcType=VARCHAR},
+      cus_address = #{record.cusAddress,jdbcType=VARCHAR},
+      cus_province = #{record.cusProvince,jdbcType=VARCHAR},
+      cus_city = #{record.cusCity,jdbcType=VARCHAR},
+      cus_zip_code = #{record.cusZipCode,jdbcType=VARCHAR},
+      cus_remark = #{record.cusRemark,jdbcType=VARCHAR},
+      policy_number = #{record.policyNumber,jdbcType=VARCHAR},
+      card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      open_card_date = #{record.openCardDate,jdbcType=TIMESTAMP},
+      purchased_dates = #{record.purchasedDates,jdbcType=TIMESTAMP},
+      ser_start_date = #{record.serStartDate,jdbcType=TIMESTAMP},
+      ser_end_date = #{record.serEndDate,jdbcType=TIMESTAMP},
+      ser_remark = #{record.serRemark,jdbcType=VARCHAR},
+      vin_number = #{record.vinNumber,jdbcType=VARCHAR},
+      plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      car_color = #{record.carColor,jdbcType=VARCHAR},
+      car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      car_model = #{record.carModel,jdbcType=VARCHAR},
+      car_series = #{record.carSeries,jdbcType=VARCHAR},
+      power_type = #{record.powerType,jdbcType=VARCHAR},
+      drive_mode = #{record.driveMode,jdbcType=VARCHAR},
+      purchased_car_date = #{record.purchasedCarDate,jdbcType=TIMESTAMP},
+      purchased_cardealer = #{record.purchasedCardealer,jdbcType=VARCHAR},
+      car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      driving_photo = #{record.drivingPhoto,jdbcType=VARCHAR},
+      run_photo = #{record.runPhoto,jdbcType=VARCHAR},
+      car_phot = #{record.carPhot,jdbcType=VARCHAR},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    update bd_customer
+    <set>
+      <if test="conlinId != null">
+        conlin_id = #{conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="cusName != null">
+        cus_name = #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        cus_sex = #{cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="cusNumber != null">
+        cus_number = #{cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cusLevel != null">
+        cus_level = #{cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdcard != null">
+        cus_idcard = #{cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cusAddress != null">
+        cus_address = #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusProvince != null">
+        cus_province = #{cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCity != null">
+        cus_city = #{cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusZipCode != null">
+        cus_zip_code = #{cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cusRemark != null">
+        cus_remark = #{cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNumber != null">
+        policy_number = #{policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openCardDate != null">
+        open_card_date = #{openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedDates != null">
+        purchased_dates = #{purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serStartDate != null">
+        ser_start_date = #{serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serEndDate != null">
+        ser_end_date = #{serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serRemark != null">
+        ser_remark = #{serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNumber != null">
+        vin_number = #{vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null">
+        car_color = #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        car_brand = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        car_model = #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        car_series = #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null">
+        power_type = #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="driveMode != null">
+        drive_mode = #{driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedCarDate != null">
+        purchased_car_date = #{purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedCardealer != null">
+        purchased_cardealer = #{purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null">
+        car_remark = #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPhoto != null">
+        driving_photo = #{drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runPhoto != null">
+        run_photo = #{runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhot != null">
+        car_phot = #{carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    update bd_customer
+    set conlin_id = #{conlinId,jdbcType=BIGINT},
+      cus_name = #{cusName,jdbcType=VARCHAR},
+      cus_sex = #{cusSex,jdbcType=TINYINT},
+      cus_number = #{cusNumber,jdbcType=VARCHAR},
+      cus_level = #{cusLevel,jdbcType=VARCHAR},
+      cus_idcard = #{cusIdcard,jdbcType=VARCHAR},
+      cus_address = #{cusAddress,jdbcType=VARCHAR},
+      cus_province = #{cusProvince,jdbcType=VARCHAR},
+      cus_city = #{cusCity,jdbcType=VARCHAR},
+      cus_zip_code = #{cusZipCode,jdbcType=VARCHAR},
+      cus_remark = #{cusRemark,jdbcType=VARCHAR},
+      policy_number = #{policyNumber,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      open_card_date = #{openCardDate,jdbcType=TIMESTAMP},
+      purchased_dates = #{purchasedDates,jdbcType=TIMESTAMP},
+      ser_start_date = #{serStartDate,jdbcType=TIMESTAMP},
+      ser_end_date = #{serEndDate,jdbcType=TIMESTAMP},
+      ser_remark = #{serRemark,jdbcType=VARCHAR},
+      vin_number = #{vinNumber,jdbcType=VARCHAR},
+      plate_number = #{plateNumber,jdbcType=VARCHAR},
+      car_color = #{carColor,jdbcType=VARCHAR},
+      car_brand = #{carBrand,jdbcType=VARCHAR},
+      car_model = #{carModel,jdbcType=VARCHAR},
+      car_series = #{carSeries,jdbcType=VARCHAR},
+      power_type = #{powerType,jdbcType=VARCHAR},
+      drive_mode = #{driveMode,jdbcType=VARCHAR},
+      purchased_car_date = #{purchasedCarDate,jdbcType=TIMESTAMP},
+      purchased_cardealer = #{purchasedCardealer,jdbcType=VARCHAR},
+      car_remark = #{carRemark,jdbcType=VARCHAR},
+      driving_photo = #{drivingPhoto,jdbcType=VARCHAR},
+      run_photo = #{runPhoto,jdbcType=VARCHAR},
+      car_phot = #{carPhot,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.BdCustomer">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="conlin_id" jdbcType="BIGINT" property="conlinId" />
+    <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
+    <result column="cus_sex" jdbcType="TINYINT" property="cusSex" />
+    <result column="cus_number" jdbcType="VARCHAR" property="cusNumber" />
+    <result column="cus_level" jdbcType="VARCHAR" property="cusLevel" />
+    <result column="cus_idcard" jdbcType="VARCHAR" property="cusIdcard" />
+    <result column="cus_address" jdbcType="VARCHAR" property="cusAddress" />
+    <result column="cus_province" jdbcType="VARCHAR" property="cusProvince" />
+    <result column="cus_city" jdbcType="VARCHAR" property="cusCity" />
+    <result column="cus_zip_code" jdbcType="VARCHAR" property="cusZipCode" />
+    <result column="cus_remark" jdbcType="VARCHAR" property="cusRemark" />
+    <result column="policy_number" jdbcType="VARCHAR" property="policyNumber" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="open_card_date" jdbcType="TIMESTAMP" property="openCardDate" />
+    <result column="purchased_dates" jdbcType="TIMESTAMP" property="purchasedDates" />
+    <result column="ser_start_date" jdbcType="TIMESTAMP" property="serStartDate" />
+    <result column="ser_end_date" jdbcType="TIMESTAMP" property="serEndDate" />
+    <result column="ser_remark" jdbcType="VARCHAR" property="serRemark" />
+    <result column="vin_number" jdbcType="VARCHAR" property="vinNumber" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="car_color" jdbcType="VARCHAR" property="carColor" />
+    <result column="car_brand" jdbcType="VARCHAR" property="carBrand" />
+    <result column="car_model" jdbcType="VARCHAR" property="carModel" />
+    <result column="car_series" jdbcType="VARCHAR" property="carSeries" />
+    <result column="power_type" jdbcType="VARCHAR" property="powerType" />
+    <result column="drive_mode" jdbcType="VARCHAR" property="driveMode" />
+    <result column="purchased_car_date" jdbcType="TIMESTAMP" property="purchasedCarDate" />
+    <result column="purchased_cardealer" jdbcType="VARCHAR" property="purchasedCardealer" />
+    <result column="car_remark" jdbcType="VARCHAR" property="carRemark" />
+    <result column="driving_photo" jdbcType="VARCHAR" property="drivingPhoto" />
+    <result column="run_photo" jdbcType="VARCHAR" property="runPhoto" />
+    <result column="car_phot" jdbcType="VARCHAR" property="carPhot" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, conlin_id, cus_name, cus_sex, cus_number, cus_level, cus_idcard, cus_address, 
+    cus_province, cus_city, cus_zip_code, cus_remark, policy_number, card_number, open_card_date, 
+    purchased_dates, ser_start_date, ser_end_date, ser_remark, vin_number, plate_number, 
+    car_color, car_brand, car_model, car_series, power_type, drive_mode, purchased_car_date, 
+    purchased_cardealer, car_remark, driving_photo, run_photo, car_phot, create_id, create_date, 
+    update_id, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bd_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bd_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample">
+    delete from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    insert into bd_customer (id, conlin_id, cus_name, 
+      cus_sex, cus_number, cus_level, 
+      cus_idcard, cus_address, cus_province, 
+      cus_city, cus_zip_code, cus_remark, 
+      policy_number, card_number, open_card_date, 
+      purchased_dates, ser_start_date, ser_end_date, 
+      ser_remark, vin_number, plate_number, 
+      car_color, car_brand, car_model, 
+      car_series, power_type, drive_mode, 
+      purchased_car_date, purchased_cardealer, 
+      car_remark, driving_photo, run_photo, 
+      car_phot, create_id, create_date, 
+      update_id, update_date, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{conlinId,jdbcType=BIGINT}, #{cusName,jdbcType=VARCHAR}, 
+      #{cusSex,jdbcType=TINYINT}, #{cusNumber,jdbcType=VARCHAR}, #{cusLevel,jdbcType=VARCHAR}, 
+      #{cusIdcard,jdbcType=VARCHAR}, #{cusAddress,jdbcType=VARCHAR}, #{cusProvince,jdbcType=VARCHAR}, 
+      #{cusCity,jdbcType=VARCHAR}, #{cusZipCode,jdbcType=VARCHAR}, #{cusRemark,jdbcType=VARCHAR}, 
+      #{policyNumber,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, #{openCardDate,jdbcType=TIMESTAMP}, 
+      #{purchasedDates,jdbcType=TIMESTAMP}, #{serStartDate,jdbcType=TIMESTAMP}, #{serEndDate,jdbcType=TIMESTAMP}, 
+      #{serRemark,jdbcType=VARCHAR}, #{vinNumber,jdbcType=VARCHAR}, #{plateNumber,jdbcType=VARCHAR}, 
+      #{carColor,jdbcType=VARCHAR}, #{carBrand,jdbcType=VARCHAR}, #{carModel,jdbcType=VARCHAR}, 
+      #{carSeries,jdbcType=VARCHAR}, #{powerType,jdbcType=VARCHAR}, #{driveMode,jdbcType=VARCHAR}, 
+      #{purchasedCarDate,jdbcType=TIMESTAMP}, #{purchasedCardealer,jdbcType=VARCHAR}, 
+      #{carRemark,jdbcType=VARCHAR}, #{drivingPhoto,jdbcType=VARCHAR}, #{runPhoto,jdbcType=VARCHAR}, 
+      #{carPhot,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    insert into bd_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="conlinId != null">
+        conlin_id,
+      </if>
+      <if test="cusName != null">
+        cus_name,
+      </if>
+      <if test="cusSex != null">
+        cus_sex,
+      </if>
+      <if test="cusNumber != null">
+        cus_number,
+      </if>
+      <if test="cusLevel != null">
+        cus_level,
+      </if>
+      <if test="cusIdcard != null">
+        cus_idcard,
+      </if>
+      <if test="cusAddress != null">
+        cus_address,
+      </if>
+      <if test="cusProvince != null">
+        cus_province,
+      </if>
+      <if test="cusCity != null">
+        cus_city,
+      </if>
+      <if test="cusZipCode != null">
+        cus_zip_code,
+      </if>
+      <if test="cusRemark != null">
+        cus_remark,
+      </if>
+      <if test="policyNumber != null">
+        policy_number,
+      </if>
+      <if test="cardNumber != null">
+        card_number,
+      </if>
+      <if test="openCardDate != null">
+        open_card_date,
+      </if>
+      <if test="purchasedDates != null">
+        purchased_dates,
+      </if>
+      <if test="serStartDate != null">
+        ser_start_date,
+      </if>
+      <if test="serEndDate != null">
+        ser_end_date,
+      </if>
+      <if test="serRemark != null">
+        ser_remark,
+      </if>
+      <if test="vinNumber != null">
+        vin_number,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="carColor != null">
+        car_color,
+      </if>
+      <if test="carBrand != null">
+        car_brand,
+      </if>
+      <if test="carModel != null">
+        car_model,
+      </if>
+      <if test="carSeries != null">
+        car_series,
+      </if>
+      <if test="powerType != null">
+        power_type,
+      </if>
+      <if test="driveMode != null">
+        drive_mode,
+      </if>
+      <if test="purchasedCarDate != null">
+        purchased_car_date,
+      </if>
+      <if test="purchasedCardealer != null">
+        purchased_cardealer,
+      </if>
+      <if test="carRemark != null">
+        car_remark,
+      </if>
+      <if test="drivingPhoto != null">
+        driving_photo,
+      </if>
+      <if test="runPhoto != null">
+        run_photo,
+      </if>
+      <if test="carPhot != null">
+        car_phot,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="conlinId != null">
+        #{conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="cusName != null">
+        #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        #{cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="cusNumber != null">
+        #{cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cusLevel != null">
+        #{cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdcard != null">
+        #{cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cusAddress != null">
+        #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusProvince != null">
+        #{cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCity != null">
+        #{cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusZipCode != null">
+        #{cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cusRemark != null">
+        #{cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNumber != null">
+        #{policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openCardDate != null">
+        #{openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedDates != null">
+        #{purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serStartDate != null">
+        #{serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serEndDate != null">
+        #{serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serRemark != null">
+        #{serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNumber != null">
+        #{vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null">
+        #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null">
+        #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="driveMode != null">
+        #{driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedCarDate != null">
+        #{purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedCardealer != null">
+        #{purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null">
+        #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPhoto != null">
+        #{drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runPhoto != null">
+        #{runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhot != null">
+        #{carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample" resultType="java.lang.Integer">
+    select count(*) from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bd_customer
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.conlinId != null">
+        conlin_id = #{record.conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cusName != null">
+        cus_name = #{record.cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusSex != null">
+        cus_sex = #{record.cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="record.cusNumber != null">
+        cus_number = #{record.cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusLevel != null">
+        cus_level = #{record.cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusIdcard != null">
+        cus_idcard = #{record.cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusAddress != null">
+        cus_address = #{record.cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusProvince != null">
+        cus_province = #{record.cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusCity != null">
+        cus_city = #{record.cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusZipCode != null">
+        cus_zip_code = #{record.cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusRemark != null">
+        cus_remark = #{record.cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policyNumber != null">
+        policy_number = #{record.policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardNumber != null">
+        card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openCardDate != null">
+        open_card_date = #{record.openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purchasedDates != null">
+        purchased_dates = #{record.purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serStartDate != null">
+        ser_start_date = #{record.serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serEndDate != null">
+        ser_end_date = #{record.serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serRemark != null">
+        ser_remark = #{record.serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vinNumber != null">
+        vin_number = #{record.vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plateNumber != null">
+        plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carColor != null">
+        car_color = #{record.carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carBrand != null">
+        car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carModel != null">
+        car_model = #{record.carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSeries != null">
+        car_series = #{record.carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerType != null">
+        power_type = #{record.powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driveMode != null">
+        drive_mode = #{record.driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchasedCarDate != null">
+        purchased_car_date = #{record.purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purchasedCardealer != null">
+        purchased_cardealer = #{record.purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carRemark != null">
+        car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drivingPhoto != null">
+        driving_photo = #{record.drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runPhoto != null">
+        run_photo = #{record.runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carPhot != null">
+        car_phot = #{record.carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bd_customer
+    set id = #{record.id,jdbcType=BIGINT},
+      conlin_id = #{record.conlinId,jdbcType=BIGINT},
+      cus_name = #{record.cusName,jdbcType=VARCHAR},
+      cus_sex = #{record.cusSex,jdbcType=TINYINT},
+      cus_number = #{record.cusNumber,jdbcType=VARCHAR},
+      cus_level = #{record.cusLevel,jdbcType=VARCHAR},
+      cus_idcard = #{record.cusIdcard,jdbcType=VARCHAR},
+      cus_address = #{record.cusAddress,jdbcType=VARCHAR},
+      cus_province = #{record.cusProvince,jdbcType=VARCHAR},
+      cus_city = #{record.cusCity,jdbcType=VARCHAR},
+      cus_zip_code = #{record.cusZipCode,jdbcType=VARCHAR},
+      cus_remark = #{record.cusRemark,jdbcType=VARCHAR},
+      policy_number = #{record.policyNumber,jdbcType=VARCHAR},
+      card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      open_card_date = #{record.openCardDate,jdbcType=TIMESTAMP},
+      purchased_dates = #{record.purchasedDates,jdbcType=TIMESTAMP},
+      ser_start_date = #{record.serStartDate,jdbcType=TIMESTAMP},
+      ser_end_date = #{record.serEndDate,jdbcType=TIMESTAMP},
+      ser_remark = #{record.serRemark,jdbcType=VARCHAR},
+      vin_number = #{record.vinNumber,jdbcType=VARCHAR},
+      plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      car_color = #{record.carColor,jdbcType=VARCHAR},
+      car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      car_model = #{record.carModel,jdbcType=VARCHAR},
+      car_series = #{record.carSeries,jdbcType=VARCHAR},
+      power_type = #{record.powerType,jdbcType=VARCHAR},
+      drive_mode = #{record.driveMode,jdbcType=VARCHAR},
+      purchased_car_date = #{record.purchasedCarDate,jdbcType=TIMESTAMP},
+      purchased_cardealer = #{record.purchasedCardealer,jdbcType=VARCHAR},
+      car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      driving_photo = #{record.drivingPhoto,jdbcType=VARCHAR},
+      run_photo = #{record.runPhoto,jdbcType=VARCHAR},
+      car_phot = #{record.carPhot,jdbcType=VARCHAR},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    update bd_customer
+    <set>
+      <if test="conlinId != null">
+        conlin_id = #{conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="cusName != null">
+        cus_name = #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        cus_sex = #{cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="cusNumber != null">
+        cus_number = #{cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cusLevel != null">
+        cus_level = #{cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdcard != null">
+        cus_idcard = #{cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cusAddress != null">
+        cus_address = #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusProvince != null">
+        cus_province = #{cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCity != null">
+        cus_city = #{cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusZipCode != null">
+        cus_zip_code = #{cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cusRemark != null">
+        cus_remark = #{cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNumber != null">
+        policy_number = #{policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openCardDate != null">
+        open_card_date = #{openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedDates != null">
+        purchased_dates = #{purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serStartDate != null">
+        ser_start_date = #{serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serEndDate != null">
+        ser_end_date = #{serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serRemark != null">
+        ser_remark = #{serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNumber != null">
+        vin_number = #{vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null">
+        car_color = #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        car_brand = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        car_model = #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        car_series = #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null">
+        power_type = #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="driveMode != null">
+        drive_mode = #{driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedCarDate != null">
+        purchased_car_date = #{purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedCardealer != null">
+        purchased_cardealer = #{purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null">
+        car_remark = #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPhoto != null">
+        driving_photo = #{drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runPhoto != null">
+        run_photo = #{runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhot != null">
+        car_phot = #{carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    update bd_customer
+    set conlin_id = #{conlinId,jdbcType=BIGINT},
+      cus_name = #{cusName,jdbcType=VARCHAR},
+      cus_sex = #{cusSex,jdbcType=TINYINT},
+      cus_number = #{cusNumber,jdbcType=VARCHAR},
+      cus_level = #{cusLevel,jdbcType=VARCHAR},
+      cus_idcard = #{cusIdcard,jdbcType=VARCHAR},
+      cus_address = #{cusAddress,jdbcType=VARCHAR},
+      cus_province = #{cusProvince,jdbcType=VARCHAR},
+      cus_city = #{cusCity,jdbcType=VARCHAR},
+      cus_zip_code = #{cusZipCode,jdbcType=VARCHAR},
+      cus_remark = #{cusRemark,jdbcType=VARCHAR},
+      policy_number = #{policyNumber,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      open_card_date = #{openCardDate,jdbcType=TIMESTAMP},
+      purchased_dates = #{purchasedDates,jdbcType=TIMESTAMP},
+      ser_start_date = #{serStartDate,jdbcType=TIMESTAMP},
+      ser_end_date = #{serEndDate,jdbcType=TIMESTAMP},
+      ser_remark = #{serRemark,jdbcType=VARCHAR},
+      vin_number = #{vinNumber,jdbcType=VARCHAR},
+      plate_number = #{plateNumber,jdbcType=VARCHAR},
+      car_color = #{carColor,jdbcType=VARCHAR},
+      car_brand = #{carBrand,jdbcType=VARCHAR},
+      car_model = #{carModel,jdbcType=VARCHAR},
+      car_series = #{carSeries,jdbcType=VARCHAR},
+      power_type = #{powerType,jdbcType=VARCHAR},
+      drive_mode = #{driveMode,jdbcType=VARCHAR},
+      purchased_car_date = #{purchasedCarDate,jdbcType=TIMESTAMP},
+      purchased_cardealer = #{purchasedCardealer,jdbcType=VARCHAR},
+      car_remark = #{carRemark,jdbcType=VARCHAR},
+      driving_photo = #{drivingPhoto,jdbcType=VARCHAR},
+      run_photo = #{runPhoto,jdbcType=VARCHAR},
+      car_phot = #{carPhot,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.BdCustomer">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="conlin_id" jdbcType="BIGINT" property="conlinId" />
+    <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
+    <result column="cus_sex" jdbcType="TINYINT" property="cusSex" />
+    <result column="cus_number" jdbcType="VARCHAR" property="cusNumber" />
+    <result column="cus_level" jdbcType="VARCHAR" property="cusLevel" />
+    <result column="cus_idcard" jdbcType="VARCHAR" property="cusIdcard" />
+    <result column="cus_address" jdbcType="VARCHAR" property="cusAddress" />
+    <result column="cus_province" jdbcType="VARCHAR" property="cusProvince" />
+    <result column="cus_city" jdbcType="VARCHAR" property="cusCity" />
+    <result column="cus_zip_code" jdbcType="VARCHAR" property="cusZipCode" />
+    <result column="cus_remark" jdbcType="VARCHAR" property="cusRemark" />
+    <result column="policy_number" jdbcType="VARCHAR" property="policyNumber" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="open_card_date" jdbcType="TIMESTAMP" property="openCardDate" />
+    <result column="purchased_dates" jdbcType="TIMESTAMP" property="purchasedDates" />
+    <result column="ser_start_date" jdbcType="TIMESTAMP" property="serStartDate" />
+    <result column="ser_end_date" jdbcType="TIMESTAMP" property="serEndDate" />
+    <result column="ser_remark" jdbcType="VARCHAR" property="serRemark" />
+    <result column="vin_number" jdbcType="VARCHAR" property="vinNumber" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="car_color" jdbcType="VARCHAR" property="carColor" />
+    <result column="car_brand" jdbcType="VARCHAR" property="carBrand" />
+    <result column="car_model" jdbcType="VARCHAR" property="carModel" />
+    <result column="car_series" jdbcType="VARCHAR" property="carSeries" />
+    <result column="power_type" jdbcType="VARCHAR" property="powerType" />
+    <result column="drive_mode" jdbcType="VARCHAR" property="driveMode" />
+    <result column="purchased_car_date" jdbcType="TIMESTAMP" property="purchasedCarDate" />
+    <result column="purchased_cardealer" jdbcType="VARCHAR" property="purchasedCardealer" />
+    <result column="car_remark" jdbcType="VARCHAR" property="carRemark" />
+    <result column="driving_photo" jdbcType="VARCHAR" property="drivingPhoto" />
+    <result column="run_photo" jdbcType="VARCHAR" property="runPhoto" />
+    <result column="car_phot" jdbcType="VARCHAR" property="carPhot" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, conlin_id, cus_name, cus_sex, cus_number, cus_level, cus_idcard, cus_address, 
+    cus_province, cus_city, cus_zip_code, cus_remark, policy_number, card_number, open_card_date, 
+    purchased_dates, ser_start_date, ser_end_date, ser_remark, vin_number, plate_number, 
+    car_color, car_brand, car_model, car_series, power_type, drive_mode, purchased_car_date, 
+    purchased_cardealer, car_remark, driving_photo, run_photo, car_phot, create_id, create_date, 
+    update_id, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bd_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bd_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample">
+    delete from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    insert into bd_customer (id, conlin_id, cus_name, 
+      cus_sex, cus_number, cus_level, 
+      cus_idcard, cus_address, cus_province, 
+      cus_city, cus_zip_code, cus_remark, 
+      policy_number, card_number, open_card_date, 
+      purchased_dates, ser_start_date, ser_end_date, 
+      ser_remark, vin_number, plate_number, 
+      car_color, car_brand, car_model, 
+      car_series, power_type, drive_mode, 
+      purchased_car_date, purchased_cardealer, 
+      car_remark, driving_photo, run_photo, 
+      car_phot, create_id, create_date, 
+      update_id, update_date, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{conlinId,jdbcType=BIGINT}, #{cusName,jdbcType=VARCHAR}, 
+      #{cusSex,jdbcType=TINYINT}, #{cusNumber,jdbcType=VARCHAR}, #{cusLevel,jdbcType=VARCHAR}, 
+      #{cusIdcard,jdbcType=VARCHAR}, #{cusAddress,jdbcType=VARCHAR}, #{cusProvince,jdbcType=VARCHAR}, 
+      #{cusCity,jdbcType=VARCHAR}, #{cusZipCode,jdbcType=VARCHAR}, #{cusRemark,jdbcType=VARCHAR}, 
+      #{policyNumber,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, #{openCardDate,jdbcType=TIMESTAMP}, 
+      #{purchasedDates,jdbcType=TIMESTAMP}, #{serStartDate,jdbcType=TIMESTAMP}, #{serEndDate,jdbcType=TIMESTAMP}, 
+      #{serRemark,jdbcType=VARCHAR}, #{vinNumber,jdbcType=VARCHAR}, #{plateNumber,jdbcType=VARCHAR}, 
+      #{carColor,jdbcType=VARCHAR}, #{carBrand,jdbcType=VARCHAR}, #{carModel,jdbcType=VARCHAR}, 
+      #{carSeries,jdbcType=VARCHAR}, #{powerType,jdbcType=VARCHAR}, #{driveMode,jdbcType=VARCHAR}, 
+      #{purchasedCarDate,jdbcType=TIMESTAMP}, #{purchasedCardealer,jdbcType=VARCHAR}, 
+      #{carRemark,jdbcType=VARCHAR}, #{drivingPhoto,jdbcType=VARCHAR}, #{runPhoto,jdbcType=VARCHAR}, 
+      #{carPhot,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    insert into bd_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="conlinId != null">
+        conlin_id,
+      </if>
+      <if test="cusName != null">
+        cus_name,
+      </if>
+      <if test="cusSex != null">
+        cus_sex,
+      </if>
+      <if test="cusNumber != null">
+        cus_number,
+      </if>
+      <if test="cusLevel != null">
+        cus_level,
+      </if>
+      <if test="cusIdcard != null">
+        cus_idcard,
+      </if>
+      <if test="cusAddress != null">
+        cus_address,
+      </if>
+      <if test="cusProvince != null">
+        cus_province,
+      </if>
+      <if test="cusCity != null">
+        cus_city,
+      </if>
+      <if test="cusZipCode != null">
+        cus_zip_code,
+      </if>
+      <if test="cusRemark != null">
+        cus_remark,
+      </if>
+      <if test="policyNumber != null">
+        policy_number,
+      </if>
+      <if test="cardNumber != null">
+        card_number,
+      </if>
+      <if test="openCardDate != null">
+        open_card_date,
+      </if>
+      <if test="purchasedDates != null">
+        purchased_dates,
+      </if>
+      <if test="serStartDate != null">
+        ser_start_date,
+      </if>
+      <if test="serEndDate != null">
+        ser_end_date,
+      </if>
+      <if test="serRemark != null">
+        ser_remark,
+      </if>
+      <if test="vinNumber != null">
+        vin_number,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="carColor != null">
+        car_color,
+      </if>
+      <if test="carBrand != null">
+        car_brand,
+      </if>
+      <if test="carModel != null">
+        car_model,
+      </if>
+      <if test="carSeries != null">
+        car_series,
+      </if>
+      <if test="powerType != null">
+        power_type,
+      </if>
+      <if test="driveMode != null">
+        drive_mode,
+      </if>
+      <if test="purchasedCarDate != null">
+        purchased_car_date,
+      </if>
+      <if test="purchasedCardealer != null">
+        purchased_cardealer,
+      </if>
+      <if test="carRemark != null">
+        car_remark,
+      </if>
+      <if test="drivingPhoto != null">
+        driving_photo,
+      </if>
+      <if test="runPhoto != null">
+        run_photo,
+      </if>
+      <if test="carPhot != null">
+        car_phot,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="conlinId != null">
+        #{conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="cusName != null">
+        #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        #{cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="cusNumber != null">
+        #{cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cusLevel != null">
+        #{cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdcard != null">
+        #{cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cusAddress != null">
+        #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusProvince != null">
+        #{cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCity != null">
+        #{cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusZipCode != null">
+        #{cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cusRemark != null">
+        #{cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNumber != null">
+        #{policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openCardDate != null">
+        #{openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedDates != null">
+        #{purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serStartDate != null">
+        #{serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serEndDate != null">
+        #{serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serRemark != null">
+        #{serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNumber != null">
+        #{vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null">
+        #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null">
+        #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="driveMode != null">
+        #{driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedCarDate != null">
+        #{purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedCardealer != null">
+        #{purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null">
+        #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPhoto != null">
+        #{drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runPhoto != null">
+        #{runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhot != null">
+        #{carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.BdCustomerExample" resultType="java.lang.Integer">
+    select count(*) from bd_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bd_customer
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.conlinId != null">
+        conlin_id = #{record.conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cusName != null">
+        cus_name = #{record.cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusSex != null">
+        cus_sex = #{record.cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="record.cusNumber != null">
+        cus_number = #{record.cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusLevel != null">
+        cus_level = #{record.cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusIdcard != null">
+        cus_idcard = #{record.cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusAddress != null">
+        cus_address = #{record.cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusProvince != null">
+        cus_province = #{record.cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusCity != null">
+        cus_city = #{record.cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusZipCode != null">
+        cus_zip_code = #{record.cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cusRemark != null">
+        cus_remark = #{record.cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policyNumber != null">
+        policy_number = #{record.policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardNumber != null">
+        card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openCardDate != null">
+        open_card_date = #{record.openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purchasedDates != null">
+        purchased_dates = #{record.purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serStartDate != null">
+        ser_start_date = #{record.serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serEndDate != null">
+        ser_end_date = #{record.serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serRemark != null">
+        ser_remark = #{record.serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vinNumber != null">
+        vin_number = #{record.vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plateNumber != null">
+        plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carColor != null">
+        car_color = #{record.carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carBrand != null">
+        car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carModel != null">
+        car_model = #{record.carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSeries != null">
+        car_series = #{record.carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerType != null">
+        power_type = #{record.powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driveMode != null">
+        drive_mode = #{record.driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchasedCarDate != null">
+        purchased_car_date = #{record.purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.purchasedCardealer != null">
+        purchased_cardealer = #{record.purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carRemark != null">
+        car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drivingPhoto != null">
+        driving_photo = #{record.drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runPhoto != null">
+        run_photo = #{record.runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carPhot != null">
+        car_phot = #{record.carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bd_customer
+    set id = #{record.id,jdbcType=BIGINT},
+      conlin_id = #{record.conlinId,jdbcType=BIGINT},
+      cus_name = #{record.cusName,jdbcType=VARCHAR},
+      cus_sex = #{record.cusSex,jdbcType=TINYINT},
+      cus_number = #{record.cusNumber,jdbcType=VARCHAR},
+      cus_level = #{record.cusLevel,jdbcType=VARCHAR},
+      cus_idcard = #{record.cusIdcard,jdbcType=VARCHAR},
+      cus_address = #{record.cusAddress,jdbcType=VARCHAR},
+      cus_province = #{record.cusProvince,jdbcType=VARCHAR},
+      cus_city = #{record.cusCity,jdbcType=VARCHAR},
+      cus_zip_code = #{record.cusZipCode,jdbcType=VARCHAR},
+      cus_remark = #{record.cusRemark,jdbcType=VARCHAR},
+      policy_number = #{record.policyNumber,jdbcType=VARCHAR},
+      card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      open_card_date = #{record.openCardDate,jdbcType=TIMESTAMP},
+      purchased_dates = #{record.purchasedDates,jdbcType=TIMESTAMP},
+      ser_start_date = #{record.serStartDate,jdbcType=TIMESTAMP},
+      ser_end_date = #{record.serEndDate,jdbcType=TIMESTAMP},
+      ser_remark = #{record.serRemark,jdbcType=VARCHAR},
+      vin_number = #{record.vinNumber,jdbcType=VARCHAR},
+      plate_number = #{record.plateNumber,jdbcType=VARCHAR},
+      car_color = #{record.carColor,jdbcType=VARCHAR},
+      car_brand = #{record.carBrand,jdbcType=VARCHAR},
+      car_model = #{record.carModel,jdbcType=VARCHAR},
+      car_series = #{record.carSeries,jdbcType=VARCHAR},
+      power_type = #{record.powerType,jdbcType=VARCHAR},
+      drive_mode = #{record.driveMode,jdbcType=VARCHAR},
+      purchased_car_date = #{record.purchasedCarDate,jdbcType=TIMESTAMP},
+      purchased_cardealer = #{record.purchasedCardealer,jdbcType=VARCHAR},
+      car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      driving_photo = #{record.drivingPhoto,jdbcType=VARCHAR},
+      run_photo = #{record.runPhoto,jdbcType=VARCHAR},
+      car_phot = #{record.carPhot,jdbcType=VARCHAR},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    update bd_customer
+    <set>
+      <if test="conlinId != null">
+        conlin_id = #{conlinId,jdbcType=BIGINT},
+      </if>
+      <if test="cusName != null">
+        cus_name = #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        cus_sex = #{cusSex,jdbcType=TINYINT},
+      </if>
+      <if test="cusNumber != null">
+        cus_number = #{cusNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cusLevel != null">
+        cus_level = #{cusLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdcard != null">
+        cus_idcard = #{cusIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cusAddress != null">
+        cus_address = #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusProvince != null">
+        cus_province = #{cusProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCity != null">
+        cus_city = #{cusCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusZipCode != null">
+        cus_zip_code = #{cusZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cusRemark != null">
+        cus_remark = #{cusRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="policyNumber != null">
+        policy_number = #{policyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openCardDate != null">
+        open_card_date = #{openCardDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedDates != null">
+        purchased_dates = #{purchasedDates,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serStartDate != null">
+        ser_start_date = #{serStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serEndDate != null">
+        ser_end_date = #{serEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serRemark != null">
+        ser_remark = #{serRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNumber != null">
+        vin_number = #{vinNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="plateNumber != null">
+        plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null">
+        car_color = #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carBrand != null">
+        car_brand = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carModel != null">
+        car_model = #{carModel,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeries != null">
+        car_series = #{carSeries,jdbcType=VARCHAR},
+      </if>
+      <if test="powerType != null">
+        power_type = #{powerType,jdbcType=VARCHAR},
+      </if>
+      <if test="driveMode != null">
+        drive_mode = #{driveMode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedCarDate != null">
+        purchased_car_date = #{purchasedCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchasedCardealer != null">
+        purchased_cardealer = #{purchasedCardealer,jdbcType=VARCHAR},
+      </if>
+      <if test="carRemark != null">
+        car_remark = #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingPhoto != null">
+        driving_photo = #{drivingPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runPhoto != null">
+        run_photo = #{runPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhot != null">
+        car_phot = #{carPhot,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.BdCustomer">
+    update bd_customer
+    set conlin_id = #{conlinId,jdbcType=BIGINT},
+      cus_name = #{cusName,jdbcType=VARCHAR},
+      cus_sex = #{cusSex,jdbcType=TINYINT},
+      cus_number = #{cusNumber,jdbcType=VARCHAR},
+      cus_level = #{cusLevel,jdbcType=VARCHAR},
+      cus_idcard = #{cusIdcard,jdbcType=VARCHAR},
+      cus_address = #{cusAddress,jdbcType=VARCHAR},
+      cus_province = #{cusProvince,jdbcType=VARCHAR},
+      cus_city = #{cusCity,jdbcType=VARCHAR},
+      cus_zip_code = #{cusZipCode,jdbcType=VARCHAR},
+      cus_remark = #{cusRemark,jdbcType=VARCHAR},
+      policy_number = #{policyNumber,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      open_card_date = #{openCardDate,jdbcType=TIMESTAMP},
+      purchased_dates = #{purchasedDates,jdbcType=TIMESTAMP},
+      ser_start_date = #{serStartDate,jdbcType=TIMESTAMP},
+      ser_end_date = #{serEndDate,jdbcType=TIMESTAMP},
+      ser_remark = #{serRemark,jdbcType=VARCHAR},
+      vin_number = #{vinNumber,jdbcType=VARCHAR},
+      plate_number = #{plateNumber,jdbcType=VARCHAR},
+      car_color = #{carColor,jdbcType=VARCHAR},
+      car_brand = #{carBrand,jdbcType=VARCHAR},
+      car_model = #{carModel,jdbcType=VARCHAR},
+      car_series = #{carSeries,jdbcType=VARCHAR},
+      power_type = #{powerType,jdbcType=VARCHAR},
+      drive_mode = #{driveMode,jdbcType=VARCHAR},
+      purchased_car_date = #{purchasedCarDate,jdbcType=TIMESTAMP},
+      purchased_cardealer = #{purchasedCardealer,jdbcType=VARCHAR},
+      car_remark = #{carRemark,jdbcType=VARCHAR},
+      driving_photo = #{drivingPhoto,jdbcType=VARCHAR},
+      run_photo = #{runPhoto,jdbcType=VARCHAR},
+      car_phot = #{carPhot,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

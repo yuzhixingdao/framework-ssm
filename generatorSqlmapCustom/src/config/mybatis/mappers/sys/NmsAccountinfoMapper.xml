@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.NmsAccountinfoMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsAccountinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="accname" jdbcType="VARCHAR" property="accname" />
+    <result column="openaccbank" jdbcType="VARCHAR" property="openaccbank" />
+    <result column="banknum" jdbcType="VARCHAR" property="banknum" />
+    <result column="openaccaddr" jdbcType="VARCHAR" property="openaccaddr" />
+    <result column="bankcode" jdbcType="VARCHAR" property="bankcode" />
+    <result column="main" jdbcType="TINYINT" property="main" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, accname, openaccbank, banknum, openaccaddr, bankcode, main, serid, create_by, 
+    create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_accountinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_accountinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample">
+    delete from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    insert into nms_accountinfo (id, accname, openaccbank, 
+      banknum, openaccaddr, bankcode, 
+      main, serid, create_by, 
+      create_date, update_by, update_date, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{accname,jdbcType=VARCHAR}, #{openaccbank,jdbcType=VARCHAR}, 
+      #{banknum,jdbcType=VARCHAR}, #{openaccaddr,jdbcType=VARCHAR}, #{bankcode,jdbcType=VARCHAR}, 
+      #{main,jdbcType=TINYINT}, #{serid,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    insert into nms_accountinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accname != null">
+        accname,
+      </if>
+      <if test="openaccbank != null">
+        openaccbank,
+      </if>
+      <if test="banknum != null">
+        banknum,
+      </if>
+      <if test="openaccaddr != null">
+        openaccaddr,
+      </if>
+      <if test="bankcode != null">
+        bankcode,
+      </if>
+      <if test="main != null">
+        main,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accname != null">
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccbank != null">
+        #{openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccaddr != null">
+        #{openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcode != null">
+        #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null">
+        #{main,jdbcType=TINYINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_accountinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.accname != null">
+        accname = #{record.accname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openaccbank != null">
+        openaccbank = #{record.openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banknum != null">
+        banknum = #{record.banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openaccaddr != null">
+        openaccaddr = #{record.openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankcode != null">
+        bankcode = #{record.bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.main != null">
+        main = #{record.main,jdbcType=TINYINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_accountinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      accname = #{record.accname,jdbcType=VARCHAR},
+      openaccbank = #{record.openaccbank,jdbcType=VARCHAR},
+      banknum = #{record.banknum,jdbcType=VARCHAR},
+      openaccaddr = #{record.openaccaddr,jdbcType=VARCHAR},
+      bankcode = #{record.bankcode,jdbcType=VARCHAR},
+      main = #{record.main,jdbcType=TINYINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    update nms_accountinfo
+    <set>
+      <if test="accname != null">
+        accname = #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccbank != null">
+        openaccbank = #{openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        banknum = #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccaddr != null">
+        openaccaddr = #{openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcode != null">
+        bankcode = #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null">
+        main = #{main,jdbcType=TINYINT},
+      </if>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    update nms_accountinfo
+    set accname = #{accname,jdbcType=VARCHAR},
+      openaccbank = #{openaccbank,jdbcType=VARCHAR},
+      banknum = #{banknum,jdbcType=VARCHAR},
+      openaccaddr = #{openaccaddr,jdbcType=VARCHAR},
+      bankcode = #{bankcode,jdbcType=VARCHAR},
+      main = #{main,jdbcType=TINYINT},
+      serid = #{serid,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsAccountinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="accname" jdbcType="VARCHAR" property="accname" />
+    <result column="openaccbank" jdbcType="VARCHAR" property="openaccbank" />
+    <result column="banknum" jdbcType="VARCHAR" property="banknum" />
+    <result column="openaccaddr" jdbcType="VARCHAR" property="openaccaddr" />
+    <result column="bankcode" jdbcType="VARCHAR" property="bankcode" />
+    <result column="main" jdbcType="TINYINT" property="main" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, accname, openaccbank, banknum, openaccaddr, bankcode, main, serid, create_by, 
+    create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_accountinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_accountinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample">
+    delete from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    insert into nms_accountinfo (id, accname, openaccbank, 
+      banknum, openaccaddr, bankcode, 
+      main, serid, create_by, 
+      create_date, update_by, update_date, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{accname,jdbcType=VARCHAR}, #{openaccbank,jdbcType=VARCHAR}, 
+      #{banknum,jdbcType=VARCHAR}, #{openaccaddr,jdbcType=VARCHAR}, #{bankcode,jdbcType=VARCHAR}, 
+      #{main,jdbcType=TINYINT}, #{serid,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    insert into nms_accountinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accname != null">
+        accname,
+      </if>
+      <if test="openaccbank != null">
+        openaccbank,
+      </if>
+      <if test="banknum != null">
+        banknum,
+      </if>
+      <if test="openaccaddr != null">
+        openaccaddr,
+      </if>
+      <if test="bankcode != null">
+        bankcode,
+      </if>
+      <if test="main != null">
+        main,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accname != null">
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccbank != null">
+        #{openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccaddr != null">
+        #{openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcode != null">
+        #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null">
+        #{main,jdbcType=TINYINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_accountinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.accname != null">
+        accname = #{record.accname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openaccbank != null">
+        openaccbank = #{record.openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banknum != null">
+        banknum = #{record.banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openaccaddr != null">
+        openaccaddr = #{record.openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankcode != null">
+        bankcode = #{record.bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.main != null">
+        main = #{record.main,jdbcType=TINYINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_accountinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      accname = #{record.accname,jdbcType=VARCHAR},
+      openaccbank = #{record.openaccbank,jdbcType=VARCHAR},
+      banknum = #{record.banknum,jdbcType=VARCHAR},
+      openaccaddr = #{record.openaccaddr,jdbcType=VARCHAR},
+      bankcode = #{record.bankcode,jdbcType=VARCHAR},
+      main = #{record.main,jdbcType=TINYINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    update nms_accountinfo
+    <set>
+      <if test="accname != null">
+        accname = #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccbank != null">
+        openaccbank = #{openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        banknum = #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccaddr != null">
+        openaccaddr = #{openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcode != null">
+        bankcode = #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null">
+        main = #{main,jdbcType=TINYINT},
+      </if>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    update nms_accountinfo
+    set accname = #{accname,jdbcType=VARCHAR},
+      openaccbank = #{openaccbank,jdbcType=VARCHAR},
+      banknum = #{banknum,jdbcType=VARCHAR},
+      openaccaddr = #{openaccaddr,jdbcType=VARCHAR},
+      bankcode = #{bankcode,jdbcType=VARCHAR},
+      main = #{main,jdbcType=TINYINT},
+      serid = #{serid,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsAccountinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="accname" jdbcType="VARCHAR" property="accname" />
+    <result column="openaccbank" jdbcType="VARCHAR" property="openaccbank" />
+    <result column="banknum" jdbcType="VARCHAR" property="banknum" />
+    <result column="openaccaddr" jdbcType="VARCHAR" property="openaccaddr" />
+    <result column="bankcode" jdbcType="VARCHAR" property="bankcode" />
+    <result column="main" jdbcType="TINYINT" property="main" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, accname, openaccbank, banknum, openaccaddr, bankcode, main, serid, create_by, 
+    create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_accountinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_accountinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample">
+    delete from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    insert into nms_accountinfo (id, accname, openaccbank, 
+      banknum, openaccaddr, bankcode, 
+      main, serid, create_by, 
+      create_date, update_by, update_date, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{accname,jdbcType=VARCHAR}, #{openaccbank,jdbcType=VARCHAR}, 
+      #{banknum,jdbcType=VARCHAR}, #{openaccaddr,jdbcType=VARCHAR}, #{bankcode,jdbcType=VARCHAR}, 
+      #{main,jdbcType=TINYINT}, #{serid,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    insert into nms_accountinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accname != null">
+        accname,
+      </if>
+      <if test="openaccbank != null">
+        openaccbank,
+      </if>
+      <if test="banknum != null">
+        banknum,
+      </if>
+      <if test="openaccaddr != null">
+        openaccaddr,
+      </if>
+      <if test="bankcode != null">
+        bankcode,
+      </if>
+      <if test="main != null">
+        main,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accname != null">
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccbank != null">
+        #{openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccaddr != null">
+        #{openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcode != null">
+        #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null">
+        #{main,jdbcType=TINYINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsAccountinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_accountinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_accountinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.accname != null">
+        accname = #{record.accname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openaccbank != null">
+        openaccbank = #{record.openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banknum != null">
+        banknum = #{record.banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openaccaddr != null">
+        openaccaddr = #{record.openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankcode != null">
+        bankcode = #{record.bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.main != null">
+        main = #{record.main,jdbcType=TINYINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_accountinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      accname = #{record.accname,jdbcType=VARCHAR},
+      openaccbank = #{record.openaccbank,jdbcType=VARCHAR},
+      banknum = #{record.banknum,jdbcType=VARCHAR},
+      openaccaddr = #{record.openaccaddr,jdbcType=VARCHAR},
+      bankcode = #{record.bankcode,jdbcType=VARCHAR},
+      main = #{record.main,jdbcType=TINYINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    update nms_accountinfo
+    <set>
+      <if test="accname != null">
+        accname = #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccbank != null">
+        openaccbank = #{openaccbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        banknum = #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="openaccaddr != null">
+        openaccaddr = #{openaccaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcode != null">
+        bankcode = #{bankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="main != null">
+        main = #{main,jdbcType=TINYINT},
+      </if>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsAccountinfo">
+    update nms_accountinfo
+    set accname = #{accname,jdbcType=VARCHAR},
+      openaccbank = #{openaccbank,jdbcType=VARCHAR},
+      banknum = #{banknum,jdbcType=VARCHAR},
+      openaccaddr = #{openaccaddr,jdbcType=VARCHAR},
+      bankcode = #{bankcode,jdbcType=VARCHAR},
+      main = #{main,jdbcType=TINYINT},
+      serid = #{serid,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,1720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.CosCaseTaskMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.CosCaseTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="case_id" jdbcType="BIGINT" property="caseId" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="state_code" jdbcType="TINYINT" property="stateCode" />
+    <result column="rescue_item" jdbcType="TINYINT" property="rescueItem" />
+    <result column="bd_place" jdbcType="VARCHAR" property="bdPlace" />
+    <result column="bd_long" jdbcType="DOUBLE" property="bdLong" />
+    <result column="bd_lat" jdbcType="DOUBLE" property="bdLat" />
+    <result column="rd_place" jdbcType="VARCHAR" property="rdPlace" />
+    <result column="rd_long" jdbcType="DOUBLE" property="rdLong" />
+    <result column="rd_lat" jdbcType="DOUBLE" property="rdLat" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="task_create_date" jdbcType="TIMESTAMP" property="taskCreateDate" />
+    <result column="distribution_date" jdbcType="TIMESTAMP" property="distributionDate" />
+    <result column="distribution_success_date" jdbcType="TIMESTAMP" property="distributionSuccessDate" />
+    <result column="pd_id" jdbcType="BIGINT" property="pdId" />
+    <result column="pd_name" jdbcType="VARCHAR" property="pdName" />
+    <result column="accept_date" jdbcType="TIMESTAMP" property="acceptDate" />
+    <result column="dispatcht_date" jdbcType="TIMESTAMP" property="dispatchtDate" />
+    <result column="driver_accept_date" jdbcType="TIMESTAMP" property="driverAcceptDate" />
+    <result column="arrive_scene_date" jdbcType="TIMESTAMP" property="arriveSceneDate" />
+    <result column="rescue_start_date" jdbcType="TIMESTAMP" property="rescueStartDate" />
+    <result column="rescue_finish_date" jdbcType="TIMESTAMP" property="rescueFinishDate" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, case_id, task_code, state_code, rescue_item, bd_place, bd_long, bd_lat, rd_place, 
+    rd_long, rd_lat, remarks, task_create_date, distribution_date, distribution_success_date, 
+    pd_id, pd_name, accept_date, dispatcht_date, driver_accept_date, arrive_scene_date, 
+    rescue_start_date, rescue_finish_date, create_id, create_date, update_id, update_date, 
+    del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cos_case_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cos_case_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample">
+    delete from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    insert into cos_case_task (id, case_id, task_code, 
+      state_code, rescue_item, bd_place, 
+      bd_long, bd_lat, rd_place, 
+      rd_long, rd_lat, remarks, 
+      task_create_date, distribution_date, distribution_success_date, 
+      pd_id, pd_name, accept_date, 
+      dispatcht_date, driver_accept_date, arrive_scene_date, 
+      rescue_start_date, rescue_finish_date, 
+      create_id, create_date, update_id, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{caseId,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, 
+      #{stateCode,jdbcType=TINYINT}, #{rescueItem,jdbcType=TINYINT}, #{bdPlace,jdbcType=VARCHAR}, 
+      #{bdLong,jdbcType=DOUBLE}, #{bdLat,jdbcType=DOUBLE}, #{rdPlace,jdbcType=VARCHAR}, 
+      #{rdLong,jdbcType=DOUBLE}, #{rdLat,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, 
+      #{taskCreateDate,jdbcType=TIMESTAMP}, #{distributionDate,jdbcType=TIMESTAMP}, #{distributionSuccessDate,jdbcType=TIMESTAMP}, 
+      #{pdId,jdbcType=BIGINT}, #{pdName,jdbcType=VARCHAR}, #{acceptDate,jdbcType=TIMESTAMP}, 
+      #{dispatchtDate,jdbcType=TIMESTAMP}, #{driverAcceptDate,jdbcType=TIMESTAMP}, #{arriveSceneDate,jdbcType=TIMESTAMP}, 
+      #{rescueStartDate,jdbcType=TIMESTAMP}, #{rescueFinishDate,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    insert into cos_case_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="caseId != null">
+        case_id,
+      </if>
+      <if test="taskCode != null">
+        task_code,
+      </if>
+      <if test="stateCode != null">
+        state_code,
+      </if>
+      <if test="rescueItem != null">
+        rescue_item,
+      </if>
+      <if test="bdPlace != null">
+        bd_place,
+      </if>
+      <if test="bdLong != null">
+        bd_long,
+      </if>
+      <if test="bdLat != null">
+        bd_lat,
+      </if>
+      <if test="rdPlace != null">
+        rd_place,
+      </if>
+      <if test="rdLong != null">
+        rd_long,
+      </if>
+      <if test="rdLat != null">
+        rd_lat,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="taskCreateDate != null">
+        task_create_date,
+      </if>
+      <if test="distributionDate != null">
+        distribution_date,
+      </if>
+      <if test="distributionSuccessDate != null">
+        distribution_success_date,
+      </if>
+      <if test="pdId != null">
+        pd_id,
+      </if>
+      <if test="pdName != null">
+        pd_name,
+      </if>
+      <if test="acceptDate != null">
+        accept_date,
+      </if>
+      <if test="dispatchtDate != null">
+        dispatcht_date,
+      </if>
+      <if test="driverAcceptDate != null">
+        driver_accept_date,
+      </if>
+      <if test="arriveSceneDate != null">
+        arrive_scene_date,
+      </if>
+      <if test="rescueStartDate != null">
+        rescue_start_date,
+      </if>
+      <if test="rescueFinishDate != null">
+        rescue_finish_date,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="caseId != null">
+        #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCode != null">
+        #{stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="rescueItem != null">
+        #{rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="bdPlace != null">
+        #{bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bdLong != null">
+        #{bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="bdLat != null">
+        #{bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="rdPlace != null">
+        #{rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="rdLong != null">
+        #{rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="rdLat != null">
+        #{rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCreateDate != null">
+        #{taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionDate != null">
+        #{distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionSuccessDate != null">
+        #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdId != null">
+        #{pdId,jdbcType=BIGINT},
+      </if>
+      <if test="pdName != null">
+        #{pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null">
+        #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchtDate != null">
+        #{dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="driverAcceptDate != null">
+        #{driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveSceneDate != null">
+        #{arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueStartDate != null">
+        #{rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueFinishDate != null">
+        #{rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample" resultType="java.lang.Integer">
+    select count(*) from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cos_case_task
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.caseId != null">
+        case_id = #{record.caseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskCode != null">
+        task_code = #{record.taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stateCode != null">
+        state_code = #{record.stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="record.rescueItem != null">
+        rescue_item = #{record.rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="record.bdPlace != null">
+        bd_place = #{record.bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdLong != null">
+        bd_long = #{record.bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bdLat != null">
+        bd_lat = #{record.bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rdPlace != null">
+        rd_place = #{record.rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rdLong != null">
+        rd_long = #{record.rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rdLat != null">
+        rd_lat = #{record.rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskCreateDate != null">
+        task_create_date = #{record.taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.distributionDate != null">
+        distribution_date = #{record.distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.distributionSuccessDate != null">
+        distribution_success_date = #{record.distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pdId != null">
+        pd_id = #{record.pdId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pdName != null">
+        pd_name = #{record.pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptDate != null">
+        accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dispatchtDate != null">
+        dispatcht_date = #{record.dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.driverAcceptDate != null">
+        driver_accept_date = #{record.driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arriveSceneDate != null">
+        arrive_scene_date = #{record.arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rescueStartDate != null">
+        rescue_start_date = #{record.rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rescueFinishDate != null">
+        rescue_finish_date = #{record.rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cos_case_task
+    set id = #{record.id,jdbcType=BIGINT},
+      case_id = #{record.caseId,jdbcType=BIGINT},
+      task_code = #{record.taskCode,jdbcType=VARCHAR},
+      state_code = #{record.stateCode,jdbcType=TINYINT},
+      rescue_item = #{record.rescueItem,jdbcType=TINYINT},
+      bd_place = #{record.bdPlace,jdbcType=VARCHAR},
+      bd_long = #{record.bdLong,jdbcType=DOUBLE},
+      bd_lat = #{record.bdLat,jdbcType=DOUBLE},
+      rd_place = #{record.rdPlace,jdbcType=VARCHAR},
+      rd_long = #{record.rdLong,jdbcType=DOUBLE},
+      rd_lat = #{record.rdLat,jdbcType=DOUBLE},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      task_create_date = #{record.taskCreateDate,jdbcType=TIMESTAMP},
+      distribution_date = #{record.distributionDate,jdbcType=TIMESTAMP},
+      distribution_success_date = #{record.distributionSuccessDate,jdbcType=TIMESTAMP},
+      pd_id = #{record.pdId,jdbcType=BIGINT},
+      pd_name = #{record.pdName,jdbcType=VARCHAR},
+      accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      dispatcht_date = #{record.dispatchtDate,jdbcType=TIMESTAMP},
+      driver_accept_date = #{record.driverAcceptDate,jdbcType=TIMESTAMP},
+      arrive_scene_date = #{record.arriveSceneDate,jdbcType=TIMESTAMP},
+      rescue_start_date = #{record.rescueStartDate,jdbcType=TIMESTAMP},
+      rescue_finish_date = #{record.rescueFinishDate,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    update cos_case_task
+    <set>
+      <if test="caseId != null">
+        case_id = #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCode != null">
+        state_code = #{stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="rescueItem != null">
+        rescue_item = #{rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="bdPlace != null">
+        bd_place = #{bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bdLong != null">
+        bd_long = #{bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="bdLat != null">
+        bd_lat = #{bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="rdPlace != null">
+        rd_place = #{rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="rdLong != null">
+        rd_long = #{rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="rdLat != null">
+        rd_lat = #{rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCreateDate != null">
+        task_create_date = #{taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionDate != null">
+        distribution_date = #{distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionSuccessDate != null">
+        distribution_success_date = #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdId != null">
+        pd_id = #{pdId,jdbcType=BIGINT},
+      </if>
+      <if test="pdName != null">
+        pd_name = #{pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null">
+        accept_date = #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchtDate != null">
+        dispatcht_date = #{dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="driverAcceptDate != null">
+        driver_accept_date = #{driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveSceneDate != null">
+        arrive_scene_date = #{arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueStartDate != null">
+        rescue_start_date = #{rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueFinishDate != null">
+        rescue_finish_date = #{rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    update cos_case_task
+    set case_id = #{caseId,jdbcType=BIGINT},
+      task_code = #{taskCode,jdbcType=VARCHAR},
+      state_code = #{stateCode,jdbcType=TINYINT},
+      rescue_item = #{rescueItem,jdbcType=TINYINT},
+      bd_place = #{bdPlace,jdbcType=VARCHAR},
+      bd_long = #{bdLong,jdbcType=DOUBLE},
+      bd_lat = #{bdLat,jdbcType=DOUBLE},
+      rd_place = #{rdPlace,jdbcType=VARCHAR},
+      rd_long = #{rdLong,jdbcType=DOUBLE},
+      rd_lat = #{rdLat,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      task_create_date = #{taskCreateDate,jdbcType=TIMESTAMP},
+      distribution_date = #{distributionDate,jdbcType=TIMESTAMP},
+      distribution_success_date = #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      pd_id = #{pdId,jdbcType=BIGINT},
+      pd_name = #{pdName,jdbcType=VARCHAR},
+      accept_date = #{acceptDate,jdbcType=TIMESTAMP},
+      dispatcht_date = #{dispatchtDate,jdbcType=TIMESTAMP},
+      driver_accept_date = #{driverAcceptDate,jdbcType=TIMESTAMP},
+      arrive_scene_date = #{arriveSceneDate,jdbcType=TIMESTAMP},
+      rescue_start_date = #{rescueStartDate,jdbcType=TIMESTAMP},
+      rescue_finish_date = #{rescueFinishDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.CosCaseTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="case_id" jdbcType="BIGINT" property="caseId" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="state_code" jdbcType="TINYINT" property="stateCode" />
+    <result column="rescue_item" jdbcType="TINYINT" property="rescueItem" />
+    <result column="bd_place" jdbcType="VARCHAR" property="bdPlace" />
+    <result column="bd_long" jdbcType="DOUBLE" property="bdLong" />
+    <result column="bd_lat" jdbcType="DOUBLE" property="bdLat" />
+    <result column="rd_place" jdbcType="VARCHAR" property="rdPlace" />
+    <result column="rd_long" jdbcType="DOUBLE" property="rdLong" />
+    <result column="rd_lat" jdbcType="DOUBLE" property="rdLat" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="task_create_date" jdbcType="TIMESTAMP" property="taskCreateDate" />
+    <result column="distribution_date" jdbcType="TIMESTAMP" property="distributionDate" />
+    <result column="distribution_success_date" jdbcType="TIMESTAMP" property="distributionSuccessDate" />
+    <result column="pd_id" jdbcType="BIGINT" property="pdId" />
+    <result column="pd_name" jdbcType="VARCHAR" property="pdName" />
+    <result column="accept_date" jdbcType="TIMESTAMP" property="acceptDate" />
+    <result column="dispatcht_date" jdbcType="TIMESTAMP" property="dispatchtDate" />
+    <result column="driver_accept_date" jdbcType="TIMESTAMP" property="driverAcceptDate" />
+    <result column="arrive_scene_date" jdbcType="TIMESTAMP" property="arriveSceneDate" />
+    <result column="rescue_start_date" jdbcType="TIMESTAMP" property="rescueStartDate" />
+    <result column="rescue_finish_date" jdbcType="TIMESTAMP" property="rescueFinishDate" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, case_id, task_code, state_code, rescue_item, bd_place, bd_long, bd_lat, rd_place, 
+    rd_long, rd_lat, remarks, task_create_date, distribution_date, distribution_success_date, 
+    pd_id, pd_name, accept_date, dispatcht_date, driver_accept_date, arrive_scene_date, 
+    rescue_start_date, rescue_finish_date, create_id, create_date, update_id, update_date, 
+    del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cos_case_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cos_case_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample">
+    delete from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    insert into cos_case_task (id, case_id, task_code, 
+      state_code, rescue_item, bd_place, 
+      bd_long, bd_lat, rd_place, 
+      rd_long, rd_lat, remarks, 
+      task_create_date, distribution_date, distribution_success_date, 
+      pd_id, pd_name, accept_date, 
+      dispatcht_date, driver_accept_date, arrive_scene_date, 
+      rescue_start_date, rescue_finish_date, 
+      create_id, create_date, update_id, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{caseId,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, 
+      #{stateCode,jdbcType=TINYINT}, #{rescueItem,jdbcType=TINYINT}, #{bdPlace,jdbcType=VARCHAR}, 
+      #{bdLong,jdbcType=DOUBLE}, #{bdLat,jdbcType=DOUBLE}, #{rdPlace,jdbcType=VARCHAR}, 
+      #{rdLong,jdbcType=DOUBLE}, #{rdLat,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, 
+      #{taskCreateDate,jdbcType=TIMESTAMP}, #{distributionDate,jdbcType=TIMESTAMP}, #{distributionSuccessDate,jdbcType=TIMESTAMP}, 
+      #{pdId,jdbcType=BIGINT}, #{pdName,jdbcType=VARCHAR}, #{acceptDate,jdbcType=TIMESTAMP}, 
+      #{dispatchtDate,jdbcType=TIMESTAMP}, #{driverAcceptDate,jdbcType=TIMESTAMP}, #{arriveSceneDate,jdbcType=TIMESTAMP}, 
+      #{rescueStartDate,jdbcType=TIMESTAMP}, #{rescueFinishDate,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    insert into cos_case_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="caseId != null">
+        case_id,
+      </if>
+      <if test="taskCode != null">
+        task_code,
+      </if>
+      <if test="stateCode != null">
+        state_code,
+      </if>
+      <if test="rescueItem != null">
+        rescue_item,
+      </if>
+      <if test="bdPlace != null">
+        bd_place,
+      </if>
+      <if test="bdLong != null">
+        bd_long,
+      </if>
+      <if test="bdLat != null">
+        bd_lat,
+      </if>
+      <if test="rdPlace != null">
+        rd_place,
+      </if>
+      <if test="rdLong != null">
+        rd_long,
+      </if>
+      <if test="rdLat != null">
+        rd_lat,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="taskCreateDate != null">
+        task_create_date,
+      </if>
+      <if test="distributionDate != null">
+        distribution_date,
+      </if>
+      <if test="distributionSuccessDate != null">
+        distribution_success_date,
+      </if>
+      <if test="pdId != null">
+        pd_id,
+      </if>
+      <if test="pdName != null">
+        pd_name,
+      </if>
+      <if test="acceptDate != null">
+        accept_date,
+      </if>
+      <if test="dispatchtDate != null">
+        dispatcht_date,
+      </if>
+      <if test="driverAcceptDate != null">
+        driver_accept_date,
+      </if>
+      <if test="arriveSceneDate != null">
+        arrive_scene_date,
+      </if>
+      <if test="rescueStartDate != null">
+        rescue_start_date,
+      </if>
+      <if test="rescueFinishDate != null">
+        rescue_finish_date,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="caseId != null">
+        #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCode != null">
+        #{stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="rescueItem != null">
+        #{rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="bdPlace != null">
+        #{bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bdLong != null">
+        #{bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="bdLat != null">
+        #{bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="rdPlace != null">
+        #{rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="rdLong != null">
+        #{rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="rdLat != null">
+        #{rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCreateDate != null">
+        #{taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionDate != null">
+        #{distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionSuccessDate != null">
+        #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdId != null">
+        #{pdId,jdbcType=BIGINT},
+      </if>
+      <if test="pdName != null">
+        #{pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null">
+        #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchtDate != null">
+        #{dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="driverAcceptDate != null">
+        #{driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveSceneDate != null">
+        #{arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueStartDate != null">
+        #{rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueFinishDate != null">
+        #{rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample" resultType="java.lang.Integer">
+    select count(*) from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cos_case_task
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.caseId != null">
+        case_id = #{record.caseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskCode != null">
+        task_code = #{record.taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stateCode != null">
+        state_code = #{record.stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="record.rescueItem != null">
+        rescue_item = #{record.rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="record.bdPlace != null">
+        bd_place = #{record.bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdLong != null">
+        bd_long = #{record.bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bdLat != null">
+        bd_lat = #{record.bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rdPlace != null">
+        rd_place = #{record.rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rdLong != null">
+        rd_long = #{record.rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rdLat != null">
+        rd_lat = #{record.rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskCreateDate != null">
+        task_create_date = #{record.taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.distributionDate != null">
+        distribution_date = #{record.distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.distributionSuccessDate != null">
+        distribution_success_date = #{record.distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pdId != null">
+        pd_id = #{record.pdId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pdName != null">
+        pd_name = #{record.pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptDate != null">
+        accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dispatchtDate != null">
+        dispatcht_date = #{record.dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.driverAcceptDate != null">
+        driver_accept_date = #{record.driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arriveSceneDate != null">
+        arrive_scene_date = #{record.arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rescueStartDate != null">
+        rescue_start_date = #{record.rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rescueFinishDate != null">
+        rescue_finish_date = #{record.rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cos_case_task
+    set id = #{record.id,jdbcType=BIGINT},
+      case_id = #{record.caseId,jdbcType=BIGINT},
+      task_code = #{record.taskCode,jdbcType=VARCHAR},
+      state_code = #{record.stateCode,jdbcType=TINYINT},
+      rescue_item = #{record.rescueItem,jdbcType=TINYINT},
+      bd_place = #{record.bdPlace,jdbcType=VARCHAR},
+      bd_long = #{record.bdLong,jdbcType=DOUBLE},
+      bd_lat = #{record.bdLat,jdbcType=DOUBLE},
+      rd_place = #{record.rdPlace,jdbcType=VARCHAR},
+      rd_long = #{record.rdLong,jdbcType=DOUBLE},
+      rd_lat = #{record.rdLat,jdbcType=DOUBLE},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      task_create_date = #{record.taskCreateDate,jdbcType=TIMESTAMP},
+      distribution_date = #{record.distributionDate,jdbcType=TIMESTAMP},
+      distribution_success_date = #{record.distributionSuccessDate,jdbcType=TIMESTAMP},
+      pd_id = #{record.pdId,jdbcType=BIGINT},
+      pd_name = #{record.pdName,jdbcType=VARCHAR},
+      accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      dispatcht_date = #{record.dispatchtDate,jdbcType=TIMESTAMP},
+      driver_accept_date = #{record.driverAcceptDate,jdbcType=TIMESTAMP},
+      arrive_scene_date = #{record.arriveSceneDate,jdbcType=TIMESTAMP},
+      rescue_start_date = #{record.rescueStartDate,jdbcType=TIMESTAMP},
+      rescue_finish_date = #{record.rescueFinishDate,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    update cos_case_task
+    <set>
+      <if test="caseId != null">
+        case_id = #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCode != null">
+        state_code = #{stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="rescueItem != null">
+        rescue_item = #{rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="bdPlace != null">
+        bd_place = #{bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bdLong != null">
+        bd_long = #{bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="bdLat != null">
+        bd_lat = #{bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="rdPlace != null">
+        rd_place = #{rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="rdLong != null">
+        rd_long = #{rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="rdLat != null">
+        rd_lat = #{rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCreateDate != null">
+        task_create_date = #{taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionDate != null">
+        distribution_date = #{distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionSuccessDate != null">
+        distribution_success_date = #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdId != null">
+        pd_id = #{pdId,jdbcType=BIGINT},
+      </if>
+      <if test="pdName != null">
+        pd_name = #{pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null">
+        accept_date = #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchtDate != null">
+        dispatcht_date = #{dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="driverAcceptDate != null">
+        driver_accept_date = #{driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveSceneDate != null">
+        arrive_scene_date = #{arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueStartDate != null">
+        rescue_start_date = #{rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueFinishDate != null">
+        rescue_finish_date = #{rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    update cos_case_task
+    set case_id = #{caseId,jdbcType=BIGINT},
+      task_code = #{taskCode,jdbcType=VARCHAR},
+      state_code = #{stateCode,jdbcType=TINYINT},
+      rescue_item = #{rescueItem,jdbcType=TINYINT},
+      bd_place = #{bdPlace,jdbcType=VARCHAR},
+      bd_long = #{bdLong,jdbcType=DOUBLE},
+      bd_lat = #{bdLat,jdbcType=DOUBLE},
+      rd_place = #{rdPlace,jdbcType=VARCHAR},
+      rd_long = #{rdLong,jdbcType=DOUBLE},
+      rd_lat = #{rdLat,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      task_create_date = #{taskCreateDate,jdbcType=TIMESTAMP},
+      distribution_date = #{distributionDate,jdbcType=TIMESTAMP},
+      distribution_success_date = #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      pd_id = #{pdId,jdbcType=BIGINT},
+      pd_name = #{pdName,jdbcType=VARCHAR},
+      accept_date = #{acceptDate,jdbcType=TIMESTAMP},
+      dispatcht_date = #{dispatchtDate,jdbcType=TIMESTAMP},
+      driver_accept_date = #{driverAcceptDate,jdbcType=TIMESTAMP},
+      arrive_scene_date = #{arriveSceneDate,jdbcType=TIMESTAMP},
+      rescue_start_date = #{rescueStartDate,jdbcType=TIMESTAMP},
+      rescue_finish_date = #{rescueFinishDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.CosCaseTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="case_id" jdbcType="BIGINT" property="caseId" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="state_code" jdbcType="TINYINT" property="stateCode" />
+    <result column="rescue_item" jdbcType="TINYINT" property="rescueItem" />
+    <result column="bd_place" jdbcType="VARCHAR" property="bdPlace" />
+    <result column="bd_long" jdbcType="DOUBLE" property="bdLong" />
+    <result column="bd_lat" jdbcType="DOUBLE" property="bdLat" />
+    <result column="rd_place" jdbcType="VARCHAR" property="rdPlace" />
+    <result column="rd_long" jdbcType="DOUBLE" property="rdLong" />
+    <result column="rd_lat" jdbcType="DOUBLE" property="rdLat" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="task_create_date" jdbcType="TIMESTAMP" property="taskCreateDate" />
+    <result column="distribution_date" jdbcType="TIMESTAMP" property="distributionDate" />
+    <result column="distribution_success_date" jdbcType="TIMESTAMP" property="distributionSuccessDate" />
+    <result column="pd_id" jdbcType="BIGINT" property="pdId" />
+    <result column="pd_name" jdbcType="VARCHAR" property="pdName" />
+    <result column="accept_date" jdbcType="TIMESTAMP" property="acceptDate" />
+    <result column="dispatcht_date" jdbcType="TIMESTAMP" property="dispatchtDate" />
+    <result column="driver_accept_date" jdbcType="TIMESTAMP" property="driverAcceptDate" />
+    <result column="arrive_scene_date" jdbcType="TIMESTAMP" property="arriveSceneDate" />
+    <result column="rescue_start_date" jdbcType="TIMESTAMP" property="rescueStartDate" />
+    <result column="rescue_finish_date" jdbcType="TIMESTAMP" property="rescueFinishDate" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, case_id, task_code, state_code, rescue_item, bd_place, bd_long, bd_lat, rd_place, 
+    rd_long, rd_lat, remarks, task_create_date, distribution_date, distribution_success_date, 
+    pd_id, pd_name, accept_date, dispatcht_date, driver_accept_date, arrive_scene_date, 
+    rescue_start_date, rescue_finish_date, create_id, create_date, update_id, update_date, 
+    del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cos_case_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cos_case_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample">
+    delete from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    insert into cos_case_task (id, case_id, task_code, 
+      state_code, rescue_item, bd_place, 
+      bd_long, bd_lat, rd_place, 
+      rd_long, rd_lat, remarks, 
+      task_create_date, distribution_date, distribution_success_date, 
+      pd_id, pd_name, accept_date, 
+      dispatcht_date, driver_accept_date, arrive_scene_date, 
+      rescue_start_date, rescue_finish_date, 
+      create_id, create_date, update_id, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{caseId,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, 
+      #{stateCode,jdbcType=TINYINT}, #{rescueItem,jdbcType=TINYINT}, #{bdPlace,jdbcType=VARCHAR}, 
+      #{bdLong,jdbcType=DOUBLE}, #{bdLat,jdbcType=DOUBLE}, #{rdPlace,jdbcType=VARCHAR}, 
+      #{rdLong,jdbcType=DOUBLE}, #{rdLat,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, 
+      #{taskCreateDate,jdbcType=TIMESTAMP}, #{distributionDate,jdbcType=TIMESTAMP}, #{distributionSuccessDate,jdbcType=TIMESTAMP}, 
+      #{pdId,jdbcType=BIGINT}, #{pdName,jdbcType=VARCHAR}, #{acceptDate,jdbcType=TIMESTAMP}, 
+      #{dispatchtDate,jdbcType=TIMESTAMP}, #{driverAcceptDate,jdbcType=TIMESTAMP}, #{arriveSceneDate,jdbcType=TIMESTAMP}, 
+      #{rescueStartDate,jdbcType=TIMESTAMP}, #{rescueFinishDate,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    insert into cos_case_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="caseId != null">
+        case_id,
+      </if>
+      <if test="taskCode != null">
+        task_code,
+      </if>
+      <if test="stateCode != null">
+        state_code,
+      </if>
+      <if test="rescueItem != null">
+        rescue_item,
+      </if>
+      <if test="bdPlace != null">
+        bd_place,
+      </if>
+      <if test="bdLong != null">
+        bd_long,
+      </if>
+      <if test="bdLat != null">
+        bd_lat,
+      </if>
+      <if test="rdPlace != null">
+        rd_place,
+      </if>
+      <if test="rdLong != null">
+        rd_long,
+      </if>
+      <if test="rdLat != null">
+        rd_lat,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="taskCreateDate != null">
+        task_create_date,
+      </if>
+      <if test="distributionDate != null">
+        distribution_date,
+      </if>
+      <if test="distributionSuccessDate != null">
+        distribution_success_date,
+      </if>
+      <if test="pdId != null">
+        pd_id,
+      </if>
+      <if test="pdName != null">
+        pd_name,
+      </if>
+      <if test="acceptDate != null">
+        accept_date,
+      </if>
+      <if test="dispatchtDate != null">
+        dispatcht_date,
+      </if>
+      <if test="driverAcceptDate != null">
+        driver_accept_date,
+      </if>
+      <if test="arriveSceneDate != null">
+        arrive_scene_date,
+      </if>
+      <if test="rescueStartDate != null">
+        rescue_start_date,
+      </if>
+      <if test="rescueFinishDate != null">
+        rescue_finish_date,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="caseId != null">
+        #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCode != null">
+        #{stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="rescueItem != null">
+        #{rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="bdPlace != null">
+        #{bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bdLong != null">
+        #{bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="bdLat != null">
+        #{bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="rdPlace != null">
+        #{rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="rdLong != null">
+        #{rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="rdLat != null">
+        #{rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCreateDate != null">
+        #{taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionDate != null">
+        #{distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionSuccessDate != null">
+        #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdId != null">
+        #{pdId,jdbcType=BIGINT},
+      </if>
+      <if test="pdName != null">
+        #{pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null">
+        #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchtDate != null">
+        #{dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="driverAcceptDate != null">
+        #{driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveSceneDate != null">
+        #{arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueStartDate != null">
+        #{rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueFinishDate != null">
+        #{rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.CosCaseTaskExample" resultType="java.lang.Integer">
+    select count(*) from cos_case_task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cos_case_task
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.caseId != null">
+        case_id = #{record.caseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskCode != null">
+        task_code = #{record.taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stateCode != null">
+        state_code = #{record.stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="record.rescueItem != null">
+        rescue_item = #{record.rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="record.bdPlace != null">
+        bd_place = #{record.bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdLong != null">
+        bd_long = #{record.bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bdLat != null">
+        bd_lat = #{record.bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rdPlace != null">
+        rd_place = #{record.rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rdLong != null">
+        rd_long = #{record.rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rdLat != null">
+        rd_lat = #{record.rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskCreateDate != null">
+        task_create_date = #{record.taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.distributionDate != null">
+        distribution_date = #{record.distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.distributionSuccessDate != null">
+        distribution_success_date = #{record.distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pdId != null">
+        pd_id = #{record.pdId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pdName != null">
+        pd_name = #{record.pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptDate != null">
+        accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dispatchtDate != null">
+        dispatcht_date = #{record.dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.driverAcceptDate != null">
+        driver_accept_date = #{record.driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arriveSceneDate != null">
+        arrive_scene_date = #{record.arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rescueStartDate != null">
+        rescue_start_date = #{record.rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rescueFinishDate != null">
+        rescue_finish_date = #{record.rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createId != null">
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cos_case_task
+    set id = #{record.id,jdbcType=BIGINT},
+      case_id = #{record.caseId,jdbcType=BIGINT},
+      task_code = #{record.taskCode,jdbcType=VARCHAR},
+      state_code = #{record.stateCode,jdbcType=TINYINT},
+      rescue_item = #{record.rescueItem,jdbcType=TINYINT},
+      bd_place = #{record.bdPlace,jdbcType=VARCHAR},
+      bd_long = #{record.bdLong,jdbcType=DOUBLE},
+      bd_lat = #{record.bdLat,jdbcType=DOUBLE},
+      rd_place = #{record.rdPlace,jdbcType=VARCHAR},
+      rd_long = #{record.rdLong,jdbcType=DOUBLE},
+      rd_lat = #{record.rdLat,jdbcType=DOUBLE},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      task_create_date = #{record.taskCreateDate,jdbcType=TIMESTAMP},
+      distribution_date = #{record.distributionDate,jdbcType=TIMESTAMP},
+      distribution_success_date = #{record.distributionSuccessDate,jdbcType=TIMESTAMP},
+      pd_id = #{record.pdId,jdbcType=BIGINT},
+      pd_name = #{record.pdName,jdbcType=VARCHAR},
+      accept_date = #{record.acceptDate,jdbcType=TIMESTAMP},
+      dispatcht_date = #{record.dispatchtDate,jdbcType=TIMESTAMP},
+      driver_accept_date = #{record.driverAcceptDate,jdbcType=TIMESTAMP},
+      arrive_scene_date = #{record.arriveSceneDate,jdbcType=TIMESTAMP},
+      rescue_start_date = #{record.rescueStartDate,jdbcType=TIMESTAMP},
+      rescue_finish_date = #{record.rescueFinishDate,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    update cos_case_task
+    <set>
+      <if test="caseId != null">
+        case_id = #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCode != null">
+        state_code = #{stateCode,jdbcType=TINYINT},
+      </if>
+      <if test="rescueItem != null">
+        rescue_item = #{rescueItem,jdbcType=TINYINT},
+      </if>
+      <if test="bdPlace != null">
+        bd_place = #{bdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bdLong != null">
+        bd_long = #{bdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="bdLat != null">
+        bd_lat = #{bdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="rdPlace != null">
+        rd_place = #{rdPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="rdLong != null">
+        rd_long = #{rdLong,jdbcType=DOUBLE},
+      </if>
+      <if test="rdLat != null">
+        rd_lat = #{rdLat,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCreateDate != null">
+        task_create_date = #{taskCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionDate != null">
+        distribution_date = #{distributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="distributionSuccessDate != null">
+        distribution_success_date = #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdId != null">
+        pd_id = #{pdId,jdbcType=BIGINT},
+      </if>
+      <if test="pdName != null">
+        pd_name = #{pdName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null">
+        accept_date = #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatchtDate != null">
+        dispatcht_date = #{dispatchtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="driverAcceptDate != null">
+        driver_accept_date = #{driverAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveSceneDate != null">
+        arrive_scene_date = #{arriveSceneDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueStartDate != null">
+        rescue_start_date = #{rescueStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rescueFinishDate != null">
+        rescue_finish_date = #{rescueFinishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.CosCaseTask">
+    update cos_case_task
+    set case_id = #{caseId,jdbcType=BIGINT},
+      task_code = #{taskCode,jdbcType=VARCHAR},
+      state_code = #{stateCode,jdbcType=TINYINT},
+      rescue_item = #{rescueItem,jdbcType=TINYINT},
+      bd_place = #{bdPlace,jdbcType=VARCHAR},
+      bd_long = #{bdLong,jdbcType=DOUBLE},
+      bd_lat = #{bdLat,jdbcType=DOUBLE},
+      rd_place = #{rdPlace,jdbcType=VARCHAR},
+      rd_long = #{rdLong,jdbcType=DOUBLE},
+      rd_lat = #{rdLat,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      task_create_date = #{taskCreateDate,jdbcType=TIMESTAMP},
+      distribution_date = #{distributionDate,jdbcType=TIMESTAMP},
+      distribution_success_date = #{distributionSuccessDate,jdbcType=TIMESTAMP},
+      pd_id = #{pdId,jdbcType=BIGINT},
+      pd_name = #{pdName,jdbcType=VARCHAR},
+      accept_date = #{acceptDate,jdbcType=TIMESTAMP},
+      dispatcht_date = #{dispatchtDate,jdbcType=TIMESTAMP},
+      driver_accept_date = #{driverAcceptDate,jdbcType=TIMESTAMP},
+      arrive_scene_date = #{arriveSceneDate,jdbcType=TIMESTAMP},
+      rescue_start_date = #{rescueStartDate,jdbcType=TIMESTAMP},
+      rescue_finish_date = #{rescueFinishDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

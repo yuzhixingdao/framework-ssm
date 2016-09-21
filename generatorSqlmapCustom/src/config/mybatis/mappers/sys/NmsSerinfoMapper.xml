@@ -1,0 +1,1858 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.NmsSerinfoMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsSerinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sername" jdbcType="VARCHAR" property="sername" />
+    <result column="areaid" jdbcType="TINYINT" property="areaid" />
+    <result column="contract" jdbcType="VARCHAR" property="contract" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="serAttr" jdbcType="VARCHAR" property="serattr" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="detailAddr" jdbcType="VARCHAR" property="detailaddr" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="sermarks" jdbcType="VARCHAR" property="sermarks" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="scode" jdbcType="VARCHAR" property="scode" />
+    <result column="sstate" jdbcType="TINYINT" property="sstate" />
+    <result column="businessuser" jdbcType="VARCHAR" property="businessuser" />
+    <result column="scall" jdbcType="TINYINT" property="scall" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <result column="createfunds" jdbcType="VARCHAR" property="createfunds" />
+    <result column="comnature" jdbcType="TINYINT" property="comnature" />
+    <result column="marks" jdbcType="VARCHAR" property="marks" />
+    <result column="sercode" jdbcType="VARCHAR" property="sercode" />
+    <result column="depend" jdbcType="VARCHAR" property="depend" />
+    <result column="sertype" jdbcType="VARCHAR" property="sertype" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="ser_ability" jdbcType="VARCHAR" property="serAbility" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sername, areaid, contract, pid, serAttr, brand, province, city, area, detailAddr, 
+    zipcode, sermarks, userid, scode, sstate, businessuser, scall, createtime, createfunds, 
+    comnature, marks, sercode, depend, sertype, create_by, create_date, update_by, update_date, 
+    del_flag, ser_ability
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_serinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_serinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample">
+    delete from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    insert into nms_serinfo (id, sername, areaid, 
+      contract, pid, serAttr, 
+      brand, province, city, 
+      area, detailAddr, zipcode, 
+      sermarks, userid, scode, 
+      sstate, businessuser, scall, 
+      createtime, createfunds, comnature, 
+      marks, sercode, depend, 
+      sertype, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      ser_ability)
+    values (#{id,jdbcType=BIGINT}, #{sername,jdbcType=VARCHAR}, #{areaid,jdbcType=TINYINT}, 
+      #{contract,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{serattr,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{detailaddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
+      #{sermarks,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, #{scode,jdbcType=VARCHAR}, 
+      #{sstate,jdbcType=TINYINT}, #{businessuser,jdbcType=VARCHAR}, #{scall,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=DATE}, #{createfunds,jdbcType=VARCHAR}, #{comnature,jdbcType=TINYINT}, 
+      #{marks,jdbcType=VARCHAR}, #{sercode,jdbcType=VARCHAR}, #{depend,jdbcType=VARCHAR}, 
+      #{sertype,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}, 
+      #{serAbility,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    insert into nms_serinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sername != null">
+        sername,
+      </if>
+      <if test="areaid != null">
+        areaid,
+      </if>
+      <if test="contract != null">
+        contract,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="serattr != null">
+        serAttr,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="detailaddr != null">
+        detailAddr,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="sermarks != null">
+        sermarks,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="scode != null">
+        scode,
+      </if>
+      <if test="sstate != null">
+        sstate,
+      </if>
+      <if test="businessuser != null">
+        businessuser,
+      </if>
+      <if test="scall != null">
+        scall,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="createfunds != null">
+        createfunds,
+      </if>
+      <if test="comnature != null">
+        comnature,
+      </if>
+      <if test="marks != null">
+        marks,
+      </if>
+      <if test="sercode != null">
+        sercode,
+      </if>
+      <if test="depend != null">
+        depend,
+      </if>
+      <if test="sertype != null">
+        sertype,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="serAbility != null">
+        ser_ability,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sername != null">
+        #{sername,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=TINYINT},
+      </if>
+      <if test="contract != null">
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="serattr != null">
+        #{serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddr != null">
+        #{detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sermarks != null">
+        #{sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="scode != null">
+        #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        #{sstate,jdbcType=TINYINT},
+      </if>
+      <if test="businessuser != null">
+        #{businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="scall != null">
+        #{scall,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createfunds != null">
+        #{createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="comnature != null">
+        #{comnature,jdbcType=TINYINT},
+      </if>
+      <if test="marks != null">
+        #{marks,jdbcType=VARCHAR},
+      </if>
+      <if test="sercode != null">
+        #{sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="sertype != null">
+        #{sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="serAbility != null">
+        #{serAbility,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_serinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sername != null">
+        sername = #{record.sername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaid != null">
+        areaid = #{record.areaid,jdbcType=TINYINT},
+      </if>
+      <if test="record.contract != null">
+        contract = #{record.contract,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=BIGINT},
+      </if>
+      <if test="record.serattr != null">
+        serAttr = #{record.serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand != null">
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailaddr != null">
+        detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null">
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sermarks != null">
+        sermarks = #{record.sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.scode != null">
+        scode = #{record.scode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sstate != null">
+        sstate = #{record.sstate,jdbcType=TINYINT},
+      </if>
+      <if test="record.businessuser != null">
+        businessuser = #{record.businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scall != null">
+        scall = #{record.scall,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.createfunds != null">
+        createfunds = #{record.createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comnature != null">
+        comnature = #{record.comnature,jdbcType=TINYINT},
+      </if>
+      <if test="record.marks != null">
+        marks = #{record.marks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sercode != null">
+        sercode = #{record.sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depend != null">
+        depend = #{record.depend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sertype != null">
+        sertype = #{record.sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.serAbility != null">
+        ser_ability = #{record.serAbility,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_serinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      sername = #{record.sername,jdbcType=VARCHAR},
+      areaid = #{record.areaid,jdbcType=TINYINT},
+      contract = #{record.contract,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=BIGINT},
+      serAttr = #{record.serattr,jdbcType=VARCHAR},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      sermarks = #{record.sermarks,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=BIGINT},
+      scode = #{record.scode,jdbcType=VARCHAR},
+      sstate = #{record.sstate,jdbcType=TINYINT},
+      businessuser = #{record.businessuser,jdbcType=VARCHAR},
+      scall = #{record.scall,jdbcType=TINYINT},
+      createtime = #{record.createtime,jdbcType=DATE},
+      createfunds = #{record.createfunds,jdbcType=VARCHAR},
+      comnature = #{record.comnature,jdbcType=TINYINT},
+      marks = #{record.marks,jdbcType=VARCHAR},
+      sercode = #{record.sercode,jdbcType=VARCHAR},
+      depend = #{record.depend,jdbcType=VARCHAR},
+      sertype = #{record.sertype,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT},
+      ser_ability = #{record.serAbility,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    update nms_serinfo
+    <set>
+      <if test="sername != null">
+        sername = #{sername,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        areaid = #{areaid,jdbcType=TINYINT},
+      </if>
+      <if test="contract != null">
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="serattr != null">
+        serAttr = #{serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddr != null">
+        detailAddr = #{detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sermarks != null">
+        sermarks = #{sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="scode != null">
+        scode = #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        sstate = #{sstate,jdbcType=TINYINT},
+      </if>
+      <if test="businessuser != null">
+        businessuser = #{businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="scall != null">
+        scall = #{scall,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createfunds != null">
+        createfunds = #{createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="comnature != null">
+        comnature = #{comnature,jdbcType=TINYINT},
+      </if>
+      <if test="marks != null">
+        marks = #{marks,jdbcType=VARCHAR},
+      </if>
+      <if test="sercode != null">
+        sercode = #{sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        depend = #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="sertype != null">
+        sertype = #{sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="serAbility != null">
+        ser_ability = #{serAbility,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    update nms_serinfo
+    set sername = #{sername,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=TINYINT},
+      contract = #{contract,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      serAttr = #{serattr,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      detailAddr = #{detailaddr,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      sermarks = #{sermarks,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT},
+      scode = #{scode,jdbcType=VARCHAR},
+      sstate = #{sstate,jdbcType=TINYINT},
+      businessuser = #{businessuser,jdbcType=VARCHAR},
+      scall = #{scall,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=DATE},
+      createfunds = #{createfunds,jdbcType=VARCHAR},
+      comnature = #{comnature,jdbcType=TINYINT},
+      marks = #{marks,jdbcType=VARCHAR},
+      sercode = #{sercode,jdbcType=VARCHAR},
+      depend = #{depend,jdbcType=VARCHAR},
+      sertype = #{sertype,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      ser_ability = #{serAbility,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsSerinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sername" jdbcType="VARCHAR" property="sername" />
+    <result column="areaid" jdbcType="TINYINT" property="areaid" />
+    <result column="contract" jdbcType="VARCHAR" property="contract" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="serAttr" jdbcType="VARCHAR" property="serattr" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="detailAddr" jdbcType="VARCHAR" property="detailaddr" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="sermarks" jdbcType="VARCHAR" property="sermarks" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="scode" jdbcType="VARCHAR" property="scode" />
+    <result column="sstate" jdbcType="TINYINT" property="sstate" />
+    <result column="businessuser" jdbcType="VARCHAR" property="businessuser" />
+    <result column="scall" jdbcType="TINYINT" property="scall" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <result column="createfunds" jdbcType="VARCHAR" property="createfunds" />
+    <result column="comnature" jdbcType="TINYINT" property="comnature" />
+    <result column="marks" jdbcType="VARCHAR" property="marks" />
+    <result column="sercode" jdbcType="VARCHAR" property="sercode" />
+    <result column="depend" jdbcType="VARCHAR" property="depend" />
+    <result column="sertype" jdbcType="VARCHAR" property="sertype" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="ser_ability" jdbcType="VARCHAR" property="serAbility" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sername, areaid, contract, pid, serAttr, brand, province, city, area, detailAddr, 
+    zipcode, sermarks, userid, scode, sstate, businessuser, scall, createtime, createfunds, 
+    comnature, marks, sercode, depend, sertype, create_by, create_date, update_by, update_date, 
+    del_flag, ser_ability
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_serinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_serinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample">
+    delete from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    insert into nms_serinfo (id, sername, areaid, 
+      contract, pid, serAttr, 
+      brand, province, city, 
+      area, detailAddr, zipcode, 
+      sermarks, userid, scode, 
+      sstate, businessuser, scall, 
+      createtime, createfunds, comnature, 
+      marks, sercode, depend, 
+      sertype, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      ser_ability)
+    values (#{id,jdbcType=BIGINT}, #{sername,jdbcType=VARCHAR}, #{areaid,jdbcType=TINYINT}, 
+      #{contract,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{serattr,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{detailaddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
+      #{sermarks,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, #{scode,jdbcType=VARCHAR}, 
+      #{sstate,jdbcType=TINYINT}, #{businessuser,jdbcType=VARCHAR}, #{scall,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=DATE}, #{createfunds,jdbcType=VARCHAR}, #{comnature,jdbcType=TINYINT}, 
+      #{marks,jdbcType=VARCHAR}, #{sercode,jdbcType=VARCHAR}, #{depend,jdbcType=VARCHAR}, 
+      #{sertype,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}, 
+      #{serAbility,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    insert into nms_serinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sername != null">
+        sername,
+      </if>
+      <if test="areaid != null">
+        areaid,
+      </if>
+      <if test="contract != null">
+        contract,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="serattr != null">
+        serAttr,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="detailaddr != null">
+        detailAddr,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="sermarks != null">
+        sermarks,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="scode != null">
+        scode,
+      </if>
+      <if test="sstate != null">
+        sstate,
+      </if>
+      <if test="businessuser != null">
+        businessuser,
+      </if>
+      <if test="scall != null">
+        scall,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="createfunds != null">
+        createfunds,
+      </if>
+      <if test="comnature != null">
+        comnature,
+      </if>
+      <if test="marks != null">
+        marks,
+      </if>
+      <if test="sercode != null">
+        sercode,
+      </if>
+      <if test="depend != null">
+        depend,
+      </if>
+      <if test="sertype != null">
+        sertype,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="serAbility != null">
+        ser_ability,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sername != null">
+        #{sername,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=TINYINT},
+      </if>
+      <if test="contract != null">
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="serattr != null">
+        #{serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddr != null">
+        #{detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sermarks != null">
+        #{sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="scode != null">
+        #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        #{sstate,jdbcType=TINYINT},
+      </if>
+      <if test="businessuser != null">
+        #{businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="scall != null">
+        #{scall,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createfunds != null">
+        #{createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="comnature != null">
+        #{comnature,jdbcType=TINYINT},
+      </if>
+      <if test="marks != null">
+        #{marks,jdbcType=VARCHAR},
+      </if>
+      <if test="sercode != null">
+        #{sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="sertype != null">
+        #{sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="serAbility != null">
+        #{serAbility,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_serinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sername != null">
+        sername = #{record.sername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaid != null">
+        areaid = #{record.areaid,jdbcType=TINYINT},
+      </if>
+      <if test="record.contract != null">
+        contract = #{record.contract,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=BIGINT},
+      </if>
+      <if test="record.serattr != null">
+        serAttr = #{record.serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand != null">
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailaddr != null">
+        detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null">
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sermarks != null">
+        sermarks = #{record.sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.scode != null">
+        scode = #{record.scode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sstate != null">
+        sstate = #{record.sstate,jdbcType=TINYINT},
+      </if>
+      <if test="record.businessuser != null">
+        businessuser = #{record.businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scall != null">
+        scall = #{record.scall,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.createfunds != null">
+        createfunds = #{record.createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comnature != null">
+        comnature = #{record.comnature,jdbcType=TINYINT},
+      </if>
+      <if test="record.marks != null">
+        marks = #{record.marks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sercode != null">
+        sercode = #{record.sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depend != null">
+        depend = #{record.depend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sertype != null">
+        sertype = #{record.sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.serAbility != null">
+        ser_ability = #{record.serAbility,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_serinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      sername = #{record.sername,jdbcType=VARCHAR},
+      areaid = #{record.areaid,jdbcType=TINYINT},
+      contract = #{record.contract,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=BIGINT},
+      serAttr = #{record.serattr,jdbcType=VARCHAR},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      sermarks = #{record.sermarks,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=BIGINT},
+      scode = #{record.scode,jdbcType=VARCHAR},
+      sstate = #{record.sstate,jdbcType=TINYINT},
+      businessuser = #{record.businessuser,jdbcType=VARCHAR},
+      scall = #{record.scall,jdbcType=TINYINT},
+      createtime = #{record.createtime,jdbcType=DATE},
+      createfunds = #{record.createfunds,jdbcType=VARCHAR},
+      comnature = #{record.comnature,jdbcType=TINYINT},
+      marks = #{record.marks,jdbcType=VARCHAR},
+      sercode = #{record.sercode,jdbcType=VARCHAR},
+      depend = #{record.depend,jdbcType=VARCHAR},
+      sertype = #{record.sertype,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT},
+      ser_ability = #{record.serAbility,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    update nms_serinfo
+    <set>
+      <if test="sername != null">
+        sername = #{sername,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        areaid = #{areaid,jdbcType=TINYINT},
+      </if>
+      <if test="contract != null">
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="serattr != null">
+        serAttr = #{serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddr != null">
+        detailAddr = #{detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sermarks != null">
+        sermarks = #{sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="scode != null">
+        scode = #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        sstate = #{sstate,jdbcType=TINYINT},
+      </if>
+      <if test="businessuser != null">
+        businessuser = #{businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="scall != null">
+        scall = #{scall,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createfunds != null">
+        createfunds = #{createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="comnature != null">
+        comnature = #{comnature,jdbcType=TINYINT},
+      </if>
+      <if test="marks != null">
+        marks = #{marks,jdbcType=VARCHAR},
+      </if>
+      <if test="sercode != null">
+        sercode = #{sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        depend = #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="sertype != null">
+        sertype = #{sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="serAbility != null">
+        ser_ability = #{serAbility,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    update nms_serinfo
+    set sername = #{sername,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=TINYINT},
+      contract = #{contract,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      serAttr = #{serattr,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      detailAddr = #{detailaddr,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      sermarks = #{sermarks,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT},
+      scode = #{scode,jdbcType=VARCHAR},
+      sstate = #{sstate,jdbcType=TINYINT},
+      businessuser = #{businessuser,jdbcType=VARCHAR},
+      scall = #{scall,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=DATE},
+      createfunds = #{createfunds,jdbcType=VARCHAR},
+      comnature = #{comnature,jdbcType=TINYINT},
+      marks = #{marks,jdbcType=VARCHAR},
+      sercode = #{sercode,jdbcType=VARCHAR},
+      depend = #{depend,jdbcType=VARCHAR},
+      sertype = #{sertype,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      ser_ability = #{serAbility,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsSerinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sername" jdbcType="VARCHAR" property="sername" />
+    <result column="areaid" jdbcType="TINYINT" property="areaid" />
+    <result column="contract" jdbcType="VARCHAR" property="contract" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="serAttr" jdbcType="VARCHAR" property="serattr" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="detailAddr" jdbcType="VARCHAR" property="detailaddr" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="sermarks" jdbcType="VARCHAR" property="sermarks" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="scode" jdbcType="VARCHAR" property="scode" />
+    <result column="sstate" jdbcType="TINYINT" property="sstate" />
+    <result column="businessuser" jdbcType="VARCHAR" property="businessuser" />
+    <result column="scall" jdbcType="TINYINT" property="scall" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <result column="createfunds" jdbcType="VARCHAR" property="createfunds" />
+    <result column="comnature" jdbcType="TINYINT" property="comnature" />
+    <result column="marks" jdbcType="VARCHAR" property="marks" />
+    <result column="sercode" jdbcType="VARCHAR" property="sercode" />
+    <result column="depend" jdbcType="VARCHAR" property="depend" />
+    <result column="sertype" jdbcType="VARCHAR" property="sertype" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="ser_ability" jdbcType="VARCHAR" property="serAbility" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sername, areaid, contract, pid, serAttr, brand, province, city, area, detailAddr, 
+    zipcode, sermarks, userid, scode, sstate, businessuser, scall, createtime, createfunds, 
+    comnature, marks, sercode, depend, sertype, create_by, create_date, update_by, update_date, 
+    del_flag, ser_ability
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_serinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_serinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample">
+    delete from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    insert into nms_serinfo (id, sername, areaid, 
+      contract, pid, serAttr, 
+      brand, province, city, 
+      area, detailAddr, zipcode, 
+      sermarks, userid, scode, 
+      sstate, businessuser, scall, 
+      createtime, createfunds, comnature, 
+      marks, sercode, depend, 
+      sertype, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      ser_ability)
+    values (#{id,jdbcType=BIGINT}, #{sername,jdbcType=VARCHAR}, #{areaid,jdbcType=TINYINT}, 
+      #{contract,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{serattr,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{detailaddr,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
+      #{sermarks,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, #{scode,jdbcType=VARCHAR}, 
+      #{sstate,jdbcType=TINYINT}, #{businessuser,jdbcType=VARCHAR}, #{scall,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=DATE}, #{createfunds,jdbcType=VARCHAR}, #{comnature,jdbcType=TINYINT}, 
+      #{marks,jdbcType=VARCHAR}, #{sercode,jdbcType=VARCHAR}, #{depend,jdbcType=VARCHAR}, 
+      #{sertype,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=BIGINT}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}, 
+      #{serAbility,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    insert into nms_serinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sername != null">
+        sername,
+      </if>
+      <if test="areaid != null">
+        areaid,
+      </if>
+      <if test="contract != null">
+        contract,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="serattr != null">
+        serAttr,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="detailaddr != null">
+        detailAddr,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="sermarks != null">
+        sermarks,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="scode != null">
+        scode,
+      </if>
+      <if test="sstate != null">
+        sstate,
+      </if>
+      <if test="businessuser != null">
+        businessuser,
+      </if>
+      <if test="scall != null">
+        scall,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="createfunds != null">
+        createfunds,
+      </if>
+      <if test="comnature != null">
+        comnature,
+      </if>
+      <if test="marks != null">
+        marks,
+      </if>
+      <if test="sercode != null">
+        sercode,
+      </if>
+      <if test="depend != null">
+        depend,
+      </if>
+      <if test="sertype != null">
+        sertype,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="serAbility != null">
+        ser_ability,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sername != null">
+        #{sername,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=TINYINT},
+      </if>
+      <if test="contract != null">
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="serattr != null">
+        #{serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddr != null">
+        #{detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sermarks != null">
+        #{sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="scode != null">
+        #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        #{sstate,jdbcType=TINYINT},
+      </if>
+      <if test="businessuser != null">
+        #{businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="scall != null">
+        #{scall,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createfunds != null">
+        #{createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="comnature != null">
+        #{comnature,jdbcType=TINYINT},
+      </if>
+      <if test="marks != null">
+        #{marks,jdbcType=VARCHAR},
+      </if>
+      <if test="sercode != null">
+        #{sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="sertype != null">
+        #{sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="serAbility != null">
+        #{serAbility,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsSerinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_serinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_serinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sername != null">
+        sername = #{record.sername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaid != null">
+        areaid = #{record.areaid,jdbcType=TINYINT},
+      </if>
+      <if test="record.contract != null">
+        contract = #{record.contract,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=BIGINT},
+      </if>
+      <if test="record.serattr != null">
+        serAttr = #{record.serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand != null">
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailaddr != null">
+        detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null">
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sermarks != null">
+        sermarks = #{record.sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.scode != null">
+        scode = #{record.scode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sstate != null">
+        sstate = #{record.sstate,jdbcType=TINYINT},
+      </if>
+      <if test="record.businessuser != null">
+        businessuser = #{record.businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scall != null">
+        scall = #{record.scall,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.createfunds != null">
+        createfunds = #{record.createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comnature != null">
+        comnature = #{record.comnature,jdbcType=TINYINT},
+      </if>
+      <if test="record.marks != null">
+        marks = #{record.marks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sercode != null">
+        sercode = #{record.sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depend != null">
+        depend = #{record.depend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sertype != null">
+        sertype = #{record.sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.serAbility != null">
+        ser_ability = #{record.serAbility,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_serinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      sername = #{record.sername,jdbcType=VARCHAR},
+      areaid = #{record.areaid,jdbcType=TINYINT},
+      contract = #{record.contract,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=BIGINT},
+      serAttr = #{record.serattr,jdbcType=VARCHAR},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      sermarks = #{record.sermarks,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=BIGINT},
+      scode = #{record.scode,jdbcType=VARCHAR},
+      sstate = #{record.sstate,jdbcType=TINYINT},
+      businessuser = #{record.businessuser,jdbcType=VARCHAR},
+      scall = #{record.scall,jdbcType=TINYINT},
+      createtime = #{record.createtime,jdbcType=DATE},
+      createfunds = #{record.createfunds,jdbcType=VARCHAR},
+      comnature = #{record.comnature,jdbcType=TINYINT},
+      marks = #{record.marks,jdbcType=VARCHAR},
+      sercode = #{record.sercode,jdbcType=VARCHAR},
+      depend = #{record.depend,jdbcType=VARCHAR},
+      sertype = #{record.sertype,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT},
+      ser_ability = #{record.serAbility,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    update nms_serinfo
+    <set>
+      <if test="sername != null">
+        sername = #{sername,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        areaid = #{areaid,jdbcType=TINYINT},
+      </if>
+      <if test="contract != null">
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="serattr != null">
+        serAttr = #{serattr,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddr != null">
+        detailAddr = #{detailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sermarks != null">
+        sermarks = #{sermarks,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="scode != null">
+        scode = #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sstate != null">
+        sstate = #{sstate,jdbcType=TINYINT},
+      </if>
+      <if test="businessuser != null">
+        businessuser = #{businessuser,jdbcType=VARCHAR},
+      </if>
+      <if test="scall != null">
+        scall = #{scall,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createfunds != null">
+        createfunds = #{createfunds,jdbcType=VARCHAR},
+      </if>
+      <if test="comnature != null">
+        comnature = #{comnature,jdbcType=TINYINT},
+      </if>
+      <if test="marks != null">
+        marks = #{marks,jdbcType=VARCHAR},
+      </if>
+      <if test="sercode != null">
+        sercode = #{sercode,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        depend = #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="sertype != null">
+        sertype = #{sertype,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="serAbility != null">
+        ser_ability = #{serAbility,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsSerinfo">
+    update nms_serinfo
+    set sername = #{sername,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=TINYINT},
+      contract = #{contract,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      serAttr = #{serattr,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      detailAddr = #{detailaddr,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      sermarks = #{sermarks,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT},
+      scode = #{scode,jdbcType=VARCHAR},
+      sstate = #{sstate,jdbcType=TINYINT},
+      businessuser = #{businessuser,jdbcType=VARCHAR},
+      scall = #{scall,jdbcType=TINYINT},
+      createtime = #{createtime,jdbcType=DATE},
+      createfunds = #{createfunds,jdbcType=VARCHAR},
+      comnature = #{comnature,jdbcType=TINYINT},
+      marks = #{marks,jdbcType=VARCHAR},
+      sercode = #{sercode,jdbcType=VARCHAR},
+      depend = #{depend,jdbcType=VARCHAR},
+      sertype = #{sertype,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      ser_ability = #{serAbility,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

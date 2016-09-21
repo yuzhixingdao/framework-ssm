@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aac.cos.entity.sys.mapper.NmsRepairinfoMapper">
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsRepairinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="repshopsqua" jdbcType="TINYINT" property="repshopsqua" />
+    <result column="repser" jdbcType="TINYINT" property="repser" />
+    <result column="repband" jdbcType="TINYINT" property="repband" />
+    <result column="searchser" jdbcType="TINYINT" property="searchser" />
+    <result column="searchband" jdbcType="CHAR" property="searchband" />
+    <result column="adjust" jdbcType="TINYINT" property="adjust" />
+    <result column="adjustcom" jdbcType="VARCHAR" property="adjustcom" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, serid, repshopsqua, repser, repband, searchser, searchband, adjust, adjustcom, 
+    create_by, create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_repairinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_repairinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample">
+    delete from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    insert into nms_repairinfo (id, serid, repshopsqua, 
+      repser, repband, searchser, 
+      searchband, adjust, adjustcom, 
+      create_by, create_date, update_by, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{serid,jdbcType=BIGINT}, #{repshopsqua,jdbcType=TINYINT}, 
+      #{repser,jdbcType=TINYINT}, #{repband,jdbcType=TINYINT}, #{searchser,jdbcType=TINYINT}, 
+      #{searchband,jdbcType=CHAR}, #{adjust,jdbcType=TINYINT}, #{adjustcom,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    insert into nms_repairinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="repshopsqua != null">
+        repshopsqua,
+      </if>
+      <if test="repser != null">
+        repser,
+      </if>
+      <if test="repband != null">
+        repband,
+      </if>
+      <if test="searchser != null">
+        searchser,
+      </if>
+      <if test="searchband != null">
+        searchband,
+      </if>
+      <if test="adjust != null">
+        adjust,
+      </if>
+      <if test="adjustcom != null">
+        adjustcom,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="repshopsqua != null">
+        #{repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="repser != null">
+        #{repser,jdbcType=TINYINT},
+      </if>
+      <if test="repband != null">
+        #{repband,jdbcType=TINYINT},
+      </if>
+      <if test="searchser != null">
+        #{searchser,jdbcType=TINYINT},
+      </if>
+      <if test="searchband != null">
+        #{searchband,jdbcType=CHAR},
+      </if>
+      <if test="adjust != null">
+        #{adjust,jdbcType=TINYINT},
+      </if>
+      <if test="adjustcom != null">
+        #{adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_repairinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.repshopsqua != null">
+        repshopsqua = #{record.repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="record.repser != null">
+        repser = #{record.repser,jdbcType=TINYINT},
+      </if>
+      <if test="record.repband != null">
+        repband = #{record.repband,jdbcType=TINYINT},
+      </if>
+      <if test="record.searchser != null">
+        searchser = #{record.searchser,jdbcType=TINYINT},
+      </if>
+      <if test="record.searchband != null">
+        searchband = #{record.searchband,jdbcType=CHAR},
+      </if>
+      <if test="record.adjust != null">
+        adjust = #{record.adjust,jdbcType=TINYINT},
+      </if>
+      <if test="record.adjustcom != null">
+        adjustcom = #{record.adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_repairinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      repshopsqua = #{record.repshopsqua,jdbcType=TINYINT},
+      repser = #{record.repser,jdbcType=TINYINT},
+      repband = #{record.repband,jdbcType=TINYINT},
+      searchser = #{record.searchser,jdbcType=TINYINT},
+      searchband = #{record.searchband,jdbcType=CHAR},
+      adjust = #{record.adjust,jdbcType=TINYINT},
+      adjustcom = #{record.adjustcom,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    update nms_repairinfo
+    <set>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="repshopsqua != null">
+        repshopsqua = #{repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="repser != null">
+        repser = #{repser,jdbcType=TINYINT},
+      </if>
+      <if test="repband != null">
+        repband = #{repband,jdbcType=TINYINT},
+      </if>
+      <if test="searchser != null">
+        searchser = #{searchser,jdbcType=TINYINT},
+      </if>
+      <if test="searchband != null">
+        searchband = #{searchband,jdbcType=CHAR},
+      </if>
+      <if test="adjust != null">
+        adjust = #{adjust,jdbcType=TINYINT},
+      </if>
+      <if test="adjustcom != null">
+        adjustcom = #{adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    update nms_repairinfo
+    set serid = #{serid,jdbcType=BIGINT},
+      repshopsqua = #{repshopsqua,jdbcType=TINYINT},
+      repser = #{repser,jdbcType=TINYINT},
+      repband = #{repband,jdbcType=TINYINT},
+      searchser = #{searchser,jdbcType=TINYINT},
+      searchband = #{searchband,jdbcType=CHAR},
+      adjust = #{adjust,jdbcType=TINYINT},
+      adjustcom = #{adjustcom,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsRepairinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="repshopsqua" jdbcType="TINYINT" property="repshopsqua" />
+    <result column="repser" jdbcType="TINYINT" property="repser" />
+    <result column="repband" jdbcType="TINYINT" property="repband" />
+    <result column="searchser" jdbcType="TINYINT" property="searchser" />
+    <result column="searchband" jdbcType="CHAR" property="searchband" />
+    <result column="adjust" jdbcType="TINYINT" property="adjust" />
+    <result column="adjustcom" jdbcType="VARCHAR" property="adjustcom" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, serid, repshopsqua, repser, repband, searchser, searchband, adjust, adjustcom, 
+    create_by, create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_repairinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_repairinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample">
+    delete from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    insert into nms_repairinfo (id, serid, repshopsqua, 
+      repser, repband, searchser, 
+      searchband, adjust, adjustcom, 
+      create_by, create_date, update_by, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{serid,jdbcType=BIGINT}, #{repshopsqua,jdbcType=TINYINT}, 
+      #{repser,jdbcType=TINYINT}, #{repband,jdbcType=TINYINT}, #{searchser,jdbcType=TINYINT}, 
+      #{searchband,jdbcType=CHAR}, #{adjust,jdbcType=TINYINT}, #{adjustcom,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    insert into nms_repairinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="repshopsqua != null">
+        repshopsqua,
+      </if>
+      <if test="repser != null">
+        repser,
+      </if>
+      <if test="repband != null">
+        repband,
+      </if>
+      <if test="searchser != null">
+        searchser,
+      </if>
+      <if test="searchband != null">
+        searchband,
+      </if>
+      <if test="adjust != null">
+        adjust,
+      </if>
+      <if test="adjustcom != null">
+        adjustcom,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="repshopsqua != null">
+        #{repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="repser != null">
+        #{repser,jdbcType=TINYINT},
+      </if>
+      <if test="repband != null">
+        #{repband,jdbcType=TINYINT},
+      </if>
+      <if test="searchser != null">
+        #{searchser,jdbcType=TINYINT},
+      </if>
+      <if test="searchband != null">
+        #{searchband,jdbcType=CHAR},
+      </if>
+      <if test="adjust != null">
+        #{adjust,jdbcType=TINYINT},
+      </if>
+      <if test="adjustcom != null">
+        #{adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_repairinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.repshopsqua != null">
+        repshopsqua = #{record.repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="record.repser != null">
+        repser = #{record.repser,jdbcType=TINYINT},
+      </if>
+      <if test="record.repband != null">
+        repband = #{record.repband,jdbcType=TINYINT},
+      </if>
+      <if test="record.searchser != null">
+        searchser = #{record.searchser,jdbcType=TINYINT},
+      </if>
+      <if test="record.searchband != null">
+        searchband = #{record.searchband,jdbcType=CHAR},
+      </if>
+      <if test="record.adjust != null">
+        adjust = #{record.adjust,jdbcType=TINYINT},
+      </if>
+      <if test="record.adjustcom != null">
+        adjustcom = #{record.adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_repairinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      repshopsqua = #{record.repshopsqua,jdbcType=TINYINT},
+      repser = #{record.repser,jdbcType=TINYINT},
+      repband = #{record.repband,jdbcType=TINYINT},
+      searchser = #{record.searchser,jdbcType=TINYINT},
+      searchband = #{record.searchband,jdbcType=CHAR},
+      adjust = #{record.adjust,jdbcType=TINYINT},
+      adjustcom = #{record.adjustcom,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    update nms_repairinfo
+    <set>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="repshopsqua != null">
+        repshopsqua = #{repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="repser != null">
+        repser = #{repser,jdbcType=TINYINT},
+      </if>
+      <if test="repband != null">
+        repband = #{repband,jdbcType=TINYINT},
+      </if>
+      <if test="searchser != null">
+        searchser = #{searchser,jdbcType=TINYINT},
+      </if>
+      <if test="searchband != null">
+        searchband = #{searchband,jdbcType=CHAR},
+      </if>
+      <if test="adjust != null">
+        adjust = #{adjust,jdbcType=TINYINT},
+      </if>
+      <if test="adjustcom != null">
+        adjustcom = #{adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    update nms_repairinfo
+    set serid = #{serid,jdbcType=BIGINT},
+      repshopsqua = #{repshopsqua,jdbcType=TINYINT},
+      repser = #{repser,jdbcType=TINYINT},
+      repband = #{repband,jdbcType=TINYINT},
+      searchser = #{searchser,jdbcType=TINYINT},
+      searchband = #{searchband,jdbcType=CHAR},
+      adjust = #{adjust,jdbcType=TINYINT},
+      adjustcom = #{adjustcom,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aac.cos.entity.sys.NmsRepairinfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serid" jdbcType="BIGINT" property="serid" />
+    <result column="repshopsqua" jdbcType="TINYINT" property="repshopsqua" />
+    <result column="repser" jdbcType="TINYINT" property="repser" />
+    <result column="repband" jdbcType="TINYINT" property="repband" />
+    <result column="searchser" jdbcType="TINYINT" property="searchser" />
+    <result column="searchband" jdbcType="CHAR" property="searchband" />
+    <result column="adjust" jdbcType="TINYINT" property="adjust" />
+    <result column="adjustcom" jdbcType="VARCHAR" property="adjustcom" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, serid, repshopsqua, repser, repband, searchser, searchband, adjust, adjustcom, 
+    create_by, create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nms_repairinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from nms_repairinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample">
+    delete from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    insert into nms_repairinfo (id, serid, repshopsqua, 
+      repser, repband, searchser, 
+      searchband, adjust, adjustcom, 
+      create_by, create_date, update_by, 
+      update_date, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{serid,jdbcType=BIGINT}, #{repshopsqua,jdbcType=TINYINT}, 
+      #{repser,jdbcType=TINYINT}, #{repband,jdbcType=TINYINT}, #{searchser,jdbcType=TINYINT}, 
+      #{searchband,jdbcType=CHAR}, #{adjust,jdbcType=TINYINT}, #{adjustcom,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    insert into nms_repairinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serid != null">
+        serid,
+      </if>
+      <if test="repshopsqua != null">
+        repshopsqua,
+      </if>
+      <if test="repser != null">
+        repser,
+      </if>
+      <if test="repband != null">
+        repband,
+      </if>
+      <if test="searchser != null">
+        searchser,
+      </if>
+      <if test="searchband != null">
+        searchband,
+      </if>
+      <if test="adjust != null">
+        adjust,
+      </if>
+      <if test="adjustcom != null">
+        adjustcom,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serid != null">
+        #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="repshopsqua != null">
+        #{repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="repser != null">
+        #{repser,jdbcType=TINYINT},
+      </if>
+      <if test="repband != null">
+        #{repband,jdbcType=TINYINT},
+      </if>
+      <if test="searchser != null">
+        #{searchser,jdbcType=TINYINT},
+      </if>
+      <if test="searchband != null">
+        #{searchband,jdbcType=CHAR},
+      </if>
+      <if test="adjust != null">
+        #{adjust,jdbcType=TINYINT},
+      </if>
+      <if test="adjustcom != null">
+        #{adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aac.cos.entity.sys.NmsRepairinfoExample" resultType="java.lang.Integer">
+    select count(*) from nms_repairinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nms_repairinfo
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serid != null">
+        serid = #{record.serid,jdbcType=BIGINT},
+      </if>
+      <if test="record.repshopsqua != null">
+        repshopsqua = #{record.repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="record.repser != null">
+        repser = #{record.repser,jdbcType=TINYINT},
+      </if>
+      <if test="record.repband != null">
+        repband = #{record.repband,jdbcType=TINYINT},
+      </if>
+      <if test="record.searchser != null">
+        searchser = #{record.searchser,jdbcType=TINYINT},
+      </if>
+      <if test="record.searchband != null">
+        searchband = #{record.searchband,jdbcType=CHAR},
+      </if>
+      <if test="record.adjust != null">
+        adjust = #{record.adjust,jdbcType=TINYINT},
+      </if>
+      <if test="record.adjustcom != null">
+        adjustcom = #{record.adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nms_repairinfo
+    set id = #{record.id,jdbcType=BIGINT},
+      serid = #{record.serid,jdbcType=BIGINT},
+      repshopsqua = #{record.repshopsqua,jdbcType=TINYINT},
+      repser = #{record.repser,jdbcType=TINYINT},
+      repband = #{record.repband,jdbcType=TINYINT},
+      searchser = #{record.searchser,jdbcType=TINYINT},
+      searchband = #{record.searchband,jdbcType=CHAR},
+      adjust = #{record.adjust,jdbcType=TINYINT},
+      adjustcom = #{record.adjustcom,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{record.delFlag,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    update nms_repairinfo
+    <set>
+      <if test="serid != null">
+        serid = #{serid,jdbcType=BIGINT},
+      </if>
+      <if test="repshopsqua != null">
+        repshopsqua = #{repshopsqua,jdbcType=TINYINT},
+      </if>
+      <if test="repser != null">
+        repser = #{repser,jdbcType=TINYINT},
+      </if>
+      <if test="repband != null">
+        repband = #{repband,jdbcType=TINYINT},
+      </if>
+      <if test="searchser != null">
+        searchser = #{searchser,jdbcType=TINYINT},
+      </if>
+      <if test="searchband != null">
+        searchband = #{searchband,jdbcType=CHAR},
+      </if>
+      <if test="adjust != null">
+        adjust = #{adjust,jdbcType=TINYINT},
+      </if>
+      <if test="adjustcom != null">
+        adjustcom = #{adjustcom,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aac.cos.entity.sys.NmsRepairinfo">
+    update nms_repairinfo
+    set serid = #{serid,jdbcType=BIGINT},
+      repshopsqua = #{repshopsqua,jdbcType=TINYINT},
+      repser = #{repser,jdbcType=TINYINT},
+      repband = #{repband,jdbcType=TINYINT},
+      searchser = #{searchser,jdbcType=TINYINT},
+      searchband = #{searchband,jdbcType=CHAR},
+      adjust = #{adjust,jdbcType=TINYINT},
+      adjustcom = #{adjustcom,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

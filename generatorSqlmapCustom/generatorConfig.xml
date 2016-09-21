@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="testTables" targetRuntime="MyBatis3">
+		<!-- 自定义的自定义comment生成器，用来生成pojo类属性注释 -->
+		<commentGenerator type="com.generator.MyCommentGenerator"></commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://rm-2ze36y6jar2a0l7k4.mysql.rds.aliyuncs.com:3306/gugu_help_test" userId="gugu_help_test" password="gugu_help_test">
+		</jdbcConnection>
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
+			NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.aac.cos.entity.gga"
+			targetProject=".\src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+        <!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="config.mybatis.mappers.gga" 
+			targetProject=".\src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.aac.cos.entity.sys.mapper" 
+			targetProject=".\src">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		<!-- 指定数据库表 -->
+		<table tableName="lp_flow"></table>
+		<table tableName="lp_flow_task"></table>
+		<table tableName="easygotd"></table>
+		<table tableName="BD_TOKEN_TD"></table>
+		<table tableName="access_token"></table>
+
+<!-- 		<table tableName="sys_dict"></table> -->
+<!-- 		<table tableName="sys_organization"></table> -->
+<!-- 		<table tableName="sys_resource"></table> -->
+<!-- 		<table tableName="sys_role"></table> -->
+<!-- 		<table tableName="sys_role_resource"></table> -->
+<!-- 		<table tableName="sys_user"></table> -->
+<!-- 		<table tableName="sys_user_role"></table> -->
+		
+<!-- 		<table tableName="bd_contract_line"></table> -->
+<!-- 		<table tableName="bd_contracts"></table> -->
+<!-- 		<table tableName="bd_customer"></table> -->
+		
+<!-- 		<table tableName="com_area"></table> -->
+<!-- 		<table tableName="com_city"></table> -->
+<!-- 		<table tableName="com_province"></table> -->
+		
+<!-- 		<table tableName="cos_case"></table> -->
+<!-- 		<table tableName="cos_case_task"></table> -->
+<!-- 		<table tableName="cos_case_task_contact"></table> -->
+<!-- 		<table tableName="cos_case_task_dispath"></table> -->
+		
+<!-- 		<table tableName="nms_accountinfo"></table> -->
+<!-- 		<table tableName="nms_arprice"></table> -->
+<!-- 		<table tableName="nms_difficultyrelief"></table> -->
+<!-- 		<table tableName="nms_otherser"></table> -->
+<!-- 		<table tableName="nms_repairinfo"></table> -->
+<!-- 		<table tableName="nms_roadprice"></table> -->
+<!-- 		<table tableName="nms_roadrepinfo"></table> -->
+<!-- 		<table tableName="nms_serinfo"></table> -->
+<!-- 		<table tableName="nms_serinfoaddr"></table> -->
+<!-- 		<table tableName="nms_serinfouser"></table> -->
+<!-- 		<table tableName="nms_trability"></table> -->
+<!-- 		<table tableName="nms_troresinfo"></table> -->
+		
+	</context>
+</generatorConfiguration>

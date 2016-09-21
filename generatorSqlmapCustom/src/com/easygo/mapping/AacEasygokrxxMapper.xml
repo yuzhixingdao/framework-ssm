@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easygo.dao.AacEasygokrxxMapper" >
+  <resultMap id="BaseResultMap" type="com.easygo.model.AacEasygokrxx" >
+    <id column="krxxid" property="krxxid" jdbcType="BIGINT" />
+    <result column="krxm" property="krxm" jdbcType="VARCHAR" />
+    <result column="krcw" property="krcw" jdbcType="TINYINT" />
+    <result column="krsstd" property="krsstd" jdbcType="VARCHAR" />
+    <result column="krldhm" property="krldhm" jdbcType="VARCHAR" />
+    <result column="krjb" property="krjb" jdbcType="TINYINT" />
+    <result column="krjzd" property="krjzd" jdbcType="VARCHAR" />
+    <result column="kryb" property="kryb" jdbcType="VARCHAR" />
+    <result column="krbdh" property="krbdh" jdbcType="VARCHAR" />
+    <result column="krkh" property="krkh" jdbcType="VARCHAR" />
+    <result column="krgxrq" property="krgxrq" jdbcType="TIMESTAMP" />
+    <result column="krkkrq" property="krkkrq" jdbcType="TIMESTAMP" />
+    <result column="krfwsxrq" property="krfwsxrq" jdbcType="TIMESTAMP" />
+    <result column="krfwjzrq" property="krfwjzrq" jdbcType="TIMESTAMP" />
+    <result column="krfwxxbz" property="krfwxxbz" jdbcType="VARCHAR" />
+    <result column="krcjrid" property="krcjrid" jdbcType="BIGINT" />
+    <result column="krcjsj" property="krcjsj" jdbcType="TIMESTAMP" />
+    <result column="krxgrid" property="krxgrid" jdbcType="BIGINT" />
+    <result column="krxgsj" property="krxgsj" jdbcType="TIMESTAMP" />
+    <result column="clcjh" property="clcjh" jdbcType="VARCHAR" />
+    <result column="clcph" property="clcph" jdbcType="VARCHAR" />
+    <result column="clclys" property="clclys" jdbcType="VARCHAR" />
+    <result column="clpp" property="clpp" jdbcType="VARCHAR" />
+    <result column="clcx" property="clcx" jdbcType="VARCHAR" />
+    <result column="clcxl" property="clcxl" jdbcType="VARCHAR" />
+    <result column="cldllx" property="cldllx" jdbcType="TINYINT" />
+    <result column="clqdfs" property="clqdfs" jdbcType="TINYINT" />
+    <result column="clxsgls" property="clxsgls" jdbcType="VARCHAR" />
+    <result column="clgmrq" property="clgmrq" jdbcType="TIMESTAMP" />
+    <result column="clgmjxs" property="clgmjxs" jdbcType="VARCHAR" />
+    <result column="clxxbz" property="clxxbz" jdbcType="VARCHAR" />
+    <result column="clxgrid" property="clxgrid" jdbcType="BIGINT" />
+    <result column="clxgsj" property="clxgsj" jdbcType="TIMESTAMP" />
+    <result column="clszcs" property="clszcs" jdbcType="VARCHAR" />
+    <result column="sfzxx" property="sfzxx" jdbcType="VARCHAR" />
+    <result column="txxx" property="txxx" jdbcType="VARCHAR" />
+    <result column="drivePhoto" property="drivephoto" jdbcType="VARCHAR" />
+    <result column="runPhoto" property="runphoto" jdbcType="VARCHAR" />
+    <result column="carPhoto" property="carphoto" jdbcType="VARCHAR" />
+    <result column="isapp" property="isapp" jdbcType="TINYINT" />
+    <result column="zcly" property="zcly" jdbcType="TINYINT" />
+    <result column="scsrFlag" property="scsrflag" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.easygo.model.AacEasygokrxx" extends="BaseResultMap" >
+    <result column="kebz" property="kebz" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    krxxid, krxm, krcw, krsstd, krldhm, krjb, krjzd, kryb, krbdh, krkh, krgxrq, krkkrq, 
+    krfwsxrq, krfwjzrq, krfwxxbz, krcjrid, krcjsj, krxgrid, krxgsj, clcjh, clcph, clclys, 
+    clpp, clcx, clcxl, cldllx, clqdfs, clxsgls, clgmrq, clgmjxs, clxxbz, clxgrid, clxgsj, 
+    clszcs, sfzxx, txxx, drivePhoto, runPhoto, carPhoto, isapp, zcly, scsrFlag
+  </sql>
+  <sql id="Blob_Column_List" >
+    kebz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from easygokrxx
+    where krxxid = #{krxxid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from easygokrxx
+    where krxxid = #{krxxid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.easygo.model.AacEasygokrxx" >
+    insert into easygokrxx (krxxid, krxm, krcw, 
+      krsstd, krldhm, krjb, 
+      krjzd, kryb, krbdh, 
+      krkh, krgxrq, krkkrq, 
+      krfwsxrq, krfwjzrq, krfwxxbz, 
+      krcjrid, krcjsj, krxgrid, 
+      krxgsj, clcjh, clcph, 
+      clclys, clpp, clcx, 
+      clcxl, cldllx, clqdfs, 
+      clxsgls, clgmrq, clgmjxs, 
+      clxxbz, clxgrid, clxgsj, 
+      clszcs, sfzxx, txxx, 
+      drivePhoto, runPhoto, carPhoto, 
+      isapp, zcly, scsrFlag, 
+      kebz)
+    values (#{krxxid,jdbcType=BIGINT}, #{krxm,jdbcType=VARCHAR}, #{krcw,jdbcType=TINYINT}, 
+      #{krsstd,jdbcType=VARCHAR}, #{krldhm,jdbcType=VARCHAR}, #{krjb,jdbcType=TINYINT}, 
+      #{krjzd,jdbcType=VARCHAR}, #{kryb,jdbcType=VARCHAR}, #{krbdh,jdbcType=VARCHAR}, 
+      #{krkh,jdbcType=VARCHAR}, #{krgxrq,jdbcType=TIMESTAMP}, #{krkkrq,jdbcType=TIMESTAMP}, 
+      #{krfwsxrq,jdbcType=TIMESTAMP}, #{krfwjzrq,jdbcType=TIMESTAMP}, #{krfwxxbz,jdbcType=VARCHAR}, 
+      #{krcjrid,jdbcType=BIGINT}, #{krcjsj,jdbcType=TIMESTAMP}, #{krxgrid,jdbcType=BIGINT}, 
+      #{krxgsj,jdbcType=TIMESTAMP}, #{clcjh,jdbcType=VARCHAR}, #{clcph,jdbcType=VARCHAR}, 
+      #{clclys,jdbcType=VARCHAR}, #{clpp,jdbcType=VARCHAR}, #{clcx,jdbcType=VARCHAR}, 
+      #{clcxl,jdbcType=VARCHAR}, #{cldllx,jdbcType=TINYINT}, #{clqdfs,jdbcType=TINYINT}, 
+      #{clxsgls,jdbcType=VARCHAR}, #{clgmrq,jdbcType=TIMESTAMP}, #{clgmjxs,jdbcType=VARCHAR}, 
+      #{clxxbz,jdbcType=VARCHAR}, #{clxgrid,jdbcType=BIGINT}, #{clxgsj,jdbcType=TIMESTAMP}, 
+      #{clszcs,jdbcType=VARCHAR}, #{sfzxx,jdbcType=VARCHAR}, #{txxx,jdbcType=VARCHAR}, 
+      #{drivephoto,jdbcType=VARCHAR}, #{runphoto,jdbcType=VARCHAR}, #{carphoto,jdbcType=VARCHAR}, 
+      #{isapp,jdbcType=TINYINT}, #{zcly,jdbcType=TINYINT}, #{scsrflag,jdbcType=VARCHAR}, 
+      #{kebz,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easygo.model.AacEasygokrxx" >
+    insert into easygokrxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="krxxid != null" >
+        krxxid,
+      </if>
+      <if test="krxm != null" >
+        krxm,
+      </if>
+      <if test="krcw != null" >
+        krcw,
+      </if>
+      <if test="krsstd != null" >
+        krsstd,
+      </if>
+      <if test="krldhm != null" >
+        krldhm,
+      </if>
+      <if test="krjb != null" >
+        krjb,
+      </if>
+      <if test="krjzd != null" >
+        krjzd,
+      </if>
+      <if test="kryb != null" >
+        kryb,
+      </if>
+      <if test="krbdh != null" >
+        krbdh,
+      </if>
+      <if test="krkh != null" >
+        krkh,
+      </if>
+      <if test="krgxrq != null" >
+        krgxrq,
+      </if>
+      <if test="krkkrq != null" >
+        krkkrq,
+      </if>
+      <if test="krfwsxrq != null" >
+        krfwsxrq,
+      </if>
+      <if test="krfwjzrq != null" >
+        krfwjzrq,
+      </if>
+      <if test="krfwxxbz != null" >
+        krfwxxbz,
+      </if>
+      <if test="krcjrid != null" >
+        krcjrid,
+      </if>
+      <if test="krcjsj != null" >
+        krcjsj,
+      </if>
+      <if test="krxgrid != null" >
+        krxgrid,
+      </if>
+      <if test="krxgsj != null" >
+        krxgsj,
+      </if>
+      <if test="clcjh != null" >
+        clcjh,
+      </if>
+      <if test="clcph != null" >
+        clcph,
+      </if>
+      <if test="clclys != null" >
+        clclys,
+      </if>
+      <if test="clpp != null" >
+        clpp,
+      </if>
+      <if test="clcx != null" >
+        clcx,
+      </if>
+      <if test="clcxl != null" >
+        clcxl,
+      </if>
+      <if test="cldllx != null" >
+        cldllx,
+      </if>
+      <if test="clqdfs != null" >
+        clqdfs,
+      </if>
+      <if test="clxsgls != null" >
+        clxsgls,
+      </if>
+      <if test="clgmrq != null" >
+        clgmrq,
+      </if>
+      <if test="clgmjxs != null" >
+        clgmjxs,
+      </if>
+      <if test="clxxbz != null" >
+        clxxbz,
+      </if>
+      <if test="clxgrid != null" >
+        clxgrid,
+      </if>
+      <if test="clxgsj != null" >
+        clxgsj,
+      </if>
+      <if test="clszcs != null" >
+        clszcs,
+      </if>
+      <if test="sfzxx != null" >
+        sfzxx,
+      </if>
+      <if test="txxx != null" >
+        txxx,
+      </if>
+      <if test="drivephoto != null" >
+        drivePhoto,
+      </if>
+      <if test="runphoto != null" >
+        runPhoto,
+      </if>
+      <if test="carphoto != null" >
+        carPhoto,
+      </if>
+      <if test="isapp != null" >
+        isapp,
+      </if>
+      <if test="zcly != null" >
+        zcly,
+      </if>
+      <if test="scsrflag != null" >
+        scsrFlag,
+      </if>
+      <if test="kebz != null" >
+        kebz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="krxxid != null" >
+        #{krxxid,jdbcType=BIGINT},
+      </if>
+      <if test="krxm != null" >
+        #{krxm,jdbcType=VARCHAR},
+      </if>
+      <if test="krcw != null" >
+        #{krcw,jdbcType=TINYINT},
+      </if>
+      <if test="krsstd != null" >
+        #{krsstd,jdbcType=VARCHAR},
+      </if>
+      <if test="krldhm != null" >
+        #{krldhm,jdbcType=VARCHAR},
+      </if>
+      <if test="krjb != null" >
+        #{krjb,jdbcType=TINYINT},
+      </if>
+      <if test="krjzd != null" >
+        #{krjzd,jdbcType=VARCHAR},
+      </if>
+      <if test="kryb != null" >
+        #{kryb,jdbcType=VARCHAR},
+      </if>
+      <if test="krbdh != null" >
+        #{krbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="krkh != null" >
+        #{krkh,jdbcType=VARCHAR},
+      </if>
+      <if test="krgxrq != null" >
+        #{krgxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krkkrq != null" >
+        #{krkkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krfwsxrq != null" >
+        #{krfwsxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krfwjzrq != null" >
+        #{krfwjzrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krfwxxbz != null" >
+        #{krfwxxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="krcjrid != null" >
+        #{krcjrid,jdbcType=BIGINT},
+      </if>
+      <if test="krcjsj != null" >
+        #{krcjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krxgrid != null" >
+        #{krxgrid,jdbcType=BIGINT},
+      </if>
+      <if test="krxgsj != null" >
+        #{krxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clcjh != null" >
+        #{clcjh,jdbcType=VARCHAR},
+      </if>
+      <if test="clcph != null" >
+        #{clcph,jdbcType=VARCHAR},
+      </if>
+      <if test="clclys != null" >
+        #{clclys,jdbcType=VARCHAR},
+      </if>
+      <if test="clpp != null" >
+        #{clpp,jdbcType=VARCHAR},
+      </if>
+      <if test="clcx != null" >
+        #{clcx,jdbcType=VARCHAR},
+      </if>
+      <if test="clcxl != null" >
+        #{clcxl,jdbcType=VARCHAR},
+      </if>
+      <if test="cldllx != null" >
+        #{cldllx,jdbcType=TINYINT},
+      </if>
+      <if test="clqdfs != null" >
+        #{clqdfs,jdbcType=TINYINT},
+      </if>
+      <if test="clxsgls != null" >
+        #{clxsgls,jdbcType=VARCHAR},
+      </if>
+      <if test="clgmrq != null" >
+        #{clgmrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clgmjxs != null" >
+        #{clgmjxs,jdbcType=VARCHAR},
+      </if>
+      <if test="clxxbz != null" >
+        #{clxxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="clxgrid != null" >
+        #{clxgrid,jdbcType=BIGINT},
+      </if>
+      <if test="clxgsj != null" >
+        #{clxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clszcs != null" >
+        #{clszcs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzxx != null" >
+        #{sfzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="txxx != null" >
+        #{txxx,jdbcType=VARCHAR},
+      </if>
+      <if test="drivephoto != null" >
+        #{drivephoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runphoto != null" >
+        #{runphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carphoto != null" >
+        #{carphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="isapp != null" >
+        #{isapp,jdbcType=TINYINT},
+      </if>
+      <if test="zcly != null" >
+        #{zcly,jdbcType=TINYINT},
+      </if>
+      <if test="scsrflag != null" >
+        #{scsrflag,jdbcType=VARCHAR},
+      </if>
+      <if test="kebz != null" >
+        #{kebz,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.easygo.model.AacEasygokrxx" >
+    update easygokrxx
+    <set >
+      <if test="krxm != null" >
+        krxm = #{krxm,jdbcType=VARCHAR},
+      </if>
+      <if test="krcw != null" >
+        krcw = #{krcw,jdbcType=TINYINT},
+      </if>
+      <if test="krsstd != null" >
+        krsstd = #{krsstd,jdbcType=VARCHAR},
+      </if>
+      <if test="krldhm != null" >
+        krldhm = #{krldhm,jdbcType=VARCHAR},
+      </if>
+      <if test="krjb != null" >
+        krjb = #{krjb,jdbcType=TINYINT},
+      </if>
+      <if test="krjzd != null" >
+        krjzd = #{krjzd,jdbcType=VARCHAR},
+      </if>
+      <if test="kryb != null" >
+        kryb = #{kryb,jdbcType=VARCHAR},
+      </if>
+      <if test="krbdh != null" >
+        krbdh = #{krbdh,jdbcType=VARCHAR},
+      </if>
+      <if test="krkh != null" >
+        krkh = #{krkh,jdbcType=VARCHAR},
+      </if>
+      <if test="krgxrq != null" >
+        krgxrq = #{krgxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krkkrq != null" >
+        krkkrq = #{krkkrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krfwsxrq != null" >
+        krfwsxrq = #{krfwsxrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krfwjzrq != null" >
+        krfwjzrq = #{krfwjzrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krfwxxbz != null" >
+        krfwxxbz = #{krfwxxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="krcjrid != null" >
+        krcjrid = #{krcjrid,jdbcType=BIGINT},
+      </if>
+      <if test="krcjsj != null" >
+        krcjsj = #{krcjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="krxgrid != null" >
+        krxgrid = #{krxgrid,jdbcType=BIGINT},
+      </if>
+      <if test="krxgsj != null" >
+        krxgsj = #{krxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clcjh != null" >
+        clcjh = #{clcjh,jdbcType=VARCHAR},
+      </if>
+      <if test="clcph != null" >
+        clcph = #{clcph,jdbcType=VARCHAR},
+      </if>
+      <if test="clclys != null" >
+        clclys = #{clclys,jdbcType=VARCHAR},
+      </if>
+      <if test="clpp != null" >
+        clpp = #{clpp,jdbcType=VARCHAR},
+      </if>
+      <if test="clcx != null" >
+        clcx = #{clcx,jdbcType=VARCHAR},
+      </if>
+      <if test="clcxl != null" >
+        clcxl = #{clcxl,jdbcType=VARCHAR},
+      </if>
+      <if test="cldllx != null" >
+        cldllx = #{cldllx,jdbcType=TINYINT},
+      </if>
+      <if test="clqdfs != null" >
+        clqdfs = #{clqdfs,jdbcType=TINYINT},
+      </if>
+      <if test="clxsgls != null" >
+        clxsgls = #{clxsgls,jdbcType=VARCHAR},
+      </if>
+      <if test="clgmrq != null" >
+        clgmrq = #{clgmrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clgmjxs != null" >
+        clgmjxs = #{clgmjxs,jdbcType=VARCHAR},
+      </if>
+      <if test="clxxbz != null" >
+        clxxbz = #{clxxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="clxgrid != null" >
+        clxgrid = #{clxgrid,jdbcType=BIGINT},
+      </if>
+      <if test="clxgsj != null" >
+        clxgsj = #{clxgsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clszcs != null" >
+        clszcs = #{clszcs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzxx != null" >
+        sfzxx = #{sfzxx,jdbcType=VARCHAR},
+      </if>
+      <if test="txxx != null" >
+        txxx = #{txxx,jdbcType=VARCHAR},
+      </if>
+      <if test="drivephoto != null" >
+        drivePhoto = #{drivephoto,jdbcType=VARCHAR},
+      </if>
+      <if test="runphoto != null" >
+        runPhoto = #{runphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="carphoto != null" >
+        carPhoto = #{carphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="isapp != null" >
+        isapp = #{isapp,jdbcType=TINYINT},
+      </if>
+      <if test="zcly != null" >
+        zcly = #{zcly,jdbcType=TINYINT},
+      </if>
+      <if test="scsrflag != null" >
+        scsrFlag = #{scsrflag,jdbcType=VARCHAR},
+      </if>
+      <if test="kebz != null" >
+        kebz = #{kebz,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where krxxid = #{krxxid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.easygo.model.AacEasygokrxx" >
+    update easygokrxx
+    set krxm = #{krxm,jdbcType=VARCHAR},
+      krcw = #{krcw,jdbcType=TINYINT},
+      krsstd = #{krsstd,jdbcType=VARCHAR},
+      krldhm = #{krldhm,jdbcType=VARCHAR},
+      krjb = #{krjb,jdbcType=TINYINT},
+      krjzd = #{krjzd,jdbcType=VARCHAR},
+      kryb = #{kryb,jdbcType=VARCHAR},
+      krbdh = #{krbdh,jdbcType=VARCHAR},
+      krkh = #{krkh,jdbcType=VARCHAR},
+      krgxrq = #{krgxrq,jdbcType=TIMESTAMP},
+      krkkrq = #{krkkrq,jdbcType=TIMESTAMP},
+      krfwsxrq = #{krfwsxrq,jdbcType=TIMESTAMP},
+      krfwjzrq = #{krfwjzrq,jdbcType=TIMESTAMP},
+      krfwxxbz = #{krfwxxbz,jdbcType=VARCHAR},
+      krcjrid = #{krcjrid,jdbcType=BIGINT},
+      krcjsj = #{krcjsj,jdbcType=TIMESTAMP},
+      krxgrid = #{krxgrid,jdbcType=BIGINT},
+      krxgsj = #{krxgsj,jdbcType=TIMESTAMP},
+      clcjh = #{clcjh,jdbcType=VARCHAR},
+      clcph = #{clcph,jdbcType=VARCHAR},
+      clclys = #{clclys,jdbcType=VARCHAR},
+      clpp = #{clpp,jdbcType=VARCHAR},
+      clcx = #{clcx,jdbcType=VARCHAR},
+      clcxl = #{clcxl,jdbcType=VARCHAR},
+      cldllx = #{cldllx,jdbcType=TINYINT},
+      clqdfs = #{clqdfs,jdbcType=TINYINT},
+      clxsgls = #{clxsgls,jdbcType=VARCHAR},
+      clgmrq = #{clgmrq,jdbcType=TIMESTAMP},
+      clgmjxs = #{clgmjxs,jdbcType=VARCHAR},
+      clxxbz = #{clxxbz,jdbcType=VARCHAR},
+      clxgrid = #{clxgrid,jdbcType=BIGINT},
+      clxgsj = #{clxgsj,jdbcType=TIMESTAMP},
+      clszcs = #{clszcs,jdbcType=VARCHAR},
+      sfzxx = #{sfzxx,jdbcType=VARCHAR},
+      txxx = #{txxx,jdbcType=VARCHAR},
+      drivePhoto = #{drivephoto,jdbcType=VARCHAR},
+      runPhoto = #{runphoto,jdbcType=VARCHAR},
+      carPhoto = #{carphoto,jdbcType=VARCHAR},
+      isapp = #{isapp,jdbcType=TINYINT},
+      zcly = #{zcly,jdbcType=TINYINT},
+      scsrFlag = #{scsrflag,jdbcType=VARCHAR},
+      kebz = #{kebz,jdbcType=LONGVARCHAR}
+    where krxxid = #{krxxid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.easygo.model.AacEasygokrxx" >
+    update easygokrxx
+    set krxm = #{krxm,jdbcType=VARCHAR},
+      krcw = #{krcw,jdbcType=TINYINT},
+      krsstd = #{krsstd,jdbcType=VARCHAR},
+      krldhm = #{krldhm,jdbcType=VARCHAR},
+      krjb = #{krjb,jdbcType=TINYINT},
+      krjzd = #{krjzd,jdbcType=VARCHAR},
+      kryb = #{kryb,jdbcType=VARCHAR},
+      krbdh = #{krbdh,jdbcType=VARCHAR},
+      krkh = #{krkh,jdbcType=VARCHAR},
+      krgxrq = #{krgxrq,jdbcType=TIMESTAMP},
+      krkkrq = #{krkkrq,jdbcType=TIMESTAMP},
+      krfwsxrq = #{krfwsxrq,jdbcType=TIMESTAMP},
+      krfwjzrq = #{krfwjzrq,jdbcType=TIMESTAMP},
+      krfwxxbz = #{krfwxxbz,jdbcType=VARCHAR},
+      krcjrid = #{krcjrid,jdbcType=BIGINT},
+      krcjsj = #{krcjsj,jdbcType=TIMESTAMP},
+      krxgrid = #{krxgrid,jdbcType=BIGINT},
+      krxgsj = #{krxgsj,jdbcType=TIMESTAMP},
+      clcjh = #{clcjh,jdbcType=VARCHAR},
+      clcph = #{clcph,jdbcType=VARCHAR},
+      clclys = #{clclys,jdbcType=VARCHAR},
+      clpp = #{clpp,jdbcType=VARCHAR},
+      clcx = #{clcx,jdbcType=VARCHAR},
+      clcxl = #{clcxl,jdbcType=VARCHAR},
+      cldllx = #{cldllx,jdbcType=TINYINT},
+      clqdfs = #{clqdfs,jdbcType=TINYINT},
+      clxsgls = #{clxsgls,jdbcType=VARCHAR},
+      clgmrq = #{clgmrq,jdbcType=TIMESTAMP},
+      clgmjxs = #{clgmjxs,jdbcType=VARCHAR},
+      clxxbz = #{clxxbz,jdbcType=VARCHAR},
+      clxgrid = #{clxgrid,jdbcType=BIGINT},
+      clxgsj = #{clxgsj,jdbcType=TIMESTAMP},
+      clszcs = #{clszcs,jdbcType=VARCHAR},
+      sfzxx = #{sfzxx,jdbcType=VARCHAR},
+      txxx = #{txxx,jdbcType=VARCHAR},
+      drivePhoto = #{drivephoto,jdbcType=VARCHAR},
+      runPhoto = #{runphoto,jdbcType=VARCHAR},
+      carPhoto = #{carphoto,jdbcType=VARCHAR},
+      isapp = #{isapp,jdbcType=TINYINT},
+      zcly = #{zcly,jdbcType=TINYINT},
+      scsrFlag = #{scsrflag,jdbcType=VARCHAR}
+    where krxxid = #{krxxid,jdbcType=BIGINT}
+  </update>
+</mapper>
